@@ -29,19 +29,19 @@ public class TileMap {
 
         int mapWidth = (int)(utility.getScreenWidth() * 0.8);
         int mapHeight = mapWidth;
-
         map.setVisibility(View.VISIBLE);
-
         map.getLayoutParams().height = mapHeight;
         map.getLayoutParams().width = mapWidth;
         map.setX((utility.getScreenWidth()/2) - map.getLayoutParams().width/2);
         map.setY((utility.getScreenHeight()/2) - map.getLayoutParams().height/2);
+
+        ImageView image;
         ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
-                ImageView image = new ImageView(utility.getCon());
+                image = new ImageView(utility.getCon());
                 image.setId(View.generateViewId());
 
 
@@ -53,8 +53,8 @@ public class TileMap {
                 }
 
                 image.setLayoutParams(lp);
-                image.getLayoutParams().width = (mapWidth/size) -1;
-                image.getLayoutParams().height = (mapHeight/size) -1;
+                image.getLayoutParams().width = (int)Math.ceil((float)mapWidth/size);
+                image.getLayoutParams().height = (int)Math.ceil((float)mapHeight/size);
                 image.setX((int)(mapWidth * ((float)i/size)));
                 image.setY((int)(mapHeight * ((float)j/size)));
 
@@ -76,9 +76,18 @@ public class TileMap {
                 levelMap.get(i).add(j, new LevelTile(-1));
             }
         }
-    }
 
-    
+        //set all outer tiles to wall
+        for (int i = 0; i < size; i++) {
+            levelMap.get(i).get(0).setType(1);
+            levelMap.get(i).get(size - 1).setType(1);
+        }
+
+        for (int i = 0; i < size; i++) {
+            levelMap.get(0).get(i).setType(1);
+            levelMap.get(size - 1).get(i).setType(1);
+        }
+    }
 
     private LevelTile genTile() {
 
