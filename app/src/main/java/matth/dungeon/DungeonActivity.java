@@ -11,6 +11,7 @@ import java.util.logging.Level;
 public class DungeonActivity extends AppCompatActivity {
 
     ArrayList<ArrayList<LevelTile>> levelMap;
+    Utility utility;
 
     int size = 5; //temp variable, will change for each level
 
@@ -20,6 +21,7 @@ public class DungeonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dungeon);
 
         initLevel();
+        utility = new Utility(this);
     }
 
     public void toggleMap (View view) {
