@@ -27,7 +27,7 @@ public class DungeonActivity extends AppCompatActivity {
         for (int i = 0; i < size; i++) {
             levelMap.add(i, new ArrayList<LevelTile>());
             for (int j = 0; j < size; j++) {
-                levelMap.get(i).add(j, new LevelTile(j));
+                levelMap.get(i).add(j, genTile());
             }
         }
 
@@ -38,6 +38,24 @@ public class DungeonActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private LevelTile genTile() {
+
+        double rand = Math.random() * 100;
+
+        LevelTile current = new LevelTile(-1);
+
+        if (rand > 50) {
+            //wall
+            current.setType(1);
+        }
+        else {
+            //open tile
+            current.setType(0);
+        }
+
+        return current;
     }
 
 }
