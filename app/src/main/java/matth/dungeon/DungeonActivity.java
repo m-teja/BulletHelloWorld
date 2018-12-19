@@ -1,5 +1,6 @@
 package matth.dungeon;
 
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,7 +26,15 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void toggleMap (View view) {
-        findViewById(R.id.mapDisp).setVisibility(View.VISIBLE);
+        View map = findViewById(R.id.mapDisp);
+        map.setVisibility(View.VISIBLE);
+
+        map.getLayoutParams().height = (int)(utility.getScreenHeight() * 0.25);
+        map.getLayoutParams().width = (int)(utility.getScreenWidth() * 0.5);
+        map.setX((utility.getScreenWidth()/2) - map.getLayoutParams().width/2 );
+        map.setY((utility.getScreenHeight()/2) - map.getLayoutParams().height/2);
+
+
     }
 
     private void initLevel() {
@@ -38,19 +47,16 @@ public class DungeonActivity extends AppCompatActivity {
             }
         }
 
-
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 Log.d("test", ((LevelTile)((ArrayList)levelMap.get(i)).get(j)).test());
             }
         }
-
     }
 
     private LevelTile genTile() {
 
         double rand = Math.random() * 100;
-
         LevelTile current = new LevelTile(-1);
 
         if (rand > 50) {
