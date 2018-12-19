@@ -26,13 +26,20 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void toggleMap (View view) {
-        View map = findViewById(R.id.mapDisp);
-        map.setVisibility(View.VISIBLE);
 
-        map.getLayoutParams().height = (int)(utility.getScreenHeight() * 0.25);
-        map.getLayoutParams().width = (int)(utility.getScreenWidth() * 0.5);
-        map.setX((utility.getScreenWidth()/2) - map.getLayoutParams().width/2 );
-        map.setY((utility.getScreenHeight()/2) - map.getLayoutParams().height/2);
+        if (findViewById(R.id.mapDisp).getVisibility() == View.GONE) {
+            View map = findViewById(R.id.mapDisp);
+            map.setVisibility(View.VISIBLE);
+
+            map.getLayoutParams().height = (int)(utility.getScreenHeight() * 0.6);
+            map.getLayoutParams().width = (int)(utility.getScreenWidth() * 0.8);
+            map.setX((utility.getScreenWidth()/2) - map.getLayoutParams().width/2 );
+            map.setY((utility.getScreenHeight()/2) - map.getLayoutParams().height/2);
+        }
+        else {
+            findViewById(R.id.mapDisp).setVisibility(View.GONE);
+        }
+
 
 
     }
