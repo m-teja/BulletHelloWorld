@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">dungeon</string>
+    <string name="play">Play</string>
+    <string name="dungeon_game">Dungeon game</string>
+</resources>
