@@ -10,10 +10,6 @@ public class LevelTile {
         visited = false;
     }
 
-    public String test() {
-        return Integer.toString(type);
-    }
-
     public int getType() {
         return type;
     }
