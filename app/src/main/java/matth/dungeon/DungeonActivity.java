@@ -40,32 +40,45 @@ public class DungeonActivity extends AppCompatActivity {
     public void buildMap() {
         ConstraintLayout map = findViewById(R.id.mapDisp);
         ConstraintSet set = new ConstraintSet();
+        int mapHeight = (int)(utility.getScreenHeight() * 0.6);
+        int mapWidth = (int)(utility.getScreenWidth() * 0.8);
 
         map.setVisibility(View.VISIBLE);
 
-        map.getLayoutParams().height = (int)(utility.getScreenHeight() * 0.6);
-        map.getLayoutParams().width = (int)(utility.getScreenWidth() * 0.8);
+        map.getLayoutParams().height = mapHeight;
+        map.getLayoutParams().width = mapWidth;
         map.setX((utility.getScreenWidth()/2) - map.getLayoutParams().width/2 );
         map.setY((utility.getScreenHeight()/2) - map.getLayoutParams().height/2);
 
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < size; j++) {
-//
-//                if (((LevelTile)((ArrayList)levelMap.get(i)).get(j)).getType() == 1) {
-                    ImageView image = new ImageView(this);
-                    image.setId(View.generateViewId());
-                    image.setImageResource(getResources().getIdentifier("wall", "drawable", getPackageName()));
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
 
-                    map.addView(image);
-                    set.clone(map);
-                    set.connect(image.getId(), ConstraintSet.TOP, map.getId(), ConstraintSet.TOP, 0);
-                    set.applyTo(map);
-                    
-//                }
-//
-//
-//            }
-//        }
+                ImageView image = new ImageView(this);
+                image.setId(View.generateViewId());
+                ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+
+                if (((LevelTile)((ArrayList)levelMap.get(i)).get(j)).getType() == 1) {
+                    image.setImageResource(getResources().getIdentifier("wall", "drawable", getPackageName()));
+                }
+                else if (((LevelTile)((ArrayList)levelMap.get(i)).get(j)).getType() == 0) {
+                    image.setImageResource(getResources().getIdentifier("empty", "drawable", getPackageName()));
+                }
+
+                image.setLayoutParams(lp);
+                image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                image.getLayoutParams().width = (mapWidth/size) -1;
+                image.getLayoutParams().height = (mapHeight/size) -1;
+                image.setX((int)(mapWidth * ((float)i/size)));
+                image.setY((int)(mapHeight * ((float)j/size)));
+                Log.d("test", Integer.toString(size));
+
+                map.addView(image);
+                set.clone(map);
+                set.connect(image.getId(), ConstraintSet.TOP, map.getId(), ConstraintSet.TOP, 0);
+                set.applyTo(map);
+            }
+        }
     }
 
     private void initLevel() {
