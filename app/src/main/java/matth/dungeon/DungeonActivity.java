@@ -3,6 +3,7 @@ package matth.dungeon;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -19,6 +20,10 @@ public class DungeonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dungeon);
 
         initLevel();
+    }
+
+    public void toggleMap (View view) {
+        findViewById(R.id.mapDisp).setVisibility(View.VISIBLE);
     }
 
     private void initLevel() {
