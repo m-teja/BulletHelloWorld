@@ -10,6 +10,10 @@ public class Utility {
         this.con = con;
     }
 
+    public Context getCon() {
+        return con;
+    }
+
     public int getScreenHeight() {
         return con.getResources().getDisplayMetrics().heightPixels;
     }
