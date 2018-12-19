@@ -9,11 +9,10 @@ import java.util.ArrayList;
 
 public class DungeonActivity extends AppCompatActivity {
 
-    ArrayList<ArrayList<LevelTile>> levelMap;
     Utility utility;
     TileMap tileMap;
 
-    int size = 5; //temp variable, will change for each level
+    int size = 15; //temp variable, will change for each level
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +21,6 @@ public class DungeonActivity extends AppCompatActivity {
 
         utility = new Utility(this);
         tileMap = new TileMap(utility, size);
-
 
     }
 

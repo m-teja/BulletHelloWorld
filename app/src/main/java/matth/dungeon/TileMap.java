@@ -34,15 +34,15 @@ public class TileMap {
 
         map.getLayoutParams().height = mapHeight;
         map.getLayoutParams().width = mapWidth;
-        map.setX((utility.getScreenWidth()/2) - map.getLayoutParams().width/2 );
+        map.setX((utility.getScreenWidth()/2) - map.getLayoutParams().width/2);
         map.setY((utility.getScreenHeight()/2) - map.getLayoutParams().height/2);
+        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
                 ImageView image = new ImageView(utility.getCon());
                 image.setId(View.generateViewId());
-                ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
 
 
                 if (((LevelTile)((ArrayList)levelMap.get(i)).get(j)).getType() == 1) {
@@ -53,19 +53,18 @@ public class TileMap {
                 }
 
                 image.setLayoutParams(lp);
-                image.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 image.getLayoutParams().width = (mapWidth/size) -1;
                 image.getLayoutParams().height = (mapHeight/size) -1;
                 image.setX((int)(mapWidth * ((float)i/size)));
                 image.setY((int)(mapHeight * ((float)j/size)));
-                Log.d("test", Integer.toString(size));
 
                 map.addView(image);
                 set.clone(map);
                 set.connect(image.getId(), ConstraintSet.TOP, map.getId(), ConstraintSet.TOP, 0);
-                set.applyTo(map);
+
             }
         }
+        set.applyTo(map);
     }
 
     private void initLevel() {
@@ -74,16 +73,12 @@ public class TileMap {
         for (int i = 0; i < size; i++) {
             levelMap.add(i, new ArrayList<LevelTile>());
             for (int j = 0; j < size; j++) {
-                levelMap.get(i).add(j, genTile());
-            }
-        }
-
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                Log.d("test", Integer.toString(((LevelTile)((ArrayList)levelMap.get(i)).get(j)).getType()));
+                levelMap.get(i).add(j, new LevelTile(-1));
             }
         }
     }
+
+    
 
     private LevelTile genTile() {
 
