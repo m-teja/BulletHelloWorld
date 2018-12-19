@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void changeToGame(View view) {
-        Intent intent = new Intent(this, Dungeon.class);
+        Intent intent = new Intent(this, DungeonActivity.class);
         startActivity(intent);
     }
 }
