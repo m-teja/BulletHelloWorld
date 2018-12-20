@@ -2,12 +2,19 @@ package matth.dungeon;
 
 public class Player {
 
-    private TileMap tilemap;
+    private TileMap tileMap;
 
     private int playerRow;
     private int playerCol;
 
     Player(TileMap tileMap) {
-        this.tilemap = tileMap;
+        this.tileMap = tileMap;
+        initPlayer();
+    }
+
+    private void initPlayer() {
+        int playerStart[] = tileMap.genStart();
+        playerCol = playerStart[0];
+        playerRow = playerStart[1];
     }
 }

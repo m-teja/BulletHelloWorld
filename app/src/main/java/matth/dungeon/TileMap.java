@@ -13,6 +13,7 @@ public class TileMap {
 
     private final int EMPTY = 0;
     private final int WALL = 1;
+    private final int PLAYER_POS = 2;
 
     private Utility utility;
     private int size;
@@ -53,10 +54,14 @@ public class TileMap {
                 image.setId(View.generateViewId());
 
 
-                if (((LevelTile) ((ArrayList) levelMap.get(i)).get(j)).getType() == 1) {
-                    image.setImageResource(utility.getCon().getResources().getIdentifier("wall", "drawable", utility.getCon().getPackageName()));
-                } else if (((LevelTile) ((ArrayList) levelMap.get(i)).get(j)).getType() == 0) {
+                if (levelMap.get(i).get(j).getType() == EMPTY) {
                     image.setImageResource(utility.getCon().getResources().getIdentifier("empty", "drawable", utility.getCon().getPackageName()));
+                }
+                else if (levelMap.get(i).get(j).getType() == WALL) {
+                    image.setImageResource(utility.getCon().getResources().getIdentifier("wall", "drawable", utility.getCon().getPackageName()));
+                }
+                else if (levelMap.get(i).get(j).getType() == PLAYER_POS) {
+                    image.setImageResource(utility.getCon().getResources().getIdentifier("player", "drawable", utility.getCon().getPackageName()));
                 }
 
                 image.setLayoutParams(lp);
@@ -94,9 +99,7 @@ public class TileMap {
             levelMap.get(0).get(i).setType(WALL);
             levelMap.get(size - 1).get(i).setType(WALL);
         }
-
     }
-
     private void createLevel() {
 
         int currentRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
@@ -106,10 +109,9 @@ public class TileMap {
         int randDir;
 
         int randLength;
-        int currentLength = 0;
+        int currentLength;
 
         while (tunnelNum > 0 && tunnelLength > 0) {
-
             do {
                 randDir = (int) (Math.random() * 4);
             }
@@ -122,7 +124,6 @@ public class TileMap {
 
                 Log.d("test", Integer.toString(currentCol));
                 Log.d("test", Integer.toString(currentRow));
-
 
                 levelMap.get(currentCol).get(currentRow).setType(EMPTY);
                 Log.d("test", Integer.toString(levelMap.get(currentCol).get(currentRow).getType()));
@@ -139,7 +140,6 @@ public class TileMap {
                 else if (randDir == 3) {
                     currentCol--;
                 }
-
                 currentLength++;
 
             }
@@ -147,7 +147,21 @@ public class TileMap {
                 lastDir = randDir;
                 tunnelNum--;
             }
-
         }
+    }
+
+    public int[] genStart() {
+        int col;
+        int row;
+
+        do {
+            row = (int) Math.floor(Math.random() * (size - 1)) + 1;
+            col = (int) Math.floor(Math.random() * (size - 1)) + 1;
+        }
+        while(levelMap.get(col).get(row).getType() == WALL);
+
+        levelMap.get(col).get(row).setType(2);
+        int result[] = {col, row};
+        return result;
     }
 }
