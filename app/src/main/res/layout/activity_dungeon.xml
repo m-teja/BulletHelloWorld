@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".DungeonActivity">
 
+
+
     <Button
         android:id="@+id/mapButton"
         android:layout_width="wrap_content"
@@ -15,12 +17,10 @@
         android:onClick="toggleMap"
         android:text="@string/map"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:stateListAnimator="@null"/>
 
-    <include
-        android:id="@+id/mapDisp"
-        layout="@layout/dungeon_map"
-        android:visibility="gone" />
+
 
     <ImageButton
         android:id="@+id/arrowDown"
@@ -35,6 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.982"
+        android:stateListAnimator="@null"
         app:srcCompat="@drawable/arrow_down" />
 
     <ImageButton
@@ -51,6 +52,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.794"
+        android:stateListAnimator="@null"
         app:srcCompat="@drawable/arrow_left" />
 
     <ImageButton
@@ -66,6 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.614"
+        android:stateListAnimator="@null"
         app:srcCompat="@drawable/arrow_up" />
 
     <ImageButton
@@ -82,7 +85,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.801"
+        android:stateListAnimator="@null"
         app:srcCompat="@drawable/arrow_right" />
+
+    <include
+        android:id="@+id/mapDisp"
+        layout="@layout/dungeon_map"
+        android:elevation="3dp"
+        android:visibility="gone" />
 
 
 </android.support.constraint.ConstraintLayout>
