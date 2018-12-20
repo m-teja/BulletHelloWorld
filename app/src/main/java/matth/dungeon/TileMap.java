@@ -167,8 +167,6 @@ public class TileMap {
         levelMap.get(col).get(row).setType(PLAYER_POS);
         playerCol = col;
         playerRow = row;
-
-        buildMap();
     }
 
     public int[] genStart() {
