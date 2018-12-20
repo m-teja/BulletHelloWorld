@@ -29,7 +29,6 @@ public class TileMap {
         initLevel();
     }
 
-
     public void buildMap() {
         ConstraintLayout map = ((Activity) utility.getCon()).findViewById(R.id.mapDisp);
         ConstraintSet set = new ConstraintSet();
@@ -81,20 +80,20 @@ public class TileMap {
         for (int i = 0; i < size; i++) {
             levelMap.add(i, new ArrayList<LevelTile>());
             for (int j = 0; j < size; j++) {
-                levelMap.get(i).add(j, new LevelTile(1));
+                levelMap.get(i).add(j, new LevelTile(WALL));
             }
         }
         createLevel();
         //set all outer tiles to wall
-//        for (int i = 0; i < size; i++) {
-//            levelMap.get(i).get(0).setType(1);
-//            levelMap.get(i).get(size - 1).setType(1);
-//        }
-//
-//        for (int i = 0; i < size; i++) {
-//            levelMap.get(0).get(i).setType(1);
-//            levelMap.get(size - 1).get(i).setType(1);
-//        }
+        for (int i = 0; i < size; i++) {
+            levelMap.get(i).get(0).setType(WALL);
+            levelMap.get(i).get(size - 1).setType(WALL);
+        }
+
+        for (int i = 0; i < size; i++) {
+            levelMap.get(0).get(i).setType(WALL);
+            levelMap.get(size - 1).get(i).setType(WALL);
+        }
 
     }
 
@@ -150,22 +149,5 @@ public class TileMap {
             }
 
         }
-    }
-
-
-    private LevelTile genTile() {
-
-        double rand = Math.random() * 100;
-        LevelTile current = new LevelTile(-1);
-
-        if (rand > 50) {
-            //wall
-            current.setType(WALL);
-        } else {
-            //open tile
-            current.setType(EMPTY);
-        }
-
-        return current;
     }
 }

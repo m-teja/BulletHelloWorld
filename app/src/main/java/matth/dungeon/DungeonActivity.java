@@ -11,6 +11,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     Utility utility;
     TileMap tileMap;
+    Player player;
 
     int size = 15; //temp variable, will change for each level
 
@@ -21,6 +22,7 @@ public class DungeonActivity extends AppCompatActivity {
 
         utility = new Utility(this);
         tileMap = new TileMap(utility, size);
+        Player player = new Player(tileMap);
 
     }
 
