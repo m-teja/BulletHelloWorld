@@ -22,18 +22,34 @@ public class DungeonActivity extends AppCompatActivity {
 
         utility = new Utility(this);
         tileMap = new TileMap(utility, size);
-        Player player = new Player(tileMap);
+        player = new Player(tileMap);
 
     }
 
     public void toggleMap (View view) {
-
         if (findViewById(R.id.mapDisp).getVisibility() == View.GONE) {
             tileMap.buildMap();
+            findViewById(R.id.mapDisp).setVisibility(View.VISIBLE);
         }
         else {
             findViewById(R.id.mapDisp).setVisibility(View.GONE);
         }
+    }
+
+    public void moveUp(View view) {
+        player.moveUp();
+    }
+
+    public void moveRight(View view) {
+        player.moveRight();
+    }
+
+    public void moveDown(View view) {
+        player.moveDown();
+    }
+
+    public void moveLeft(View view) {
+        player.moveLeft();
     }
 
 }

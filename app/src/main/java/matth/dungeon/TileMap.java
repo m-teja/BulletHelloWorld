@@ -11,16 +11,19 @@ import java.util.ArrayList;
 
 public class TileMap {
 
-    private final int EMPTY = 0;
-    private final int WALL = 1;
-    private final int PLAYER_POS = 2;
-    private final int END_POS = 3;
+    public final int EMPTY = 0;
+    public final int WALL = 1;
+    public final int PLAYER_POS = 2;
+    public final int END_POS = 3;
 
     private Utility utility;
     private int size;
     private int tunnelLength;
     private int tunnelNum;
     private ArrayList<ArrayList<LevelTile>> levelMap;
+
+    private int playerCol;
+    private int playerRow;
 
 
     TileMap(Utility utility, int size) {
@@ -37,7 +40,6 @@ public class TileMap {
 
         int mapWidth = (int) (utility.getScreenWidth() * 0.8);
         int mapHeight = mapWidth;
-        map.setVisibility(View.VISIBLE);
         map.getLayoutParams().height = mapHeight;
         map.getLayoutParams().width = mapWidth;
         map.setX((utility.getScreenWidth() / 2) - map.getLayoutParams().width / 2);
@@ -83,6 +85,10 @@ public class TileMap {
             return "end";
         }
         return "";
+    }
+
+    public LevelTile getTile(int col, int row) {
+        return levelMap.get(col).get(row);
     }
 
     private void initLevel() {
@@ -156,18 +162,25 @@ public class TileMap {
         }
     }
 
+    public void setPlayerPos(int col, int row) {
+        levelMap.get(playerCol).get(playerRow).setType(EMPTY);
+        levelMap.get(col).get(row).setType(PLAYER_POS);
+        playerCol = col;
+        playerRow = row;
+
+        buildMap();
+    }
+
     public int[] genStart() {
-        int col;
-        int row;
 
         do {
-            row = (int) Math.floor(Math.random() * (size - 1)) + 1;
-            col = (int) Math.floor(Math.random() * (size - 1)) + 1;
+            playerRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
+            playerCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while(levelMap.get(col).get(row).getType() == WALL);
+        while(levelMap.get(playerCol).get(playerRow).getType() == WALL);
 
-        levelMap.get(col).get(row).setType(PLAYER_POS);
-        int result[] = {col, row};
+        levelMap.get(playerCol).get(playerRow).setType(PLAYER_POS);
+        int result[] = {playerCol, playerRow};
         return result;
     }
 

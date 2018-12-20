@@ -18,4 +18,32 @@ public class Player {
         playerCol = playerStart[0];
         playerRow = playerStart[1];
     }
+
+    public void moveUp() {
+        if (!(tileMap.getTile(playerCol, playerRow - 1).getType() == tileMap.WALL)) {
+            playerRow--;
+            tileMap.setPlayerPos(playerCol, playerRow);
+        }
+    }
+
+    public void moveRight() {
+        if (!(tileMap.getTile(playerCol + 1, playerRow).getType() == tileMap.WALL)) {
+            playerCol++;
+            tileMap.setPlayerPos(playerCol, playerRow);
+        }
+    }
+
+    public void moveDown() {
+        if (!(tileMap.getTile(playerCol, playerRow + 1).getType() == tileMap.WALL)) {
+            playerRow++;
+            tileMap.setPlayerPos(playerCol, playerRow);
+        }
+    }
+
+    public void moveLeft() {
+        if (!(tileMap.getTile(playerCol - 1, playerRow).getType() == tileMap.WALL)) {
+            playerCol--;
+            tileMap.setPlayerPos(playerCol, playerRow);
+        }
+    }
 }
