@@ -14,6 +14,7 @@ public class Player {
 
     private void initPlayer() {
         int playerStart[] = tileMap.genStart();
+        tileMap.genEnd();
         playerCol = playerStart[0];
         playerRow = playerStart[1];
     }
