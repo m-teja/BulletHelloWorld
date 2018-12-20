@@ -11,21 +11,21 @@ import java.util.ArrayList;
 
 public class TileMap {
 
-    final int EMPTY = 0;
-    final int WALL = 1;
+    private final int EMPTY = 0;
+    private final int WALL = 1;
 
     private Utility utility;
-    int size;
-    int tunnelLength;
-    int tunnelNum;
+    private int size;
+    private int tunnelLength;
+    private int tunnelNum;
     private ArrayList<ArrayList<LevelTile>> levelMap;
 
 
     TileMap(Utility utility, int size) {
         this.utility = utility;
         this.size = size;
-        tunnelLength = (int) (size * 0.8);
-        tunnelNum = (int) (size * 0.8);
+        tunnelLength = (int) (size * 0.7);
+        tunnelNum = (int) (size * 2);
         initLevel();
     }
 
@@ -86,15 +86,15 @@ public class TileMap {
         }
         createLevel();
         //set all outer tiles to wall
-        for (int i = 0; i < size; i++) {
-            levelMap.get(i).get(0).setType(1);
-            levelMap.get(i).get(size - 1).setType(1);
-        }
-
-        for (int i = 0; i < size; i++) {
-            levelMap.get(0).get(i).setType(1);
-            levelMap.get(size - 1).get(i).setType(1);
-        }
+//        for (int i = 0; i < size; i++) {
+//            levelMap.get(i).get(0).setType(1);
+//            levelMap.get(i).get(size - 1).setType(1);
+//        }
+//
+//        for (int i = 0; i < size; i++) {
+//            levelMap.get(0).get(i).setType(1);
+//            levelMap.get(size - 1).get(i).setType(1);
+//        }
 
     }
 
@@ -103,7 +103,7 @@ public class TileMap {
         int currentRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
         int currentCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
 
-        int lastDir = -1;
+        int lastDir = -10;
         int randDir;
 
         int randLength;
@@ -123,9 +123,10 @@ public class TileMap {
 
                 Log.d("test", Integer.toString(currentCol));
                 Log.d("test", Integer.toString(currentRow));
-                Log.d("test", "yes" + Integer.toString(randDir));
+
 
                 levelMap.get(currentCol).get(currentRow).setType(EMPTY);
+                Log.d("test", Integer.toString(levelMap.get(currentCol).get(currentRow).getType()));
 
                 if (randDir == 0) {
                     currentRow--;
@@ -143,7 +144,7 @@ public class TileMap {
                 currentLength++;
 
             }
-            if (currentLength < randLength) {
+            if (currentLength > 0) {
                 lastDir = randDir;
                 tunnelNum--;
             }
