@@ -2,10 +2,14 @@ package matth.dungeon;
 
 public class LevelTile {
 
+    //Tile types
     public static final int EMPTY = 0;
     public static final int WALL = 1;
     public static final int PLAYER_POS = 2;
     public static final int END_POS = 3;
+
+    //Event types
+    public static final int NO_EVENT = 0;
 
     private int type;
     private int event;
@@ -13,6 +17,7 @@ public class LevelTile {
 
     LevelTile(int type) {
         this.type = type;
+        this.event = NO_EVENT;
         visited = false;
     }
 
