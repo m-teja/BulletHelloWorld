@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -13,7 +17,6 @@ public class DungeonActivity extends AppCompatActivity {
     Utility utility;
     TileMap tileMap;
     Player player;
-    TextLines textLines;
 
     int size = 15; //temp variable, will change for each level
 
@@ -25,6 +28,8 @@ public class DungeonActivity extends AppCompatActivity {
         utility = new Utility(this);
         tileMap = new TileMap(utility, size);
         player = new Player(tileMap);
+        updateText();
+
 
     }
 
@@ -49,27 +54,39 @@ public class DungeonActivity extends AppCompatActivity {
                 , (tileMap.getTile(col, row + 1)).getType()
                 , (tileMap.getTile(col - 1, row)).getType()};
 
+        TextView up = findViewById(R.id.upInfo);
+        TextView right = findViewById(R.id.rightInfo);
+        TextView down = findViewById(R.id.downInfo);
+        TextView left = findViewById(R.id.leftInfo);
 
+        up.setText(TextLines.getLine(info[0]));
+        right.setText(TextLines.getLine(info[1]));
+        down.setText(TextLines.getLine(info[2]));
+        left.setText(TextLines.getLine(info[3]));
     }
 
     public void moveUp(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveUp();
+        updateText();
     }
 
     public void moveRight(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveRight();
+        updateText();
     }
 
     public void moveDown(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveDown();
+        updateText();
     }
 
     public void moveLeft(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveLeft();
+        updateText();
     }
 
     @Override
