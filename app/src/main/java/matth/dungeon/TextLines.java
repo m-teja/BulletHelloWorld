@@ -3,17 +3,35 @@ package matth.dungeon;
 public class TextLines {
 
 
-    public static String getLine(int tileType) {
+    public static String getLine(int tileType, int direction) {
+
+        String result = "";
+
         if (tileType == TileMap.EMPTY) {
-            return "There is an empty space";
+            result += "There is an empty space";
         }
         else if (tileType == TileMap.WALL) {
-            return "There is a wall";
+            result += "There is a wall";
         }
         else if (tileType == TileMap.END_POS) {
-            return "You see the end";
+            result += "You see the end";
         }
 
-        return "you should not see this";
+        if (direction == 0) {
+            result += " in front of you";
+        }
+        else if (direction == 1) {
+            result += " to your right";
+        }
+        else if (direction == 2) {
+            result += " behind you";
+        }
+        else if (direction == 3) {
+            result += " to your left";
+        }
+
+
+
+        return result;
     }
 }

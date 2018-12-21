@@ -59,10 +59,10 @@ public class DungeonActivity extends AppCompatActivity {
         TextView down = findViewById(R.id.downInfo);
         TextView left = findViewById(R.id.leftInfo);
 
-        up.setText(TextLines.getLine(info[0]));
-        right.setText(TextLines.getLine(info[1]));
-        down.setText(TextLines.getLine(info[2]));
-        left.setText(TextLines.getLine(info[3]));
+        up.setText(TextLines.getLine(info[0], 0));
+        right.setText(TextLines.getLine(info[1], 1));
+        down.setText(TextLines.getLine(info[2], 2));
+        left.setText(TextLines.getLine(info[3], 3));
     }
 
     public void moveUp(View view) {
