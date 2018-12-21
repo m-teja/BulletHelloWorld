@@ -13,6 +13,7 @@ public class DungeonActivity extends AppCompatActivity {
     Utility utility;
     TileMap tileMap;
     Player player;
+    TextLines textLines;
 
     int size = 15; //temp variable, will change for each level
 
@@ -38,7 +39,17 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void updateText() {
-        
+        int[] playerPos = player.getPlayerPos();
+        int col = playerPos[0];
+        int row = playerPos[1];
+
+        //get the type of tile in the form of { up, right, down, left}
+        int info[] = {(tileMap.getTile(col, row - 1)).getType()
+                , (tileMap.getTile(col + 1, row)).getType()
+                , (tileMap.getTile(col, row + 1)).getType()
+                , (tileMap.getTile(col - 1, row)).getType()};
+
+
     }
 
     public void moveUp(View view) {
