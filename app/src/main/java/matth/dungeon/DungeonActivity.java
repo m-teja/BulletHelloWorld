@@ -3,6 +3,7 @@ package matth.dungeon;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -37,19 +38,30 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void moveUp(View view) {
+        findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveUp();
     }
 
     public void moveRight(View view) {
+        findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveRight();
     }
 
     public void moveDown(View view) {
+        findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveDown();
     }
 
     public void moveLeft(View view) {
+        findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveLeft();
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (findViewById(R.id.mapDisp).getVisibility() == View.VISIBLE) {
+            findViewById(R.id.mapDisp).setVisibility(View.GONE);
+        }
+        return false;
+    }
 }
