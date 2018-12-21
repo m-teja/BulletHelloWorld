@@ -2,6 +2,11 @@ package matth.dungeon;
 
 public class LevelTile {
 
+    public static final int EMPTY = 0;
+    public static final int WALL = 1;
+    public static final int PLAYER_POS = 2;
+    public static final int END_POS = 3;
+
     private int type;
     private int event;
     private boolean visited;

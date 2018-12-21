@@ -9,13 +9,13 @@ public class TextLines {
 
         String result = "";
 
-        if (tileType == TileMap.EMPTY) {
+        if (tileType == LevelTile.EMPTY) {
             result += "There is an empty space";
         }
-        else if (tileType == TileMap.WALL) {
+        else if (tileType == LevelTile.WALL) {
             result += "There is a wall";
         }
-        else if (tileType == TileMap.END_POS) {
+        else if (tileType == LevelTile.END_POS) {
             result += "You see the end";
         }
 

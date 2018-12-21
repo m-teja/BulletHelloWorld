@@ -11,10 +11,7 @@ import java.util.ArrayList;
 
 public class TileMap {
 
-    public static final int EMPTY = 0;
-    public static final int WALL = 1;
-    public static final int PLAYER_POS = 2;
-    public static final int END_POS = 3;
+
 
     private Utility utility;
     private int size;
@@ -73,16 +70,16 @@ public class TileMap {
     }
 
     private String getImageType(int col, int row) {
-        if (levelMap.get(col).get(row).getType() == EMPTY) {
+        if (levelMap.get(col).get(row).getType() == LevelTile.EMPTY) {
             return "empty";
         }
-        else if (levelMap.get(col).get(row).getType() == WALL) {
+        else if (levelMap.get(col).get(row).getType() == LevelTile.WALL) {
             return "wall";
         }
-        else if (levelMap.get(col).get(row).getType() == PLAYER_POS) {
+        else if (levelMap.get(col).get(row).getType() == LevelTile.PLAYER_POS) {
             return "player";
         }
-        else if (levelMap.get(col).get(row).getType() == END_POS) {
+        else if (levelMap.get(col).get(row).getType() == LevelTile.END_POS) {
             return "end";
         }
         return "";
@@ -98,19 +95,19 @@ public class TileMap {
         for (int i = 0; i < size; i++) {
             levelMap.add(i, new ArrayList<LevelTile>());
             for (int j = 0; j < size; j++) {
-                levelMap.get(i).add(j, new LevelTile(WALL));
+                levelMap.get(i).add(j, new LevelTile(LevelTile.WALL));
             }
         }
         createLevel();
         //set all outer tiles to wall
         for (int i = 0; i < size; i++) {
-            levelMap.get(i).get(0).setType(WALL);
-            levelMap.get(i).get(size - 1).setType(WALL);
+            levelMap.get(i).get(0).setType(LevelTile.WALL);
+            levelMap.get(i).get(size - 1).setType(LevelTile.WALL);
         }
 
         for (int i = 0; i < size; i++) {
-            levelMap.get(0).get(i).setType(WALL);
-            levelMap.get(size - 1).get(i).setType(WALL);
+            levelMap.get(0).get(i).setType(LevelTile.WALL);
+            levelMap.get(size - 1).get(i).setType(LevelTile.WALL);
         }
 
 
@@ -140,7 +137,7 @@ public class TileMap {
                 Log.d("test", Integer.toString(currentCol));
                 Log.d("test", Integer.toString(currentRow));
 
-                levelMap.get(currentCol).get(currentRow).setType(EMPTY);
+                levelMap.get(currentCol).get(currentRow).setType(LevelTile.EMPTY);
                 Log.d("test", Integer.toString(levelMap.get(currentCol).get(currentRow).getType()));
 
                 if (randDir == 0) {
@@ -170,8 +167,8 @@ public class TileMap {
     }
 
     public void setPlayerPos(int col, int row) {
-        levelMap.get(playerCol).get(playerRow).setType(EMPTY);
-        levelMap.get(col).get(row).setType(PLAYER_POS);
+        levelMap.get(playerCol).get(playerRow).setType(LevelTile.EMPTY);
+        levelMap.get(col).get(row).setType(LevelTile.PLAYER_POS);
         playerCol = col;
         playerRow = row;
     }
@@ -182,9 +179,9 @@ public class TileMap {
             playerRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             playerCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while(levelMap.get(playerCol).get(playerRow).getType() == WALL);
+        while(levelMap.get(playerCol).get(playerRow).getType() == LevelTile.WALL);
 
-        levelMap.get(playerCol).get(playerRow).setType(PLAYER_POS);
+        levelMap.get(playerCol).get(playerRow).setType(LevelTile.PLAYER_POS);
         int result[] = {playerCol, playerRow};
         return result;
     }
@@ -197,8 +194,8 @@ public class TileMap {
             row = (int) Math.floor(Math.random() * (size - 1)) + 1;
             col = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while(levelMap.get(col).get(row).getType() == WALL || levelMap.get(col).get(row).getType() == PLAYER_POS);
+        while(levelMap.get(col).get(row).getType() == LevelTile.WALL || levelMap.get(col).get(row).getType() == LevelTile.PLAYER_POS);
 
-        levelMap.get(col).get(row).setType(END_POS);
+        levelMap.get(col).get(row).setType(LevelTile.END_POS);
     }
 }
