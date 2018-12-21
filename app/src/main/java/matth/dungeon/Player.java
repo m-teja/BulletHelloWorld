@@ -19,6 +19,11 @@ public class Player {
         playerRow = playerStart[1];
     }
 
+    public int[] getPlayerPos() {
+        int[] playerPos = {playerCol, playerRow};
+        return playerPos;
+    }
+
     public void moveUp() {
         if (!(tileMap.getTile(playerCol, playerRow - 1).getType() == tileMap.WALL)) {
             playerRow--;

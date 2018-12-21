@@ -37,6 +37,10 @@ public class DungeonActivity extends AppCompatActivity {
         }
     }
 
+    private void updateText() {
+        
+    }
+
     public void moveUp(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
         player.moveUp();
