@@ -3,4 +3,5 @@
     <string name="play">Play</string>
     <string name="dungeon_game">Dungeon game</string>
     <string name="map">Map</string>
+    <string name="inventory">Inventory</string>
 </resources>

@@ -20,7 +20,22 @@
         app:layout_constraintTop_toTopOf="parent"
         android:stateListAnimator="@null"/>
 
-
+    <Button
+        android:id="@+id/invButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/inventory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.015"
+        android:stateListAnimator="@null"/>
 
     <ImageButton
         android:id="@+id/arrowDown"
@@ -163,6 +178,12 @@
     <include
         android:id="@+id/mapDisp"
         layout="@layout/dungeon_map"
+        android:elevation="3dp"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/invDisp"
+        layout="@layout/dungeon_inv"
         android:elevation="3dp"
         android:visibility="gone" />
 
