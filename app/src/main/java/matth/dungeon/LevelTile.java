@@ -3,6 +3,7 @@ package matth.dungeon;
 public class LevelTile {
 
     private int type;
+    private int event;
     private boolean visited;
 
     LevelTile(int type) {
@@ -16,5 +17,13 @@ public class LevelTile {
 
     public void setType(int num) {
         type = num;
+    }
+
+    public void setEvent(int event) {
+        this.event = event;
+    }
+
+    public int getEvent() {
+        return event;
     }
 }

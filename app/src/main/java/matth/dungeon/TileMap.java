@@ -112,6 +112,8 @@ public class TileMap {
             levelMap.get(0).get(i).setType(WALL);
             levelMap.get(size - 1).get(i).setType(WALL);
         }
+
+
     }
     private void createLevel() {
 
@@ -161,6 +163,10 @@ public class TileMap {
                 tunnelNum--;
             }
         }
+    }
+
+    public void genEnemies() {
+
     }
 
     public void setPlayerPos(int col, int row) {
