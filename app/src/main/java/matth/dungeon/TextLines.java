@@ -1,5 +1,7 @@
 package matth.dungeon;
 
+import android.widget.TextView;
+
 public class TextLines {
 
 
@@ -30,8 +32,21 @@ public class TextLines {
             result += " to your left";
         }
 
-
-
         return result;
+    }
+
+    public static void animateText(TextView up, TextView right, TextView down, TextView left) {
+
+        up.setAlpha(0.0f);
+        up.animate().alpha(1.0f).setListener(null).setDuration(500);
+
+        right.setAlpha(0.0f);
+        right.animate().alpha(1.0f).setListener(null).setDuration(700);
+
+        down.setAlpha(0.0f);
+        down.animate().alpha(1.0f).setListener(null).setDuration(900);
+
+        left.setAlpha(0.0f);
+        left.animate().alpha(1.0f).setListener(null).setDuration(1100);
     }
 }

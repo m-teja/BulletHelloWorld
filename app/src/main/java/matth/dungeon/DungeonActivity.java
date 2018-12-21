@@ -30,7 +30,6 @@ public class DungeonActivity extends AppCompatActivity {
         player = new Player(tileMap);
         updateText();
 
-
     }
 
     public void toggleMap (View view) {
@@ -63,6 +62,8 @@ public class DungeonActivity extends AppCompatActivity {
         right.setText(TextLines.getLine(info[1], 1));
         down.setText(TextLines.getLine(info[2], 2));
         left.setText(TextLines.getLine(info[3], 3));
+
+        TextLines.animateText(up, right, down, left);
     }
 
     public void moveUp(View view) {
