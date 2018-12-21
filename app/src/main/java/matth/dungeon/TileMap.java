@@ -36,6 +36,7 @@ public class TileMap {
 
     public void buildMap() {
         ConstraintLayout map = ((Activity) utility.getCon()).findViewById(R.id.mapDisp);
+        map.removeAllViews();
         ConstraintSet set = new ConstraintSet();
 
         int mapWidth = (int) (utility.getScreenWidth() * 0.8);
