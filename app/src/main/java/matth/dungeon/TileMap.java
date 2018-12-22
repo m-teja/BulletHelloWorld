@@ -1,6 +1,7 @@
 package matth.dungeon;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.util.Log;
@@ -204,6 +205,14 @@ public class TileMap {
         getTile(col, row).setType(LevelTile.PLAYER_POS);
         playerCol = col;
         playerRow = row;
+        checkEvent();
+    }
+
+    private void checkEvent() {
+        if (getTile(playerCol, playerRow).getEvent() == LevelTile.ENEMY_EVENT) {
+            Intent intent = new Intent(utility.getCon(), EnemyEventActivity.class);
+            utility.getCon().startActivity(intent);
+        }
     }
 
     public int[] genStart() {

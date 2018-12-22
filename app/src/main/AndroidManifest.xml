@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DungeonActivity"></activity>
+        <activity android:name=".DungeonActivity" />
+        <activity android:name=".EnemyEventActivity"></activity>
     </application>
 
 </manifest>
