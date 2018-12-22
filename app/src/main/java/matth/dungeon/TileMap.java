@@ -70,6 +70,11 @@ public class TileMap {
     }
 
     private String getImageType(int col, int row) {
+
+        if (getTile(col, row).getEvent() == LevelTile.ENEMY_EVENT) {
+            return "enemy";
+        }
+
         if (levelMap.get(col).get(row).getType() == LevelTile.EMPTY) {
             return "empty";
         }
@@ -163,7 +168,18 @@ public class TileMap {
     }
 
     public void genEnemies() {
+        for (int i = 0; i < size/5; i++) {
+            int enemyCol;
+            int enemyRow;
 
+            do {
+                enemyCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
+                enemyRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
+            }
+            while (getTile(enemyCol, enemyRow).getType() != LevelTile.EMPTY);
+
+            getTile(enemyCol, enemyRow).setEvent(LevelTile.ENEMY_EVENT);
+        }
     }
 
     public void setPlayerPos(int col, int row) {
