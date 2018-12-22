@@ -14,9 +14,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enemy_event);
 
         getTileInfo();
-        for (int i = 0; i < enemies.length; i++) {
-            Log.d("test", LevelTile.ENEMY_TYPES[i] + enemies[i]);
-        }
+        spawnEnemies();
     }
 
     private void getTileInfo() {
@@ -25,5 +23,9 @@ public class EnemyEventActivity extends AppCompatActivity {
         if (extras != null) {
             enemies = extras.getIntArray("enemies");
         }
+    }
+
+    private void spawnEnemies() {
+
     }
 }
