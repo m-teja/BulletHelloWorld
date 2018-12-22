@@ -179,9 +179,17 @@ public class TileMap {
                 enemyCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
                 enemyRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             }
-            while (getTile(enemyCol, enemyRow).getType() != LevelTile.EMPTY && getTile(enemyCol, enemyRow).getEvent() == LevelTile.NO_EVENT);;
+            while (getTile(enemyCol, enemyRow).getType() != LevelTile.EMPTY && getTile(enemyCol, enemyRow).getEvent() == LevelTile.NO_EVENT);
 
             getTile(enemyCol, enemyRow).setEvent(LevelTile.ENEMY_EVENT);
+
+            int numEnemies = (int)(Math.random() * 5);
+
+            for (int j = 0; j < numEnemies; j++) {
+                int randEnemy = (int)(Math.random() * LevelTile.ENEMY_TYPES.length);
+                getTile(enemyCol, enemyRow).setEnemy(randEnemy);
+            }
+
         }
     }
 
@@ -211,6 +219,7 @@ public class TileMap {
     private void checkEvent() {
         if (getTile(playerCol, playerRow).getEvent() == LevelTile.ENEMY_EVENT) {
             Intent intent = new Intent(utility.getCon(), EnemyEventActivity.class);
+            intent.putExtra("enemies", getTile(playerCol, playerRow).getEnemies());
             utility.getCon().startActivity(intent);
         }
     }

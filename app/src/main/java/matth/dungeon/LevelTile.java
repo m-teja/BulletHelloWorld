@@ -13,6 +13,9 @@ public class LevelTile {
     public static final int ENEMY_EVENT = 1;
     public static final int ITEM_EVENT = 2;
 
+    public static final String[] ENEMY_TYPES = {"square", "circle"};
+    private int[] enemies = new int[ENEMY_TYPES.length];
+
     private int type;
     private int event;
     private boolean visited;
@@ -37,5 +40,13 @@ public class LevelTile {
 
     public int getEvent() {
         return event;
+    }
+
+    public void setEnemy(int type) {
+        enemies[type]++;
+    }
+
+    public int[] getEnemies() {
+        return enemies;
     }
 }
