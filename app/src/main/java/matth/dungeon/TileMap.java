@@ -78,16 +78,16 @@ public class TileMap {
             return "item";
         }
 
-        if (levelMap.get(col).get(row).getType() == LevelTile.EMPTY) {
+        if (getTile(col, row).getType() == LevelTile.EMPTY) {
             return "empty";
         }
-        else if (levelMap.get(col).get(row).getType() == LevelTile.WALL) {
+        else if (getTile(col, row).getType() == LevelTile.WALL) {
             return "wall";
         }
-        else if (levelMap.get(col).get(row).getType() == LevelTile.PLAYER_POS) {
+        else if (getTile(col, row).getType() == LevelTile.PLAYER_POS) {
             return "player";
         }
-        else if (levelMap.get(col).get(row).getType() == LevelTile.END_POS) {
+        else if (getTile(col, row).getType() == LevelTile.END_POS) {
             return "end";
         }
         return "";
@@ -109,13 +109,13 @@ public class TileMap {
         createLevel();
         //set all outer tiles to wall
         for (int i = 0; i < size; i++) {
-            levelMap.get(i).get(0).setType(LevelTile.WALL);
-            levelMap.get(i).get(size - 1).setType(LevelTile.WALL);
+            getTile(i, 0).setType(LevelTile.WALL);
+            getTile(i, size -1).setType(LevelTile.WALL);
         }
 
         for (int i = 0; i < size; i++) {
-            levelMap.get(0).get(i).setType(LevelTile.WALL);
-            levelMap.get(size - 1).get(i).setType(LevelTile.WALL);
+            getTile(0, i).setType(LevelTile.WALL);
+            getTile(size - 1, i).setType(LevelTile.WALL);
         }
 
 
@@ -145,8 +145,7 @@ public class TileMap {
                 Log.d("test", Integer.toString(currentCol));
                 Log.d("test", Integer.toString(currentRow));
 
-                levelMap.get(currentCol).get(currentRow).setType(LevelTile.EMPTY);
-                Log.d("test", Integer.toString(levelMap.get(currentCol).get(currentRow).getType()));
+                getTile(currentCol, currentRow).setType(LevelTile.EMPTY);
 
                 if (randDir == 0) {
                     currentRow--;
@@ -201,8 +200,8 @@ public class TileMap {
     }
 
     public void setPlayerPos(int col, int row) {
-        levelMap.get(playerCol).get(playerRow).setType(LevelTile.EMPTY);
-        levelMap.get(col).get(row).setType(LevelTile.PLAYER_POS);
+        getTile(playerCol, playerRow).setType(LevelTile.EMPTY);
+        getTile(col, row).setType(LevelTile.PLAYER_POS);
         playerCol = col;
         playerRow = row;
     }
@@ -213,9 +212,9 @@ public class TileMap {
             playerRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             playerCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while(levelMap.get(playerCol).get(playerRow).getType() == LevelTile.WALL);
+        while (getTile(playerCol, playerRow).getType() == LevelTile.WALL);
 
-        levelMap.get(playerCol).get(playerRow).setType(LevelTile.PLAYER_POS);
+        getTile(playerCol, playerRow).setType(LevelTile.PLAYER_POS);
         int result[] = {playerCol, playerRow};
         return result;
     }
@@ -228,8 +227,8 @@ public class TileMap {
             row = (int) Math.floor(Math.random() * (size - 1)) + 1;
             col = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while(levelMap.get(col).get(row).getType() == LevelTile.WALL || levelMap.get(col).get(row).getType() == LevelTile.PLAYER_POS);
+        while(getTile(col, row).getType() != LevelTile.EMPTY);
 
-        levelMap.get(col).get(row).setType(LevelTile.END_POS);
+        getTile(col, row).setType(LevelTile.END_POS);
     }
 }
