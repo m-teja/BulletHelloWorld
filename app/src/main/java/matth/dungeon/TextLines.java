@@ -32,6 +32,16 @@ public class TextLines {
             result += " to your left";
         }
 
+        if (tile.getEvent() == LevelTile.NO_EVENT) {
+            result += "\n Nothing of interest here";
+        }
+        else if (tile.getEvent() == LevelTile.ENEMY_EVENT) {
+            result += "\n Enemies spotted here";
+        }
+        else if (tile.getEvent() == LevelTile.ITEM_EVENT) {
+            result += "\n An item of interest here";
+        }
+
         return result;
     }
 
