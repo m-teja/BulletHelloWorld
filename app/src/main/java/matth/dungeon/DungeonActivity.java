@@ -47,11 +47,11 @@ public class DungeonActivity extends AppCompatActivity {
         int col = playerPos[0];
         int row = playerPos[1];
 
-        //get the type of tile in the form of { up, right, down, left}
-        int info[] = {(tileMap.getTile(col, row - 1)).getType()
-                , (tileMap.getTile(col + 1, row)).getType()
-                , (tileMap.getTile(col, row + 1)).getType()
-                , (tileMap.getTile(col - 1, row)).getType()};
+        //get the tile in the form of { up, right, down, left}
+        LevelTile info[] = {(tileMap.getTile(col, row - 1))
+                , (tileMap.getTile(col + 1, row))
+                , (tileMap.getTile(col, row + 1))
+                , (tileMap.getTile(col - 1, row))};
 
         TextView up = findViewById(R.id.upInfo);
         TextView right = findViewById(R.id.rightInfo);

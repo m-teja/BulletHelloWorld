@@ -10,6 +10,8 @@ public class LevelTile {
 
     //Event types
     public static final int NO_EVENT = 0;
+    public static final int ENEMY_EVENT = 1;
+    public static final int ITEM_EVENT = 2;
 
     private int type;
     private int event;

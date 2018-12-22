@@ -5,17 +5,17 @@ import android.widget.TextView;
 public class TextLines {
 
 
-    public static String getLine(int tileType, int direction) {
+    public static String getLine(LevelTile tile, int direction) {
 
         String result = "";
 
-        if (tileType == LevelTile.EMPTY) {
+        if (tile.getType() == LevelTile.EMPTY) {
             result += "There is an empty space";
         }
-        else if (tileType == LevelTile.WALL) {
+        else if (tile.getType() == LevelTile.WALL) {
             result += "There is a wall";
         }
-        else if (tileType == LevelTile.END_POS) {
+        else if (tile.getType() == LevelTile.END_POS) {
             result += "You see the end";
         }
 
