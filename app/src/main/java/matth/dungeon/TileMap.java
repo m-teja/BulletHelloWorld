@@ -74,6 +74,9 @@ public class TileMap {
         if (getTile(col, row).getEvent() == LevelTile.ENEMY_EVENT) {
             return "enemy";
         }
+        else if (getTile(col, row).getEvent() == LevelTile.ITEM_EVENT) {
+            return "item";
+        }
 
         if (levelMap.get(col).get(row).getType() == LevelTile.EMPTY) {
             return "empty";
@@ -176,9 +179,24 @@ public class TileMap {
                 enemyCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
                 enemyRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             }
-            while (getTile(enemyCol, enemyRow).getType() != LevelTile.EMPTY);
+            while (getTile(enemyCol, enemyRow).getType() != LevelTile.EMPTY && getTile(enemyCol, enemyRow).getEvent() == LevelTile.NO_EVENT);;
 
             getTile(enemyCol, enemyRow).setEvent(LevelTile.ENEMY_EVENT);
+        }
+    }
+
+    public void genItems() {
+        for (int i = 0; i < size/4; i++) {
+            int itemCol;
+            int itemRow;
+
+            do {
+                itemCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
+                itemRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
+            }
+            while (getTile(itemCol, itemRow).getType() != LevelTile.EMPTY && getTile(itemCol, itemRow).getEvent() == LevelTile.NO_EVENT);
+
+            getTile(itemCol, itemRow).setEvent(LevelTile.ITEM_EVENT);
         }
     }
 

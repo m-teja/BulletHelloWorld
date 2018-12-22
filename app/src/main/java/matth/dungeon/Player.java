@@ -13,9 +13,11 @@ public class Player {
     }
 
     private void initPlayer() {
+        //TODO move these elsewhere
         int playerStart[] = tileMap.genStart();
         tileMap.genEnd();
         tileMap.genEnemies();
+        tileMap.genItems();
         playerCol = playerStart[0];
         playerRow = playerStart[1];
     }
