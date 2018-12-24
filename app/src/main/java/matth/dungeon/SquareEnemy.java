@@ -6,13 +6,16 @@ public class SquareEnemy extends Enemy {
 
     public final int STARTING_HEALTH = 100;
     public final String SPRITE_NAME = "square";
-    public final String PROJECTILE_NAME = "square_proj";
+    public final String PROJECTILE_NAME = "square_projectile";
 
 
     public SquareEnemy(Utility utility) {
-
         super(utility);
+        super.health = STARTING_HEALTH;
+        super.spriteName = SPRITE_NAME;
+        super.projectileName = PROJECTILE_NAME;
 
     }
+
 
 }
