@@ -13,8 +13,12 @@ public class EnemyEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enemy_event);
 
+        Utility utility = new Utility(this);
+
         getTileInfo();
         spawnEnemies();
+        SquareEnemy test = new SquareEnemy(utility);
+        test.spawnSprite(100, 100, null, null);
     }
 
     private void getTileInfo() {
