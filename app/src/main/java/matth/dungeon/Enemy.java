@@ -16,7 +16,7 @@ public class Enemy {
 
     public ImageView spawnSprite(int x, int y, Integer width, Integer height) {
 
-        ImageView sprite = utility.addImage("enemyLay", spriteName, x, y);
+        ImageView sprite = utility.addImage(EnemyEventActivity.LAYOUT_NAME, spriteName, x, y);
 
         if (width != null) {
             sprite.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -33,7 +33,7 @@ public class Enemy {
 
     public ImageView spawnProjectile(int x, int y, Integer width, Integer height) {
 
-        ImageView projectile = utility.addImage("enemyLay", projectileName, x, y);
+        ImageView projectile = utility.addImage(EnemyEventActivity.LAYOUT_NAME, projectileName, x, y);
 
         if (width != null) {
             projectile.setScaleType(ImageView.ScaleType.CENTER_CROP);

@@ -7,18 +7,22 @@ import android.view.MotionEvent;
 
 public class EnemyEventActivity extends AppCompatActivity {
 
+    public static String LAYOUT_NAME = "enemyLay";
+
     PlayerSprite playerSprite;
 
-    int enemies[];
+    private int enemies[];
+    private Utility utility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enemy_event);
 
-        Utility utility = new Utility(this);
+        utility = new Utility(this);
 
         getTileInfo();
+        spawnPlayer();
         spawnEnemies();
         SquareEnemy test = new SquareEnemy(utility);
         test.spawnSprite(100, 100, null, null);
@@ -32,6 +36,11 @@ public class EnemyEventActivity extends AppCompatActivity {
         if (extras != null) {
             enemies = extras.getIntArray("enemies");
         }
+    }
+
+    private void spawnPlayer() {
+        playerSprite = new PlayerSprite(utility.getCon());
+        playerSprite.setPlayerImage(utility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, utility.getScreenWidth()/2, utility.getScreenHeight()/4));
     }
 
     private void spawnEnemies() {
