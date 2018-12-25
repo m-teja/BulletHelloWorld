@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.util.ArrayList;
+
 public class EnemyEventActivity extends AppCompatActivity {
 
     public static String LAYOUT_NAME = "enemyLay";
 
     PlayerSprite playerSprite;
 
-    private int enemies[];
+    private ArrayList<Object> enemies;
     private Utility utility;
 
     @Override
@@ -34,8 +36,21 @@ public class EnemyEventActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            enemies = extras.getIntArray("enemies");
+            int[] temp;
+
+            enemies = new ArrayList<>();
+            temp = extras.getIntArray("enemies");
+
+            //have to add new for loop for each enemy, so should probably optimize
+            for (int i = 0; i < temp[0]; i++) {
+                enemies.add(new SquareEnemy(utility));
+            }
+
+            for (int i = 0; i < temp[1]; i++) {
+                enemies.add(new CircleEnemy(utility));
+            }
         }
+
     }
 
     private void spawnPlayer() {
@@ -54,7 +69,6 @@ public class EnemyEventActivity extends AppCompatActivity {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                Log.d("test", Integer.toString(playerSprite.getPlayerImage().getMeasuredHeight()));
                 playerSprite.setX(x - playerSprite.getPlayerImage().getMeasuredWidth());
                 playerSprite.setY(y - 3*playerSprite.getPlayerImage().getMeasuredHeight());
                 break;
