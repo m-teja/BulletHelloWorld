@@ -18,4 +18,12 @@ public class PlayerSprite {
     public void setPlayerImage(ImageView image) {
         playerImage = image;
     }
+
+    public void setX(float x) {
+        playerImage.setX(x);
+    }
+
+    public void setY(float y) {
+        playerImage.setY(y);
+    }
 }
