@@ -26,10 +26,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         getTileInfo();
         spawnPlayer();
         spawnEnemies();
-        SquareEnemy test = new SquareEnemy(utility);
-        test.spawnSprite(100, 100, null, null);
 
-        test.spawnProjectile(200, 200, null, null);
     }
 
     private void getTileInfo() {
@@ -60,9 +57,12 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     private void spawnEnemies() {
 
+        int distance = (int)((float)utility.getScreenWidth()/(enemies.size() + 1));
         for (int i = 0; i < enemies.size(); i++) {
-            Log.d("test", "hi");
-            ((Enemy)enemies.get(i)).spawnSprite((int)(utility.getScreenWidth() * ((float)i)/enemies.size()), 200, null, null);
+
+            ((Enemy)enemies.get(i)).spawnSprite((i + 1) * distance, 200, null, null);
+            ((Enemy)enemies.get(i)).setX(((Enemy) enemies.get(i)).getX() - playerSprite.getPlayerImage().getMeasuredWidth());
+
         }
     }
 
@@ -91,3 +91,4 @@ public class EnemyEventActivity extends AppCompatActivity {
         return false;
     }
 }
+//TODO fix centering all imageviews after spawn

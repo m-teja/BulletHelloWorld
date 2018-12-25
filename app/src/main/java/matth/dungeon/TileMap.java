@@ -143,9 +143,6 @@ public class TileMap {
 
             while (currentLength < randLength && !(currentRow <= 1 && randDir == 0 || currentCol >= size - 2 && randDir == 1 || currentRow >= size - 2 && randDir == 2 || currentCol <= 1 && randDir == 3)) {
 
-                Log.d("test", Integer.toString(currentCol));
-                Log.d("test", Integer.toString(currentRow));
-
                 getTile(currentCol, currentRow).setType(LevelTile.EMPTY);
 
                 if (randDir == 0) {
@@ -183,12 +180,13 @@ public class TileMap {
 
             getTile(enemyCol, enemyRow).setEvent(LevelTile.ENEMY_EVENT);
 
-            int numEnemies = (int)(Math.random() * 5);
+            int numEnemies = (int)(Math.random() * 4) + 1;
 
             for (int j = 0; j < numEnemies; j++) {
                 int randEnemy = (int)(Math.random() * LevelTile.ENEMY_TYPES.length);
                 getTile(enemyCol, enemyRow).setEnemy(randEnemy);
             }
+            Log.d("test", Integer.toString(numEnemies));
 
         }
     }
