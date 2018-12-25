@@ -27,7 +27,7 @@ public class Utility {
         return con.getResources().getDisplayMetrics().widthPixels;
     }
 
-    public ImageView addImage(String layoutName, String spriteName, int x, int y) {
+    public ImageView addImage(String layoutName, String imageName, int x, int y) {
 
         int id = con.getResources().getIdentifier(layoutName, "id", con.getPackageName());
         ConstraintLayout map = ((Activity)con).findViewById(id);
@@ -38,7 +38,7 @@ public class Utility {
         image.setId(View.generateViewId());
 
 
-        image.setImageResource(con.getResources().getIdentifier(spriteName, "drawable", con.getPackageName()));
+        image.setImageResource(con.getResources().getIdentifier(imageName, "drawable", con.getPackageName()));
         image.setLayoutParams(lp);
         image.setX(x);
         image.setY(y);
