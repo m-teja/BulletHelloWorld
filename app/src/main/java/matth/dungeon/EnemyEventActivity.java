@@ -60,6 +60,10 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     private void spawnEnemies() {
 
+        for (int i = 0; i < enemies.size(); i++) {
+            Log.d("test", "hi");
+            ((Enemy)enemies.get(i)).spawnSprite((int)(utility.getScreenWidth() * ((float)i)/enemies.size()), 200, null, null);
+        }
     }
 
     @Override
