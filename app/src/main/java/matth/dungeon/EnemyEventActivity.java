@@ -3,8 +3,11 @@ package matth.dungeon;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 
 public class EnemyEventActivity extends AppCompatActivity {
+
+    PlayerSprite playerSprite;
 
     int enemies[];
 
@@ -33,5 +36,28 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     private void spawnEnemies() {
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float x = event.getX();
+        float y = event.getY();
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+
+                break;
+
+            case MotionEvent.ACTION_UP:
+                break;
+
+            default:
+                break;
+        }
+        return false;
     }
 }
