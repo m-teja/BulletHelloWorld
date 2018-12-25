@@ -19,6 +19,10 @@ public class PlayerSprite {
         playerImage = image;
     }
 
+    public ImageView getPlayerImage() {
+        return playerImage;
+    }
+
     public void setX(float x) {
         playerImage.setX(x);
     }

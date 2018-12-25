@@ -54,13 +54,14 @@ public class EnemyEventActivity extends AppCompatActivity {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                playerSprite.setX(x);
-                playerSprite.setY(y);
+                Log.d("test", Integer.toString(playerSprite.getPlayerImage().getMeasuredHeight()));
+                playerSprite.setX(x - playerSprite.getPlayerImage().getMeasuredWidth());
+                playerSprite.setY(y - 3*playerSprite.getPlayerImage().getMeasuredHeight());
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                playerSprite.setX(x);
-                playerSprite.setY(y);
+                playerSprite.setX(x - playerSprite.getPlayerImage().getMeasuredWidth());
+                playerSprite.setY(y - 3*playerSprite.getPlayerImage().getMeasuredWidth());
                 break;
 
             case MotionEvent.ACTION_UP:
