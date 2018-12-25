@@ -13,6 +13,7 @@ public class SquareEnemy extends Enemy {
         super(utility);
         super.health = STARTING_HEALTH;
         super.spriteName = SPRITE_NAME;
+        super.projectileName = PROJECTILE_NAME;
 
     }
 

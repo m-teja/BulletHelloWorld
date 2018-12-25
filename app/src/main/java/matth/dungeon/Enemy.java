@@ -32,6 +32,7 @@ public class Enemy {
         ImageView sprite = new ImageView(utility.getCon());
         sprite.setId(View.generateViewId());
 
+
         sprite.setImageResource(utility.getCon().getResources().getIdentifier(spriteName, "drawable", utility.getCon().getPackageName()));
         sprite.setLayoutParams(lp);
         sprite.setX(x);
@@ -58,8 +59,41 @@ public class Enemy {
 
     }
 
-//    public ImageView spawnProjectile(int x, int y) {
-//
-//    }
+    public ImageView spawnProjectile(int x, int y, Integer width, Integer height) {
+        ConstraintLayout map = ((Activity) utility.getCon()).findViewById(R.id.enemyLay);
+
+        map.getLayoutParams().height = utility.getScreenHeight();
+        map.getLayoutParams().width = utility.getScreenWidth();
+        map.setX(0);
+        map.setY(0);
+
+        ConstraintSet set = new ConstraintSet();
+        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+        ImageView projectile = new ImageView(utility.getCon());
+        projectile.setId(View.generateViewId());
+
+        projectile.setImageResource(utility.getCon().getResources().getIdentifier(projectileName, "drawable", utility.getCon().getPackageName()));
+        projectile.setLayoutParams(lp);
+        projectile.setX(x);
+        projectile.setY(y);
+
+        if (width != null) {
+            projectile.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            projectile.getLayoutParams().width = width;
+        }
+
+        if (height != null) {
+            projectile.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            projectile.getLayoutParams().height = height;
+        }
+
+        map.addView(projectile);
+        set.clone(map);
+        set.connect(projectile.getId(), ConstraintSet.TOP, map.getId(), ConstraintSet.TOP, 0);
+        set.applyTo(map);
+
+        return projectile;
+    }
 
 }

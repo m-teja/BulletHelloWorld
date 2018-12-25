@@ -9,9 +9,9 @@ public class LevelTile {
     public static final int END_POS = 3;
 
     //Event types
-    public static final int NO_EVENT = 0;
-    public static final int ENEMY_EVENT = 1;
-    public static final int ITEM_EVENT = 2;
+    public static final int NO_EVENT = 4;
+    public static final int ENEMY_EVENT = 5;
+    public static final int ITEM_EVENT = 6;
 
     public static final String[] ENEMY_TYPES = {"square", "circle"};
     private int[] enemies = new int[ENEMY_TYPES.length];

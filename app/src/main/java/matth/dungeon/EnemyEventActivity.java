@@ -19,6 +19,8 @@ public class EnemyEventActivity extends AppCompatActivity {
         spawnEnemies();
         SquareEnemy test = new SquareEnemy(utility);
         test.spawnSprite(100, 100, null, null);
+
+        test.spawnProjectile(200, 200, null, null);
     }
 
     private void getTileInfo() {
