@@ -5,8 +5,8 @@ import android.widget.ImageView;
 
 public class Enemy {
 
-    private MainUtility mainUtility;
-    private EnemyUtility enemyUtility;
+    public MainUtility mainUtility;
+    public EnemyUtility enemyUtility;
     int health;
     String spriteName;
     String projectileName;

@@ -11,9 +11,15 @@ public class EnemyUtility {
         this.playerSprite = playerSprite;
     }
 
+
+
     public static void moveImage(ImageView image, int x, int y) {
         image.setX(x);
         image.setY(y);
+    }
+
+    public PlayerSprite getPlayerSprite() {
+        return playerSprite;
     }
 
     public boolean checkPlayerOverlap(ImageView image) {

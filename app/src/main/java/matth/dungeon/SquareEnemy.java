@@ -8,7 +8,11 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     public final String SPRITE_NAME = "square_enemy";
     public final String PROJECTILE_NAME = "square_projectile";
 
-    private Handler moveSprite;
+    private Handler moveSprite = new Handler();
+    private Handler updatePlayerPosition = new Handler();
+
+    private float destinationX;
+    private float destinationY;
 
     public SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
@@ -19,8 +23,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     }
 
     public void init() {
-        moveSprite = new Handler();
-        move.run();
+
     }
 
     public void delete() {
@@ -31,6 +34,14 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
         @Override
         public void run() {
 
+        }
+    };
+
+    private Runnable runUpdatePlayerPosition = new Runnable() {
+        @Override
+        public void run() {
+            destinationX = SquareEnemy.super.enemyUtility.getPlayerSprite().getX();
+            destinationY = SquareEnemy.super.enemyUtility.getPlayerSprite().getY();
         }
     };
 
