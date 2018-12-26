@@ -18,8 +18,8 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     private float destinationY;
     private boolean terminated = false;
     private int velocity = 5;
-    private int velocityX;
-    private int velocityY;
+    private float velocityX;
+    private float velocityY;
 
     public SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
@@ -39,19 +39,40 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     }
 
     private void calcVelocity() {
-        if (destinationX >= SquareEnemy.super.getX()) {
-            velocityX = velocity;
+
+        float differenceX = destinationX - super.getX();
+        float differenceY = destinationY - super.getY();
+        Log.d("x", Float.toString(differenceX));
+        Log.d("y", Float.toString(differenceY));
+
+        if (differenceX != 0 && differenceY != 0) {
+            float differenceXY = (float)Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
+
+            float cosAngle = (float)Math.acos(differenceY/differenceXY);
+            float sinAngle = (float)Math.asin(differenceX/differenceXY);
+
+            velocityY = (float)(Math.cos(cosAngle) * velocity);
+            velocityX = (float)(Math.sin(sinAngle) * velocity);
+        }
+        else if (differenceX == 0) {
+            velocityX = 0;
+            if (destinationY > super.getY()) {
+                velocityY = velocity;
+            }
+            else {
+                velocityY = -velocity;
+            }
         }
         else {
-            velocityX = -velocity;
+            velocityY = 0;
+            if (destinationX > super.getX()) {
+                velocityX = velocity;
+            }
+            else {
+                velocityX = -velocity;
+            }
         }
 
-        if (destinationY >= SquareEnemy.super.getY()) {
-            velocityY = velocity;
-        }
-        else {
-            velocityY = -velocity;
-        }
     }
 
     private Runnable move = new Runnable() {
