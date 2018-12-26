@@ -23,6 +23,14 @@ public class PlayerSprite {
         return playerImage;
     }
 
+    public float getX() {
+        return playerImage.getX();
+    }
+
+    public float getY() {
+        return playerImage.getY();
+    }
+
     public void setX(float x) {
         playerImage.setX(x);
     }
