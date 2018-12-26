@@ -1,6 +1,6 @@
 package matth.dungeon;
 
-public class CircleEnemy extends Enemy {
+public class CircleEnemy extends Enemy implements EnemyBehaviour{
 
     public final int STARTING_HEALTH = 150;
     public final String SPRITE_NAME = "circle";
@@ -12,4 +12,13 @@ public class CircleEnemy extends Enemy {
         super.spriteName = SPRITE_NAME;
         super.projectileName = PROJECTILE_NAME;
     }
+
+    public void init() {
+
+    }
+
+    public void delete() {
+        
+    }
+
 }
