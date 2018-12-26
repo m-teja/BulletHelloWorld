@@ -6,7 +6,7 @@ public class CircleEnemy extends Enemy {
     public final String SPRITE_NAME = "circle";
     public final String PROJECTILE_NAME = "circle_projectile";
 
-    public CircleEnemy(Utility utility) {
+    public CircleEnemy(MainUtility utility) {
         super(utility);
         super.health = STARTING_HEALTH;
         super.spriteName = SPRITE_NAME;

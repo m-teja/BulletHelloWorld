@@ -14,7 +14,7 @@ public class TileMap {
 
 
 
-    private Utility utility;
+    private MainUtility utility;
     private int size;
     private int tunnelLength;
     private int tunnelNum;
@@ -24,7 +24,7 @@ public class TileMap {
     private int playerRow;
 
 
-    TileMap(Utility utility, int size) {
+    TileMap(MainUtility utility, int size) {
         this.utility = utility;
         this.size = size;
         tunnelLength = (int) (size * 0.7);

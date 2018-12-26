@@ -2,19 +2,13 @@ package matth.dungeon;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 
 public class DungeonActivity extends AppCompatActivity {
 
-    Utility utility;
+    MainUtility utility;
     TileMap tileMap;
     Player player;
 
@@ -25,7 +19,7 @@ public class DungeonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon);
 
-        utility = new Utility(this);
+        utility = new MainUtility(this);
         tileMap = new TileMap(utility, size);
         player = new Player(tileMap);
         updateText();

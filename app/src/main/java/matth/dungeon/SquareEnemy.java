@@ -1,7 +1,5 @@
 package matth.dungeon;
 
-import android.widget.ImageView;
-
 public class SquareEnemy extends Enemy {
 
     public final int STARTING_HEALTH = 100;
@@ -9,7 +7,7 @@ public class SquareEnemy extends Enemy {
     public final String PROJECTILE_NAME = "square_projectile";
 
 
-    public SquareEnemy(Utility utility) {
+    public SquareEnemy(MainUtility utility) {
         super(utility);
         super.health = STARTING_HEALTH;
         super.spriteName = SPRITE_NAME;

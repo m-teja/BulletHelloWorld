@@ -7,11 +7,11 @@ import android.support.constraint.ConstraintSet;
 import android.view.View;
 import android.widget.ImageView;
 
-public class Utility {
+public class MainUtility {
 
     private Context con;
 
-    Utility(Context con) {
+    MainUtility(Context con) {
         this.con = con;
     }
 

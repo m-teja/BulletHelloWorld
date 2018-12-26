@@ -2,7 +2,6 @@ package matth.dungeon;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -14,14 +13,14 @@ public class EnemyEventActivity extends AppCompatActivity {
     PlayerSprite playerSprite;
 
     private ArrayList<Object> enemies;
-    private Utility utility;
+    private MainUtility utility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enemy_event);
 
-        utility = new Utility(this);
+        utility = new MainUtility(this);
 
         getTileInfo();
         spawnPlayer();

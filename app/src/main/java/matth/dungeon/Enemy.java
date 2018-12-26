@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 public class Enemy {
 
-    private Utility utility;
+    private MainUtility utility;
     int health;
     String spriteName;
     String projectileName;
@@ -15,7 +15,7 @@ public class Enemy {
     private int y;
 
 
-    public Enemy( Utility utility) {
+    public Enemy( MainUtility utility) {
         this.utility = utility;
     }
 
