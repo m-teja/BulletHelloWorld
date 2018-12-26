@@ -5,6 +5,8 @@ import android.widget.ImageView;
 
 public class Enemy {
 
+    public final int ANIMATION_DELAY = 15;
+
     public MainUtility mainUtility;
     public EnemyUtility enemyUtility;
     int health;
@@ -12,8 +14,6 @@ public class Enemy {
     String projectileName;
 
     private ImageView sprite;
-    private int x;
-    private int y;
 
 
     public Enemy( MainUtility mainUtility, EnemyUtility enemyUtility) {
@@ -27,8 +27,6 @@ public class Enemy {
 
     public ImageView spawnSprite(int x, int y, Integer width, Integer height) {
 
-        this.x = x;
-        this.y = y;
         sprite = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, spriteName, x, y);
 
         if (width != null) {
@@ -61,21 +59,19 @@ public class Enemy {
         return projectile;
     }
 
-    public int getX() {
-        return x;
+    public float getX() {
+        return sprite.getX();
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setX(float x) {
         sprite.setX(x);
     }
 
-    public int getY() {
-        return y;
+    public float getY() {
+        return sprite.getY();
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setY(float y) {
         sprite.setY(y);
     }
 }

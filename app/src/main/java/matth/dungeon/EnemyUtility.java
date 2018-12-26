@@ -13,7 +13,7 @@ public class EnemyUtility {
 
 
 
-    public static void moveImage(ImageView image, int x, int y) {
+    public static void moveImage(ImageView image, float x, float y) {
         image.setX(x);
         image.setY(y);
     }

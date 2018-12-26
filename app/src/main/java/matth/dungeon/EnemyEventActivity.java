@@ -22,11 +22,15 @@ public class EnemyEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enemy_event);
 
         mainUtility = new MainUtility(this);
-        getTileInfo();
         spawnPlayer();
-        spawnEnemies();
 
         enemyUtility = new EnemyUtility(playerSprite);
+        getTileInfo();
+        spawnEnemies();
+
+        SquareEnemy test = new SquareEnemy(mainUtility, enemyUtility);
+        test.spawnSprite(500, 500, null, null);
+        test.init();
 
     }
 
