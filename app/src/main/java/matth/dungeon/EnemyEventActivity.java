@@ -13,18 +13,20 @@ public class EnemyEventActivity extends AppCompatActivity {
     PlayerSprite playerSprite;
 
     private ArrayList<Object> enemies;
-    private MainUtility utility;
+    private MainUtility mainUtility;
+    private EnemyUtility enemyUtility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enemy_event);
 
-        utility = new MainUtility(this);
-
+        mainUtility = new MainUtility(this);
         getTileInfo();
         spawnPlayer();
         spawnEnemies();
+
+        enemyUtility = new EnemyUtility(playerSprite);
 
     }
 
@@ -39,24 +41,24 @@ public class EnemyEventActivity extends AppCompatActivity {
 
             //have to add new for loop for each enemy, so should probably optimize
             for (int i = 0; i < temp[0]; i++) {
-                enemies.add(new SquareEnemy(utility));
+                enemies.add(new SquareEnemy(mainUtility, enemyUtility));
             }
 
             for (int i = 0; i < temp[1]; i++) {
-                enemies.add(new CircleEnemy(utility));
+                enemies.add(new CircleEnemy(mainUtility, enemyUtility));
             }
         }
 
     }
 
     private void spawnPlayer() {
-        playerSprite = new PlayerSprite(utility.getCon());
-        playerSprite.setPlayerImage(utility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, utility.getScreenWidth()/2, utility.getScreenHeight()/4));
+        playerSprite = new PlayerSprite(mainUtility.getCon());
+        playerSprite.setPlayerImage(mainUtility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, mainUtility.getScreenWidth()/2, mainUtility.getScreenHeight()/4));
     }
 
     private void spawnEnemies() {
 
-        int distance = (int)((float)utility.getScreenWidth()/(enemies.size() + 1));
+        int distance = (int)((float) mainUtility.getScreenWidth()/(enemies.size() + 1));
         for (int i = 0; i < enemies.size(); i++) {
 
             ((Enemy)enemies.get(i)).spawnSprite((i + 1) * distance, 200, null, null);

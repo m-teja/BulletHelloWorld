@@ -5,7 +5,8 @@ import android.widget.ImageView;
 
 public class Enemy {
 
-    private MainUtility utility;
+    private MainUtility mainUtility;
+    private EnemyUtility enemyUtility;
     int health;
     String spriteName;
     String projectileName;
@@ -15,8 +16,9 @@ public class Enemy {
     private int y;
 
 
-    public Enemy( MainUtility utility) {
-        this.utility = utility;
+    public Enemy( MainUtility mainUtility, EnemyUtility enemyUtility) {
+        this.mainUtility = mainUtility;
+        this.enemyUtility = enemyUtility;
     }
 
     public ImageView getSprite() {
@@ -27,7 +29,7 @@ public class Enemy {
 
         this.x = x;
         this.y = y;
-        sprite = utility.addImage(EnemyEventActivity.LAYOUT_NAME, spriteName, x, y);
+        sprite = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, spriteName, x, y);
 
         if (width != null) {
             sprite.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -44,7 +46,7 @@ public class Enemy {
 
     public ImageView spawnProjectile(int x, int y, Integer width, Integer height) {
 
-        ImageView projectile = utility.addImage(EnemyEventActivity.LAYOUT_NAME, projectileName, x, y);
+        ImageView projectile = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, projectileName, x, y);
 
         if (width != null) {
             projectile.setScaleType(ImageView.ScaleType.CENTER_CROP);

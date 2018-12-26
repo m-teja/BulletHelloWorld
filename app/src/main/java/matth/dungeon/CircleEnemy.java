@@ -6,11 +6,12 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour{
     public final String SPRITE_NAME = "circle";
     public final String PROJECTILE_NAME = "circle_projectile";
 
-    public CircleEnemy(MainUtility utility) {
-        super(utility);
+    public CircleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
+        super(mainUtility, enemyUtility);
         super.health = STARTING_HEALTH;
         super.spriteName = SPRITE_NAME;
         super.projectileName = PROJECTILE_NAME;
+        init();
     }
 
     public void init() {
@@ -18,7 +19,7 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour{
     }
 
     public void delete() {
-        
+
     }
 
 }
