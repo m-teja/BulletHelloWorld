@@ -17,7 +17,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     private float destinationX;
     private float destinationY;
     private boolean terminated = false;
-    private int velocity = 5;
+    private int velocity = 10;
     private float velocityX;
     private float velocityY;
 
@@ -36,14 +36,15 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     public void delete() {
         moveSprite.removeCallbacksAndMessages(null);
         updatePlayerPosition.removeCallbacksAndMessages(null);
+        moveSprite = null;
+        updatePlayerPosition = null;
+        super.getSprite().setImageBitmap(null);
     }
 
     private void calcVelocity() {
 
         float differenceX = destinationX - super.getX();
         float differenceY = destinationY - super.getY();
-        Log.d("x", Float.toString(differenceX));
-        Log.d("y", Float.toString(differenceY));
 
         if (differenceX != 0 && differenceY != 0) {
             float differenceXY = (float)Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
@@ -81,11 +82,15 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
             EnemyUtility.moveImage(SquareEnemy.super.getSprite(), SquareEnemy.super.getX() + velocityX, SquareEnemy.super.getY() + velocityY);
 
+            if (enemyUtility.checkPlayerOverlap(SquareEnemy.super.getSprite())) {
+                terminated = true;
+            }
+
             if (!terminated) {
                 moveSprite.postDelayed(move, SquareEnemy.super.ANIMATION_DELAY);
             }
             else {
-                moveSprite.removeCallbacksAndMessages(null);
+                delete();
             }
         }
     };
@@ -102,7 +107,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
                 updatePlayerPosition.postDelayed(runUpdatePlayerPosition, DESTINATION_DELAY);
             }
             else {
-                updatePlayerPosition.removeCallbacksAndMessages(null);
+                delete();
             }
 
         }
