@@ -5,9 +5,9 @@ import android.util.Log;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
-    public final int STARTING_HEALTH = 100;
-    public final String SPRITE_NAME = "square_enemy";
-    public final String PROJECTILE_NAME = "square_projectile";
+    private final int STARTING_HEALTH = 100;
+    private final String SPRITE_NAME = "square_enemy";
+    private final String PROJECTILE_NAME = "square_projectile";
 
     private final int DESTINATION_DELAY = 1000;
 

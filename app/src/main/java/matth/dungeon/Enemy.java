@@ -42,23 +42,6 @@ public class Enemy {
 
     }
 
-    public ImageView spawnProjectile(int x, int y, Integer width, Integer height) {
-
-        ImageView projectile = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, projectileName, x, y);
-
-        if (width != null) {
-            projectile.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            projectile.getLayoutParams().width = width;
-        }
-
-        if (height != null) {
-            projectile.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            projectile.getLayoutParams().height = height;
-        }
-
-        return projectile;
-    }
-
     public void init() {
 
     }

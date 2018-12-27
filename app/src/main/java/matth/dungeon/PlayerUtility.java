@@ -18,12 +18,13 @@ public class PlayerUtility {
         image.setY(y);
     }
 
-    public ArrayList<Object> enemyOverlap(ImageView projectile) {
-//        for (int i = 0; i < enemies.size(); i++) {
-//            if (checkOverlap((Enemy)enemies.get(i), projectile)) {
-//
-//            }
-//        }
+    public void enemyOverlap(PlayerProjectile playerProjectile) {
+        for (int i = 0; i < enemies.size(); i++) {
+            if (checkOverlap((Enemy)enemies.get(i), playerProjectile.getProjectileImage())) {
+
+                playerProjectile.effect((Enemy)enemies.get(i));
+            }
+        }
     }
 
     private boolean checkOverlap(Enemy currentEnemy, ImageView projectile) {
