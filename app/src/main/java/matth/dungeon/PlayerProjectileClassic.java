@@ -26,10 +26,24 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     }
 
     public void delete() {
-
         moveProjectile.removeCallbacksAndMessages(null);
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getProjectileImage());
+    }
+
+    public void outOfBounds() {
+        if (super.getProjectileImage().getY() < 0) {
+            delete();
+        }
+        if (super.getProjectileImage().getY() > mainUtility.getScreenHeight()) {
+            delete();
+        }
+        if (super.getProjectileImage().getX() < 0) {
+            delete();
+        }
+        if (super.getProjectileImage().getY() > mainUtility.getScreenWidth()) {
+            delete();
+        }
     }
 
     public void effect(Enemy enemy) {
@@ -41,6 +55,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
         @Override
         public void run() {
             PlayerUtility.moveImage(PlayerProjectileClassic.super.getProjectileImage(), PlayerProjectileClassic.super.getX(), PlayerProjectileClassic.super.getY() - VELOCITY);
+            outOfBounds();
             playerUtility.enemyOverlap(PlayerProjectileClassic.this);
 
             if (!terminated) {
