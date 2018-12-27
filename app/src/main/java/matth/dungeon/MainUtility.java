@@ -27,7 +27,7 @@ public class MainUtility {
         return con.getResources().getDisplayMetrics().widthPixels;
     }
 
-    public ImageView addImage(String layoutName, String imageName, int x, int y) {
+    public ImageView addImage(String layoutName, String imageName, float x, float y) {
 
         int id = con.getResources().getIdentifier(layoutName, "id", con.getPackageName());
         ConstraintLayout map = ((Activity)con).findViewById(id);

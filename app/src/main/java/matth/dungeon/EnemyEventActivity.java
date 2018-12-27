@@ -29,7 +29,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         getTileInfo();
         spawnEnemies();
 
-        playerUtility = new PlayerUtility(enemies);
+        playerUtility = new PlayerUtility(enemies, playerSprite);
         playerSprite.initProjectile(mainUtility, playerUtility);
 
 

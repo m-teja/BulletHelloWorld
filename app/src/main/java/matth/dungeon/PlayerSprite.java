@@ -17,6 +17,7 @@ public class PlayerSprite {
 
     public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
         ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility);
+        classicPattern.init();
         // update this to check for which pattern
     }
 

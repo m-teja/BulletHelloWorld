@@ -1,4 +1,4 @@
 package matth.dungeon;
 
-public class EnemyProjectile extends Projectile {
+public class EnemyProjectile {
 }

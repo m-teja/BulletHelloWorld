@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public class PlayerUtility {
 
     private ArrayList<Object> enemies;
+    private PlayerSprite playerSprite;
 
-    PlayerUtility(ArrayList<Object> enemies) {
+    PlayerUtility(ArrayList<Object> enemies, PlayerSprite playerSprite) {
         this.enemies = enemies;
+        this.playerSprite = playerSprite;
     }
 
     public static void moveImage(ImageView image, float x, float y) {
@@ -40,5 +42,9 @@ public class PlayerUtility {
         else {
             return false;
         }
+    }
+
+    public PlayerSprite getPlayerSprite() {
+        return playerSprite;
     }
 }
