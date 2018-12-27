@@ -1,6 +1,8 @@
 package matth.dungeon;
 
+import android.app.Activity;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
@@ -36,7 +38,10 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     public void delete() {
         moveSprite.removeCallbacksAndMessages(null);
         updatePlayerPosition.removeCallbacksAndMessages(null);
-        super.getSprite().setImageBitmap(null);
+
+        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
+        cl.removeView(super.getSprite());
+
     }
 
     private void calcVelocity() {

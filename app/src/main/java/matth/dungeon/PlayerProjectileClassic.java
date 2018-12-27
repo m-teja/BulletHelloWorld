@@ -1,6 +1,8 @@
 package matth.dungeon;
 
+import android.app.Activity;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 
 public class PlayerProjectileClassic extends PlayerProjectile implements  ProjectileBehaviour {
 
@@ -26,7 +28,8 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     public void delete() {
 
         moveProjectile.removeCallbacksAndMessages(null);
-        super.getProjectileImage().setImageBitmap(null);
+        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
+        cl.removeView(super.getProjectileImage());
     }
 
     public void effect(Enemy enemy) {
