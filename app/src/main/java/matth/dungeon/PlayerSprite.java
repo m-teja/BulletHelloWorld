@@ -15,6 +15,11 @@ public class PlayerSprite {
         this.con = con;
     }
 
+    public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
+        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility);
+        // update this to check for which pattern
+    }
+
     public void setPlayerImage(ImageView image) {
         playerImage = image;
     }

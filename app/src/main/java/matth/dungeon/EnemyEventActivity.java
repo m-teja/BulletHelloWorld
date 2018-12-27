@@ -30,6 +30,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         spawnEnemies();
 
         playerUtility = new PlayerUtility(enemies);
+        playerSprite.initProjectile(mainUtility, playerUtility);
 
 
     }

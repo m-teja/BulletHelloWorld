@@ -19,11 +19,13 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     }
 
     public void init() {
-
+        move.run();
     }
 
     public void delete() {
-
+        moveProjectile.removeCallbacksAndMessages(null);
+        moveProjectile = null;
+        super.getProjectileImage().setImageBitmap(null);
     }
 
     public void effect(Enemy enemy) {
