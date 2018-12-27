@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class PlayerUtility {
 
-    ArrayList<Object> enemies;
+    private ArrayList<Object> enemies;
 
     PlayerUtility(ArrayList<Object> enemies) {
         this.enemies = enemies;

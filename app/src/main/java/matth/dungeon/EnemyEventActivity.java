@@ -15,6 +15,7 @@ public class EnemyEventActivity extends AppCompatActivity {
     private ArrayList<Object> enemies;
     private MainUtility mainUtility;
     private EnemyUtility enemyUtility;
+    private PlayerUtility playerUtility;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,9 @@ public class EnemyEventActivity extends AppCompatActivity {
         getTileInfo();
         spawnEnemies();
 
-        SquareEnemy test = new SquareEnemy(mainUtility, enemyUtility);
-        test.spawnSprite(500, 500, null, null);
-        test.init();
+        playerUtility = new PlayerUtility(enemies);
+
+
     }
 
     private void getTileInfo() {
