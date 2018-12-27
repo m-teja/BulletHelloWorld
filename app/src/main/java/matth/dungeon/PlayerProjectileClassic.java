@@ -20,6 +20,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     }
 
     public void effect(Enemy enemy) {
-
+        enemy.takeDamage(DAMAGE);
+        delete();
     }
 }

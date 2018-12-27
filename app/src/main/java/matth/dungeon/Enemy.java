@@ -9,7 +9,7 @@ public class Enemy {
 
     public MainUtility mainUtility;
     public EnemyUtility enemyUtility;
-    int health;
+    float health;
     String spriteName;
     String projectileName;
 
@@ -65,4 +65,10 @@ public class Enemy {
     public void setY(float y) {
         sprite.setY(y);
     }
+
+    public void takeDamage(float x) {
+        health -= x;
+    }
+
+
 }

@@ -5,7 +5,7 @@ import android.util.Log;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
-    private final int STARTING_HEALTH = 100;
+    private final float STARTING_HEALTH = 100;
     private final String SPRITE_NAME = "square_enemy";
     private final String PROJECTILE_NAME = "square_projectile";
 
