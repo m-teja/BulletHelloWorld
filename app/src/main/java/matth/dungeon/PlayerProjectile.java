@@ -36,6 +36,14 @@ public class PlayerProjectile extends Projectile {
         return projectileImage;
     }
 
+    public void setX(float x) {
+        projectileImage.setX(x);
+    }
+
+    public void setY(float y) {
+        projectileImage.setY(y);
+    }
+
     public float getX() {
         return projectileImage.getX();
     }

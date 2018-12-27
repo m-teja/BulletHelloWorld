@@ -4,7 +4,7 @@ import android.os.Handler;
 
 public class ClassicPattern {
 
-    private int spawnDelay = 2000;
+    private int spawnDelay = 500;
 
     private MainUtility mainUtility;
     private PlayerUtility playerUtility;
@@ -25,7 +25,9 @@ public class ClassicPattern {
         public void run() {
 
             PlayerProjectileClassic playerProjectileClassic = new PlayerProjectileClassic(mainUtility, playerUtility);
-            playerProjectileClassic.spawnProjectile(playerUtility.getPlayerSprite().getX(), playerUtility.getPlayerSprite().getY(), null, null);
+            playerProjectileClassic.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2, playerUtility.getPlayerSprite().getY(), null, null);
+            //TODO fix centering issue
+
             playerProjectileClassic.init();
             spawnProjectile.postDelayed(spawn, spawnDelay);
         }
