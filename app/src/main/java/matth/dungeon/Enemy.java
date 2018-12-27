@@ -68,6 +68,10 @@ public class Enemy {
 
     public void takeDamage(float x) {
         health -= x;
+
+        if (health <= 0) {
+            delete();
+        }
     }
 
 

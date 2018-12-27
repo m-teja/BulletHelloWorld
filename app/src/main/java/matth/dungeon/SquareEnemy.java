@@ -5,7 +5,7 @@ import android.util.Log;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
-    private final float STARTING_HEALTH = 100;
+    private final float STARTING_HEALTH = 10;
     private final String SPRITE_NAME = "square_enemy";
     private final String PROJECTILE_NAME = "square_projectile";
 
@@ -36,8 +36,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     public void delete() {
         moveSprite.removeCallbacksAndMessages(null);
         updatePlayerPosition.removeCallbacksAndMessages(null);
-        moveSprite = null;
-        updatePlayerPosition = null;
         super.getSprite().setImageBitmap(null);
     }
 
