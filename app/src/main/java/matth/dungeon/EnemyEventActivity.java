@@ -31,7 +31,6 @@ public class EnemyEventActivity extends AppCompatActivity {
         SquareEnemy test = new SquareEnemy(mainUtility, enemyUtility);
         test.spawnSprite(500, 500, null, null);
         test.init();
-
     }
 
     private void getTileInfo() {
@@ -52,7 +51,6 @@ public class EnemyEventActivity extends AppCompatActivity {
                 enemies.add(new CircleEnemy(mainUtility, enemyUtility));
             }
         }
-
     }
 
     private void spawnPlayer() {
@@ -67,6 +65,7 @@ public class EnemyEventActivity extends AppCompatActivity {
 
             ((Enemy)enemies.get(i)).spawnSprite((i + 1) * distance, 200, null, null);
             ((Enemy)enemies.get(i)).setX(((Enemy) enemies.get(i)).getX() - playerSprite.getPlayerImage().getMeasuredWidth());
+            ((Enemy)enemies.get(i)).init();
 
         }
     }

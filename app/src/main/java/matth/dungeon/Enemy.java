@@ -59,6 +59,14 @@ public class Enemy {
         return projectile;
     }
 
+    public void init() {
+
+    }
+
+    public void delete() {
+
+    }
+
     public float getX() {
         return sprite.getX();
     }
