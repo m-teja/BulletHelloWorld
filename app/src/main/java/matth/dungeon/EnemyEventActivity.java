@@ -100,6 +100,7 @@ public class EnemyEventActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        mainUtility.setActive(true);
     }
 
     @Override
@@ -110,11 +111,13 @@ public class EnemyEventActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
+        mainUtility.setActive(false);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        mainUtility.setActive(false);
     }
 }
 

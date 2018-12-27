@@ -9,4 +9,6 @@ public class Projectile {
     Projectile(MainUtility mainUtility) {
         this.mainUtility = mainUtility;
     }
+
+    //TODO make periodic runnable check for active activity for all projectiles
 }

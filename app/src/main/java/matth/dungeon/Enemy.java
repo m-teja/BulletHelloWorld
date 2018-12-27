@@ -1,24 +1,30 @@
 package matth.dungeon;
 
 
+import android.os.Handler;
 import android.widget.ImageView;
 
 public class Enemy {
 
-    public final int ANIMATION_DELAY = 15;
+    final int ANIMATION_DELAY = 15;
+    private final int CHECK_DELAY = 20;
 
-    public MainUtility mainUtility;
-    public EnemyUtility enemyUtility;
+    MainUtility mainUtility;
+    EnemyUtility enemyUtility;
     float health;
     String spriteName;
     String projectileName;
+    boolean terminated;
 
     private ImageView sprite;
+    private Handler check = new Handler();
 
 
     public Enemy( MainUtility mainUtility, EnemyUtility enemyUtility) {
         this.mainUtility = mainUtility;
         this.enemyUtility = enemyUtility;
+        this.terminated = false;
+        initCheck();
     }
 
     public ImageView getSprite() {
@@ -39,8 +45,26 @@ public class Enemy {
             sprite.getLayoutParams().height = height;
         }
         return sprite;
-
     }
+
+    public void initCheck() {
+        runCheck.run();
+    }
+
+    private Runnable runCheck = new Runnable() {
+        @Override
+        public void run() {
+
+            if (MainUtility.isActive()) {
+                check.postDelayed(runCheck, CHECK_DELAY);
+            }
+            else {
+                terminated = true;
+                check.removeCallbacksAndMessages(null);
+            }
+
+        }
+    };
 
     public void init() {
 

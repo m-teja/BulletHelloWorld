@@ -1,6 +1,7 @@
 package matth.dungeon;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -10,9 +11,18 @@ import android.widget.ImageView;
 public class MainUtility {
 
     private Context con;
+    private static boolean active = true;
 
     MainUtility(Context con) {
         this.con = con;
+    }
+
+    public static boolean isActive() {
+        return active;
+    }
+
+    public static void setActive(boolean x) {
+        active = x;
     }
 
     public Context getCon() {
@@ -50,4 +60,6 @@ public class MainUtility {
 
         return image;
     }
+
+
 }

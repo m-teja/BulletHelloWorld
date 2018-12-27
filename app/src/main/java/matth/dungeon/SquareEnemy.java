@@ -18,7 +18,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
     private float destinationX;
     private float destinationY;
-    private boolean terminated = false;
     private int velocity = 10;
     private float velocityX;
     private float velocityY;
@@ -86,10 +85,10 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
             EnemyUtility.moveImage(SquareEnemy.super.getSprite(), SquareEnemy.super.getX() + velocityX, SquareEnemy.super.getY() + velocityY);
 
             if (enemyUtility.checkPlayerOverlap(SquareEnemy.super.getSprite())) {
-                terminated = true;
+                SquareEnemy.super.terminated = true;
             }
 
-            if (!terminated) {
+            if (!SquareEnemy.super.terminated) {
                 moveSprite.postDelayed(move, SquareEnemy.super.ANIMATION_DELAY);
             }
             else {
@@ -106,7 +105,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
             calcVelocity();
 
-            if (!terminated) {
+            if (!SquareEnemy.super.terminated) {
                 updatePlayerPosition.postDelayed(runUpdatePlayerPosition, DESTINATION_DELAY);
             }
             else {
