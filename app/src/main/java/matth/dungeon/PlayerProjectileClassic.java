@@ -10,6 +10,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     private final int VELOCITY = 5;
 
     private Handler moveProjectile = new Handler();
+    private boolean terminated = false;
 
 
     PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
@@ -23,23 +24,29 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     }
 
     public void delete() {
+
         moveProjectile.removeCallbacksAndMessages(null);
-        moveProjectile = null;
         super.getProjectileImage().setImageBitmap(null);
     }
 
     public void effect(Enemy enemy) {
         enemy.takeDamage(DAMAGE);
-        delete();
+        terminated = true;
     }
 
     private Runnable move = new Runnable() {
         @Override
         public void run() {
-            PlayerUtility.moveImage(PlayerProjectileClassic.super.getProjectileImage(), PlayerProjectileClassic.super.getX(), PlayerProjectileClassic.super.getY() + VELOCITY);
+            PlayerUtility.moveImage(PlayerProjectileClassic.super.getProjectileImage(), PlayerProjectileClassic.super.getX(), PlayerProjectileClassic.super.getY() - VELOCITY);
             playerUtility.enemyOverlap(PlayerProjectileClassic.this);
 
-            moveProjectile.postDelayed(move, ANIMATION_DELAY);
+            if (!terminated) {
+                moveProjectile.postDelayed(move, ANIMATION_DELAY);
+            }
+            else {
+                delete();
+            }
+
         }
     };
 }
