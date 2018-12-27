@@ -96,5 +96,28 @@ public class EnemyEventActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public void onBackPressed() {
+       // prevent back press
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
 }
+
+
+
 //TODO fix centering all imageviews after spawn
