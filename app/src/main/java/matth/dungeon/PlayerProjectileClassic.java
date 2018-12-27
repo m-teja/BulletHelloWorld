@@ -9,7 +9,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     private final String PROJECTILE_NAME = "projectile_classic";
     private final float DAMAGE = 10;
     private final int ANIMATION_DELAY = 15;
-    private final int VELOCITY = 10;
+    private final int VELOCITY = 15;
 
     private Handler moveProjectile = new Handler();
     private boolean terminated = false;
@@ -41,7 +41,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
         if (super.getProjectileImage().getX() < 0) {
             delete();
         }
-        if (super.getProjectileImage().getY() > mainUtility.getScreenWidth()) {
+        if (super.getProjectileImage().getY() > mainUtility.getScreenHeight()) {
             delete();
         }
     }
@@ -68,3 +68,4 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
         }
     };
 }
+//TODO comment everything
