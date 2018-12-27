@@ -106,6 +106,7 @@ public class EnemyEventActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
        // prevent back press
+        mainUtility.setActive(false);
     }
 
     @Override

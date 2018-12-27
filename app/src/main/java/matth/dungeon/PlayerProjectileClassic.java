@@ -12,7 +12,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     private final int VELOCITY = 15;
 
     private Handler moveProjectile = new Handler();
-    private boolean terminated = false;
+
 
 
     PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {

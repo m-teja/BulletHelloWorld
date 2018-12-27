@@ -15,6 +15,7 @@ public class PlayerProjectile extends Projectile {
         super(mainUtility);
         super.projectileName = this.projectileName;
         this.playerUtility = playerUtility;
+        initCheck();
     }
 
     public void spawnProjectile(float x, float y, Integer width, Integer height) {
@@ -62,5 +63,13 @@ public class PlayerProjectile extends Projectile {
 
     public void effect(Enemy enemy) {
 
+    }
+
+    public void outOfBounds() {
+
+    }
+
+    public void initCheck() {
+        super.initCheck();
     }
 }

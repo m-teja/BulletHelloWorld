@@ -6,4 +6,5 @@ public interface ProjectileBehaviour {
     public void delete();
     public void effect(Enemy enemy);
     public void outOfBounds();
+    public void initCheck();
 }
