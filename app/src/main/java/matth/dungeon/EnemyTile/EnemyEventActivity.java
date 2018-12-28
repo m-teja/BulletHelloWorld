@@ -35,7 +35,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         mainUtility = new MainUtility(this);
         spawnPlayer();
 
-        enemyUtility = new EnemyUtility(playerSprite);
+        enemyUtility = new EnemyUtility(playerSprite, enemies);
         getTileInfo();
         spawnEnemies();
 

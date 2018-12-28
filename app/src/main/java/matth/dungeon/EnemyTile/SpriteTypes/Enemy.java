@@ -9,7 +9,7 @@ import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
-public class Enemy {
+public class Enemy implements EnemyBehaviour {
 
     final int ANIMATION_DELAY = 15;
     private final int CHECK_DELAY = 20;

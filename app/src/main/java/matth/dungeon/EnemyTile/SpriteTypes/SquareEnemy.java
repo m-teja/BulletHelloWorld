@@ -40,6 +40,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
     public void delete() {
         Log.d("test", "square terminated");
+        terminated = true;
         moveSprite.removeCallbacksAndMessages(null);
         updatePlayerPosition.removeCallbacksAndMessages(null);
 
@@ -94,14 +95,11 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
             if (enemyUtility.checkPlayerOverlap(SquareEnemy.super.getSprite())) {
                 effect();
-                SquareEnemy.super.terminated = true;
+                delete();
             }
 
             if (!SquareEnemy.super.terminated) {
                 moveSprite.postDelayed(move, SquareEnemy.super.ANIMATION_DELAY);
-            }
-            else {
-                delete();
             }
         }
     };
@@ -116,9 +114,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
             if (!SquareEnemy.super.terminated) {
                 updatePlayerPosition.postDelayed(runUpdatePlayerPosition, DESTINATION_DELAY);
-            }
-            else {
-                delete();
             }
 
         }
