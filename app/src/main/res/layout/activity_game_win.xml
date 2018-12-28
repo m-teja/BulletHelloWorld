@@ -4,14 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EnemyTile.EnemyEventActivity"
-    android:id="@+id/enemyLay">
+    tools:context=".PostGameScreens.GameWin">
 
-    <ImageView
-        android:id="@+id/missingHealth"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/background_dark" />
 </android.support.constraint.ConstraintLayout>

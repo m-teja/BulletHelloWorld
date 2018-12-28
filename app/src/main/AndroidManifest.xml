@@ -17,8 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameUI.DungeonActivity" />
-        <activity android:name=".EnemyTile.EnemyEventActivity"></activity>
-
+        <activity android:name=".EnemyTile.EnemyEventActivity" />
+        <activity android:name=".PostGameScreens.GameOver" />
+        <activity android:name=".PostGameScreens.GameWin"></activity>
     </application>
 
 </manifest>
