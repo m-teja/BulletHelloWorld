@@ -11,18 +11,18 @@ import matth.dungeon.R;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
-    private final float STARTING_HEALTH = 10;
+    private final float STARTING_HEALTH = 30;
     private final int DAMAGE = 10;
     private final String SPRITE_NAME = "square_enemy";
     private final String PROJECTILE_NAME = "square_projectile";
-    private final int DESTINATION_DELAY = 1000;
+    private final int DESTINATION_DELAY = 800;
 
     private Handler moveSprite = new Handler();
     private Handler updatePlayerPosition = new Handler();
 
     private float destinationX;
     private float destinationY;
-    private int velocity = 10;
+    private int velocity = 15;
     private float velocityX;
     private float velocityY;
 

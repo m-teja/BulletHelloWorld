@@ -7,7 +7,7 @@ import matth.dungeon.Utility.MainUtility;
 
 public class ClassicPattern extends Pattern implements PatternBehaviour{
 
-    private int spawnDelay = 500;
+    private int spawnDelay = 250;
 
     private MainUtility mainUtility;
     private PlayerUtility playerUtility;

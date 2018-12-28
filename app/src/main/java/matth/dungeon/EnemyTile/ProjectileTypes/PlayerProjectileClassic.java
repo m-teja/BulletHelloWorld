@@ -15,7 +15,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     private final String PROJECTILE_NAME = "projectile_classic";
     private final float DAMAGE = 10;
     private final int ANIMATION_DELAY = 15;
-    private final int VELOCITY = 15;
+    private final int VELOCITY = 25;
 
     private Handler moveProjectile = new Handler();
 

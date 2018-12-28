@@ -69,7 +69,7 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     private void spawnPlayer() {
         playerSprite = new PlayerSprite(mainUtility.getCon());
-        playerSprite.setPlayerImage(mainUtility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, mainUtility.getScreenWidth()/2, mainUtility.getScreenHeight()/4));
+        playerSprite.setPlayerImage(mainUtility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, mainUtility.getScreenWidth()/2, (float)(mainUtility.getScreenHeight()/1.5)));
     }
 
     private void spawnEnemies() {

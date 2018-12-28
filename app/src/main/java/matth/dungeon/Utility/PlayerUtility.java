@@ -28,7 +28,6 @@ public class PlayerUtility {
 
         for (int i = 0; i < enemies.size(); i++) {
             if ( !((Enemy)enemies.get(i)).isTerminated() && checkOverlap((Enemy)enemies.get(i), playerProjectile.getProjectileImage())) {
-
                 playerProjectile.effect((Enemy)enemies.get(i));
             }
         }
