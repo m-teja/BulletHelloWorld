@@ -1,4 +1,4 @@
-package matth.dungeon;
+package matth.dungeon.GameUI;
 
 public class Player {
 

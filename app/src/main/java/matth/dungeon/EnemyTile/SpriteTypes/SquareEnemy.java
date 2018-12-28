@@ -1,9 +1,12 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.SpriteTypes;
 
 import android.app.Activity;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
-import android.util.Log;
+
+import matth.dungeon.Utility.EnemyUtility;
+import matth.dungeon.Utility.MainUtility;
+import matth.dungeon.R;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 

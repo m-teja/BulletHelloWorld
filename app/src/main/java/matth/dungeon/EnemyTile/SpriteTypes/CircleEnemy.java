@@ -1,6 +1,9 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.SpriteTypes;
 
-public class CircleEnemy extends Enemy implements EnemyBehaviour{
+import matth.dungeon.Utility.EnemyUtility;
+import matth.dungeon.Utility.MainUtility;
+
+public class CircleEnemy extends Enemy implements EnemyBehaviour {
 
     public final int STARTING_HEALTH = 150;
     public final String SPRITE_NAME = "circle";

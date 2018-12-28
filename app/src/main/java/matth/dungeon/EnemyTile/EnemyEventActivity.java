@@ -1,10 +1,19 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
+
+import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
+import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
+import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
+import matth.dungeon.Utility.EnemyUtility;
+import matth.dungeon.Utility.PlayerUtility;
+import matth.dungeon.Utility.MainUtility;
+import matth.dungeon.R;
 
 public class EnemyEventActivity extends AppCompatActivity {
 

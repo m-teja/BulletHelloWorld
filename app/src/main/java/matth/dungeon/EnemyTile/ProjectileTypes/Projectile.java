@@ -1,6 +1,8 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.ProjectileTypes;
 
 import android.os.Handler;
+
+import matth.dungeon.Utility.MainUtility;
 
 public class Projectile {
 

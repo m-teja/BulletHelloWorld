@@ -1,13 +1,15 @@
-package matth.dungeon;
+package matth.dungeon.Utility;
 
 import android.graphics.Rect;
 import android.widget.ImageView;
+
+import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 
 public class EnemyUtility {
 
     private PlayerSprite playerSprite;
 
-    EnemyUtility(PlayerSprite playerSprite) {
+    public EnemyUtility(PlayerSprite playerSprite) {
         this.playerSprite = playerSprite;
     }
 

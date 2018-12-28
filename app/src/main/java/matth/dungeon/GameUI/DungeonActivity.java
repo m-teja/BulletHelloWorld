@@ -1,10 +1,13 @@
-package matth.dungeon;
+package matth.dungeon.GameUI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import matth.dungeon.R;
+import matth.dungeon.Utility.MainUtility;
 
 public class DungeonActivity extends AppCompatActivity {
 

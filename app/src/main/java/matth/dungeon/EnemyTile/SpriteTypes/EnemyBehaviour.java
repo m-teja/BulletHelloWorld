@@ -1,4 +1,4 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.SpriteTypes;
 
 public interface EnemyBehaviour {
 

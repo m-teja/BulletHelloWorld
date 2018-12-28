@@ -1,4 +1,4 @@
-package matth.dungeon;
+package matth.dungeon.Utility;
 
 import android.app.Activity;
 import android.app.Application;
@@ -13,7 +13,7 @@ public class MainUtility {
     private Context con;
     private static boolean active = true;
 
-    MainUtility(Context con) {
+    public MainUtility(Context con) {
         this.con = con;
     }
 
@@ -21,8 +21,8 @@ public class MainUtility {
         return active;
     }
 
-    public static void setActive(boolean x) {
-        active = x;
+    public static void setActive(boolean bool) {
+        active = bool;
     }
 
     public Context getCon() {

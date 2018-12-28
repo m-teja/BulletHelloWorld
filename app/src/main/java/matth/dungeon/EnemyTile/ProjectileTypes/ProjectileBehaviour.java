@@ -1,4 +1,6 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.ProjectileTypes;
+
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 
 public interface ProjectileBehaviour {
 

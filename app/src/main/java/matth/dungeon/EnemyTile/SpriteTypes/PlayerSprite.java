@@ -1,17 +1,23 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.SpriteTypes;
 
 import android.content.Context;
 import android.widget.ImageView;
+
+import matth.dungeon.EnemyTile.ProjectileTypes.ClassicPattern;
+import matth.dungeon.Utility.PlayerUtility;
+import matth.dungeon.Utility.MainUtility;
 
 public class PlayerSprite {
 
     public static String IMAGE_NAME = "player_sprite";
 
     private ImageView playerImage;
+    private int health = 100;
+    //change later to depend on situation
 
     private Context con;
 
-    PlayerSprite(Context con) {
+    public PlayerSprite(Context con) {
         this.con = con;
     }
 
@@ -43,5 +49,13 @@ public class PlayerSprite {
 
     public void setY(float y) {
         playerImage.setY(y);
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

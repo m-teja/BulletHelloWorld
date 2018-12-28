@@ -1,4 +1,4 @@
-package matth.dungeon;
+package matth.dungeon.GameUI;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,9 +10,11 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.R;
+import matth.dungeon.Utility.MainUtility;
+
 public class TileMap {
-
-
 
     private MainUtility utility;
     private int size;

@@ -1,8 +1,12 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.SpriteTypes;
 
 
 import android.os.Handler;
 import android.widget.ImageView;
+
+import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.Utility.EnemyUtility;
+import matth.dungeon.Utility.MainUtility;
 
 public class Enemy {
 

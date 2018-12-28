@@ -1,16 +1,20 @@
-package matth.dungeon;
+package matth.dungeon.Utility;
 
 import android.graphics.Rect;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
+import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
+import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
+
 public class PlayerUtility {
 
     private ArrayList<Object> enemies;
     private PlayerSprite playerSprite;
 
-    PlayerUtility(ArrayList<Object> enemies, PlayerSprite playerSprite) {
+    public PlayerUtility(ArrayList<Object> enemies, PlayerSprite playerSprite) {
         this.enemies = enemies;
         this.playerSprite = playerSprite;
     }

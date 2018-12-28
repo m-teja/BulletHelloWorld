@@ -1,6 +1,11 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.ProjectileTypes;
 
 import android.widget.ImageView;
+
+import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
+import matth.dungeon.Utility.PlayerUtility;
+import matth.dungeon.Utility.MainUtility;
 
 public class PlayerProjectile extends Projectile {
 

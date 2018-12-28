@@ -1,4 +1,4 @@
-package matth.dungeon;
+package matth.dungeon.GameUI;
 
 import android.widget.TextView;
 

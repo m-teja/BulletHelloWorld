@@ -1,6 +1,9 @@
-package matth.dungeon;
+package matth.dungeon.EnemyTile.ProjectileTypes;
 
 import android.os.Handler;
+
+import matth.dungeon.Utility.PlayerUtility;
+import matth.dungeon.Utility.MainUtility;
 
 public class ClassicPattern {
 
@@ -11,7 +14,7 @@ public class ClassicPattern {
 
     private Handler spawnProjectile = new Handler();
 
-    ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
+    public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
     }
