@@ -5,7 +5,7 @@ import android.os.Handler;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
 
-public class ClassicPattern {
+public class ClassicPattern extends Pattern implements PatternBehaviour{
 
     private int spawnDelay = 500;
 
@@ -15,8 +15,13 @@ public class ClassicPattern {
     private Handler spawnProjectile = new Handler();
 
     public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
+        super();
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
+    }
+
+    public void stop() {
+        spawnProjectile.removeCallbacksAndMessages(null);
     }
 
     public void init() {
