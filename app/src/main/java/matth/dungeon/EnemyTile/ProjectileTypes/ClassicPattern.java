@@ -38,3 +38,4 @@ public class ClassicPattern {
 
 
 }
+//TODO make initCheck into utility

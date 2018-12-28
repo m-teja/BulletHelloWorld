@@ -19,7 +19,18 @@ public class Projectile {
     }
 
     public void initCheck() {
-        runCheck.run();
+
+        Handler start = new Handler();
+        start.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runCheck.run();
+            }
+        }, 500);
+    }
+
+    public void delete() {
+
     }
 
     private Runnable runCheck = new Runnable() {
@@ -30,12 +41,11 @@ public class Projectile {
                 check.postDelayed(runCheck, CHECK_DELAY);
             }
             else {
-                terminated = true;
+                delete();
+                //terminated = true;
                 check.removeCallbacksAndMessages(null);
             }
 
         }
     };
-
-    //TODO make periodic runnable check for active activity for all projectiles
 }

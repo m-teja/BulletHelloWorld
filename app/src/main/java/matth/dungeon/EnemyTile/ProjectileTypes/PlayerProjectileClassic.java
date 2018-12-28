@@ -3,6 +3,7 @@ package matth.dungeon.EnemyTile.ProjectileTypes;
 import android.app.Activity;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.Utility.PlayerUtility;
@@ -18,8 +19,6 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
 
     private Handler moveProjectile = new Handler();
 
-
-
     PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility, playerUtility);
         super.damage = DAMAGE;
@@ -31,6 +30,8 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
     }
 
     public void delete() {
+        Log.d("test", "projectile terminated");
+        terminated = true;
         moveProjectile.removeCallbacksAndMessages(null);
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getProjectileImage());
@@ -53,7 +54,7 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
 
     public void effect(Enemy enemy) {
         enemy.takeDamage(DAMAGE);
-        terminated = true;
+        delete();
     }
 
     private Runnable move = new Runnable() {
@@ -66,10 +67,6 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
             if (!terminated) {
                 moveProjectile.postDelayed(move, ANIMATION_DELAY);
             }
-            else {
-                delete();
-            }
-
         }
     };
 }

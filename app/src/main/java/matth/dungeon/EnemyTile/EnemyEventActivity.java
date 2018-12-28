@@ -2,6 +2,7 @@ package matth.dungeon.EnemyTile;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
@@ -55,10 +56,12 @@ public class EnemyEventActivity extends AppCompatActivity {
 
             //have to add new for loop for each enemy, so should probably optimize
             for (int i = 0; i < temp[0]; i++) {
+                Log.d("test", "square");
                 enemies.add(new SquareEnemy(mainUtility, enemyUtility));
             }
 
             for (int i = 0; i < temp[1]; i++) {
+                Log.d("test", "circle");
                 enemies.add(new CircleEnemy(mainUtility, enemyUtility));
             }
         }

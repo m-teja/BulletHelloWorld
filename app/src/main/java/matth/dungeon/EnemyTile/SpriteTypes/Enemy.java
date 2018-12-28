@@ -53,7 +53,13 @@ public class Enemy {
     }
 
     public void initCheck() {
-        runCheck.run();
+        Handler start = new Handler();
+        start.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                runCheck.run();
+            }
+        }, 500);
     }
 
     private Runnable runCheck = new Runnable() {
@@ -65,7 +71,7 @@ public class Enemy {
             }
             else {
                 terminated = true;
-                Log.d("test", "terminated");
+
                 check.removeCallbacksAndMessages(null);
             }
 
