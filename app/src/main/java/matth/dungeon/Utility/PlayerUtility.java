@@ -25,8 +25,9 @@ public class PlayerUtility {
     }
 
     public void enemyOverlap(PlayerProjectile playerProjectile) {
+
         for (int i = 0; i < enemies.size(); i++) {
-            if (checkOverlap((Enemy)enemies.get(i), playerProjectile.getProjectileImage())) {
+            if ( !((Enemy)enemies.get(i)).isTerminated() && checkOverlap((Enemy)enemies.get(i), playerProjectile.getProjectileImage())) {
 
                 playerProjectile.effect((Enemy)enemies.get(i));
             }

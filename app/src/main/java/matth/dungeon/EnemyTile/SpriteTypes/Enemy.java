@@ -86,6 +86,10 @@ public class Enemy implements EnemyBehaviour {
 
     }
 
+    public boolean isTerminated() {
+        return terminated;
+    }
+
     public float getX() {
         return sprite.getX();
     }
