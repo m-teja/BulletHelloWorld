@@ -113,9 +113,16 @@ public class EnemyEventActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        mainUtility.setActive(true);
+    }
+
+    @Override
     public void onBackPressed() {
        // prevent back press
-        mainUtility.setActive(false);
+        super.onBackPressed();
+        //mainUtility.setActive(false);
     }
 
     @Override
@@ -127,7 +134,7 @@ public class EnemyEventActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        mainUtility.setActive(false);
+        //mainUtility.setActive(false);
     }
 }
 

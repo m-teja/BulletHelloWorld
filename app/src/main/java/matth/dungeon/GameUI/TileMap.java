@@ -188,7 +188,6 @@ public class TileMap {
                 int randEnemy = (int)(Math.random() * LevelTile.ENEMY_TYPES.length);
                 getTile(enemyCol, enemyRow).setEnemy(randEnemy);
             }
-            Log.d("test", Integer.toString(numEnemies));
 
         }
     }

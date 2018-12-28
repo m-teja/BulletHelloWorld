@@ -1,6 +1,7 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.ClassicPattern;
@@ -56,6 +57,7 @@ public class PlayerSprite {
     }
 
     public void setHealth(int health) {
+        Log.d("test", Integer.toString(health));
         this.health = health;
     }
 }

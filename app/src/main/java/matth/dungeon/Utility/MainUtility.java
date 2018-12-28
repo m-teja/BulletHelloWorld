@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -22,6 +23,7 @@ public class MainUtility {
     }
 
     public static void setActive(boolean bool) {
+        Log.d("test", Boolean.toString(bool));
         active = bool;
     }
 

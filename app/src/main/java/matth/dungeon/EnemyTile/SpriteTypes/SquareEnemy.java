@@ -11,9 +11,9 @@ import matth.dungeon.R;
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
     private final float STARTING_HEALTH = 10;
+    private final int DAMAGE = 10;
     private final String SPRITE_NAME = "square_enemy";
     private final String PROJECTILE_NAME = "square_projectile";
-
     private final int DESTINATION_DELAY = 1000;
 
     private Handler moveSprite = new Handler();
@@ -43,7 +43,10 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getSprite());
+    }
 
+    private void effect() {
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
     }
 
     private void calcVelocity() {
@@ -88,6 +91,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
             EnemyUtility.moveImage(SquareEnemy.super.getSprite(), SquareEnemy.super.getX() + velocityX, SquareEnemy.super.getY() + velocityY);
 
             if (enemyUtility.checkPlayerOverlap(SquareEnemy.super.getSprite())) {
+                effect();
                 SquareEnemy.super.terminated = true;
             }
 

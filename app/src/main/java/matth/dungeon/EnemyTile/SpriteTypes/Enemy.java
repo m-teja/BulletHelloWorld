@@ -2,6 +2,7 @@ package matth.dungeon.EnemyTile.SpriteTypes;
 
 
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
@@ -64,6 +65,7 @@ public class Enemy {
             }
             else {
                 terminated = true;
+                Log.d("test", "terminated");
                 check.removeCallbacksAndMessages(null);
             }
 
