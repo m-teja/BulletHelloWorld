@@ -28,7 +28,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
         super.spriteName = SPRITE_NAME;
         super.projectileName = PROJECTILE_NAME;
         super.velocity = VELOCITY;
-        super.destinationDelay = DESTINATION_DELAY;
     }
 
     public void init() {
@@ -46,7 +45,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
         cl.removeView(super.getSprite());
     }
 
-    private void effect() {
+    public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
     }
 
@@ -56,13 +55,13 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
             EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
 
-            if (enemyUtility.checkPlayerOverlap(SquareEnemy.super.getSprite())) {
+            if (enemyUtility.checkPlayerOverlap(getSprite())) {
                 effect();
                 delete();
             }
 
-            if (!SquareEnemy.super.terminated) {
-                moveSprite.postDelayed(move, SquareEnemy.super.ANIMATION_DELAY);
+            if (!terminated) {
+                moveSprite.postDelayed(move, ANIMATION_DELAY);
             }
         }
     };
@@ -76,7 +75,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
             calcVelocity();
 
             if (!terminated) {
-                updatePlayerPosition.postDelayed(runUpdatePlayerPosition, destinationDelay);
+                updatePlayerPosition.postDelayed(runUpdatePlayerPosition, DESTINATION_DELAY);
             }
 
         }

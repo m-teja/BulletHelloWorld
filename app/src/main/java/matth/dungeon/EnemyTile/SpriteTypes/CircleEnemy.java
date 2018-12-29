@@ -1,5 +1,11 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
+import android.app.Activity;
+import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
+import android.util.Log;
+
+import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
@@ -10,6 +16,10 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
     private final String PROJECTILE_NAME = "circle_projectile";
     private final int VELOCITY = 8;
     private final int DESTINATION_DELAY = 20;
+    private final int DAMAGE = 2;
+
+    private Handler updateDestination = new Handler();
+    private Handler moveSprite = new Handler();
 
     public CircleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
@@ -17,22 +27,54 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
         super.spriteName = SPRITE_NAME;
         super.projectileName = PROJECTILE_NAME;
         super.velocity = VELOCITY;
-        super.destinationDelay = DESTINATION_DELAY;
-        init();
     }
 
     public void init() {
-
+        runUpdateDestination.run();
+        move.run();
     }
 
     public void delete() {
+        Log.d("test", "circle terminated");
+        terminated = true;
+        updateDestination.removeCallbacksAndMessages(null);
 
+        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
+        cl.removeView(super.getSprite());
     }
+
+    public void effect() {
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+    }
+
+    private Runnable runUpdateDestination = new Runnable() {
+        @Override
+        public void run() {
+            destinationX = enemyUtility.getPlayerSprite().getX();
+            destinationY = enemyUtility.getPlayerSprite().getY() - mainUtility.getScreenHeight()/2;
+
+            calcVelocity();
+
+            if (!terminated) {
+                updateDestination.postDelayed(runUpdateDestination, DESTINATION_DELAY);
+
+            }
+        }
+    };
 
     private Runnable move = new Runnable() {
        @Override
        public void run() {
-           //EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
+           EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
+
+           if (enemyUtility.checkPlayerOverlap(getSprite())) {
+               effect();
+               delete();
+           }
+
+           if (!terminated) {
+               moveSprite.postDelayed(move, ANIMATION_DELAY);
+           }
 
        }
     };

@@ -2,7 +2,6 @@ package matth.dungeon.EnemyTile.SpriteTypes;
 
 
 import android.os.Handler;
-import android.util.Log;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
@@ -24,7 +23,6 @@ public abstract class Enemy implements EnemyBehaviour {
     private ImageView sprite;
     private Handler check = new Handler();
 
-    int destinationDelay;
     float destinationX;
     float destinationY;
     int velocity;
@@ -43,7 +41,7 @@ public abstract class Enemy implements EnemyBehaviour {
         return sprite;
     }
 
-    public ImageView spawnSprite(int x, int y, Integer width, Integer height) {
+    public void spawnSprite(int x, int y, Integer width, Integer height) {
 
         sprite = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, spriteName, x, y);
 
@@ -56,7 +54,6 @@ public abstract class Enemy implements EnemyBehaviour {
             sprite.setScaleType(ImageView.ScaleType.CENTER_CROP);
             sprite.getLayoutParams().height = height;
         }
-        return sprite;
     }
 
     public void initCheck() {
@@ -122,6 +119,8 @@ public abstract class Enemy implements EnemyBehaviour {
     public abstract void init();
 
     public abstract void delete();
+
+    public abstract void effect();
 
     public boolean isTerminated() {
         return terminated;
