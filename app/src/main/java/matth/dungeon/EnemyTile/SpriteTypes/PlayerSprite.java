@@ -1,10 +1,12 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.ClassicPattern;
+import matth.dungeon.R;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
 
@@ -16,6 +18,7 @@ public class PlayerSprite {
 
     private ImageView playerImage;
 
+    private int maxHealth = 100;
     private int health = 100;
     //change later to depend on situation
 
@@ -23,6 +26,7 @@ public class PlayerSprite {
 
     public PlayerSprite(MainUtility mainUtility) {
         this.mainUtility = mainUtility;
+        initHealthBar();
         setPlayerImage();
     }
 
@@ -34,6 +38,25 @@ public class PlayerSprite {
 
     public void setPlayerImage() {
        playerImage = mainUtility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, mainUtility.getScreenWidth()/2, (float)(mainUtility.getScreenHeight()/1.5));
+    }
+
+    private void initHealthBar() {
+        ImageView healthBar = ((Activity)mainUtility.getCon()).findViewById(R.id.healthBar);
+        healthBar.setX(0);
+        healthBar.setY(0);
+        healthBar.getLayoutParams().width = mainUtility.getScreenWidth();
+        healthBar.getLayoutParams().height = 0;
+    }
+
+    public void setHealth(int health) {
+        Log.d("test", Integer.toString(health));
+        this.health = health;
+        updateHealthBar();
+    }
+
+    private void updateHealthBar() {
+        ImageView healthBar = ((Activity)mainUtility.getCon()).findViewById(R.id.healthBar);
+        healthBar.getLayoutParams().height = mainUtility.getScreenHeight() - (int)(mainUtility.getScreenHeight() * ((float)health/maxHealth));
     }
 
     public ImageView getPlayerImage() {
@@ -60,13 +83,5 @@ public class PlayerSprite {
         return health;
     }
 
-    public void setHealth(int health) {
-        Log.d("test", Integer.toString(health));
-        this.health = health;
-        updateHealthBar();
-    }
 
-    private void updateHealthBar() {
-
-    }
 }

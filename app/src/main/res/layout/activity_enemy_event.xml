@@ -8,7 +8,7 @@
     android:id="@+id/enemyLay">
 
     <ImageView
-        android:id="@+id/missingHealth"
+        android:id="@+id/healthBar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
