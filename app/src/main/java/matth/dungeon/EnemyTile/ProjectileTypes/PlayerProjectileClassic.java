@@ -14,10 +14,7 @@ public class PlayerProjectileClassic extends PlayerProjectile {
 
     private final String PROJECTILE_NAME = "projectile_classic";
     private final float DAMAGE = 10;
-    private final int ANIMATION_DELAY = 15;
     private final int VELOCITY = 25;
-
-    private Handler moveProjectile = new Handler();
 
     PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility, playerUtility);
@@ -32,7 +29,8 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     public void delete() {
         Log.d("test", "projectile terminated");
         terminated = true;
-        moveProjectile.removeCallbacksAndMessages(null);
+        super.delete();
+
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getProjectileImage());
     }
@@ -42,17 +40,9 @@ public class PlayerProjectileClassic extends PlayerProjectile {
         delete();
     }
 
-    private Runnable move = new Runnable() {
-        @Override
-        public void run() {
-            PlayerUtility.moveImage(PlayerProjectileClassic.super.getProjectileImage(), PlayerProjectileClassic.super.getX(), PlayerProjectileClassic.super.getY() - VELOCITY);
-            outOfBounds();
-            playerUtility.enemyOverlap(PlayerProjectileClassic.this);
-
-            if (!terminated) {
-                moveProjectile.postDelayed(move, ANIMATION_DELAY);
-            }
-        }
-    };
+    @Override
+    public void movePattern() {
+        PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - VELOCITY);
+    }
 }
 //TODO comment everything

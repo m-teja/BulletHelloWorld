@@ -10,6 +10,7 @@ import matth.dungeon.Utility.MainUtility;
 public abstract class Projectile implements  ProjectileBehaviour {
 
     private final int CHECK_DELAY = 20;
+    final int ANIMATION_DELAY = 15;
 
     float damage;
 
