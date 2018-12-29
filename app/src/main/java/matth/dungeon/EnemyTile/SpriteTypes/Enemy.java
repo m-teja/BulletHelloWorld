@@ -23,10 +23,12 @@ public class Enemy implements EnemyBehaviour {
 
     private ImageView sprite;
     private Handler check = new Handler();
+    private Handler updatePlayerPosition = new Handler();
 
+    int destinationDelay;
     float destinationX;
     float destinationY;
-    int velocity = 15;
+    int velocity;
     float velocityX;
     float velocityY;
 
@@ -119,12 +121,27 @@ public class Enemy implements EnemyBehaviour {
 
     }
 
+    Runnable runUpdatePlayerPosition = new Runnable() {
+        @Override
+        public void run() {
+            destinationX = enemyUtility.getPlayerSprite().getX();
+            destinationY = enemyUtility.getPlayerSprite().getY();
+
+            calcVelocity();
+
+            if (!terminated) {
+                updatePlayerPosition.postDelayed(runUpdatePlayerPosition, destinationDelay);
+            }
+
+        }
+    };
+
     public void init() {
 
     }
 
     public void delete() {
-
+        updatePlayerPosition.removeCallbacksAndMessages(null);
     }
 
     public boolean isTerminated() {
