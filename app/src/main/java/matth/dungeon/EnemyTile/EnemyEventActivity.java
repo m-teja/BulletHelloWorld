@@ -11,6 +11,7 @@ import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
+import matth.dungeon.GameUI.LevelTile;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
@@ -62,6 +63,7 @@ public class EnemyEventActivity extends AppCompatActivity {
                 Log.d("test", "circle");
                 enemies.add(new CircleEnemy(mainUtility, enemyUtility));
             }
+
         }
     }
 

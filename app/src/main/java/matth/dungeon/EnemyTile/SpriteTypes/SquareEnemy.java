@@ -20,12 +20,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     private Handler moveSprite = new Handler();
     private Handler updatePlayerPosition = new Handler();
 
-    private float destinationX;
-    private float destinationY;
-    private int velocity = 15;
-    private float velocityX;
-    private float velocityY;
-
     public SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
         super.health = STARTING_HEALTH;
@@ -50,41 +44,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
     private void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
-    }
-
-    private void calcVelocity() {
-
-        float differenceX = destinationX - super.getX();
-        float differenceY = destinationY - super.getY();
-
-        if (differenceX != 0 && differenceY != 0) {
-            float differenceXY = (float)Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
-
-            float cosAngle = (float)Math.acos(differenceY/differenceXY);
-            float sinAngle = (float)Math.asin(differenceX/differenceXY);
-
-            velocityY = (float)(Math.cos(cosAngle) * velocity);
-            velocityX = (float)(Math.sin(sinAngle) * velocity);
-        }
-        else if (differenceX == 0) {
-            velocityX = 0;
-            if (destinationY > super.getY()) {
-                velocityY = velocity;
-            }
-            else {
-                velocityY = -velocity;
-            }
-        }
-        else {
-            velocityY = 0;
-            if (destinationX > super.getX()) {
-                velocityX = velocity;
-            }
-            else {
-                velocityX = -velocity;
-            }
-        }
-
     }
 
     private Runnable move = new Runnable() {

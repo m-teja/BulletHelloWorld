@@ -5,9 +5,13 @@ import matth.dungeon.Utility.MainUtility;
 
 public class CircleEnemy extends Enemy implements EnemyBehaviour {
 
-    public final int STARTING_HEALTH = 150;
-    public final String SPRITE_NAME = "circle_enemy";
-    public final String PROJECTILE_NAME = "circle_projectile";
+    private final int STARTING_HEALTH = 50;
+    private final String SPRITE_NAME = "circle_enemy";
+    private final String PROJECTILE_NAME = "circle_projectile";
+
+    private int destinationX;
+    private int destinationY;
+
 
     public CircleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
