@@ -33,7 +33,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enemy_event);
 
         mainUtility = new MainUtility(this);
-        spawnPlayer();
+        playerSprite = new PlayerSprite(mainUtility);
 
         enemyUtility = new EnemyUtility(playerSprite, enemies);
         getTileInfo();
@@ -41,8 +41,6 @@ public class EnemyEventActivity extends AppCompatActivity {
 
         playerUtility = new PlayerUtility(enemies, playerSprite);
         playerSprite.initProjectile(mainUtility, playerUtility);
-
-
     }
 
     private void getTileInfo() {
@@ -65,11 +63,6 @@ public class EnemyEventActivity extends AppCompatActivity {
                 enemies.add(new CircleEnemy(mainUtility, enemyUtility));
             }
         }
-    }
-
-    private void spawnPlayer() {
-        playerSprite = new PlayerSprite(mainUtility.getCon());
-        playerSprite.setPlayerImage(mainUtility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, mainUtility.getScreenWidth()/2, (float)(mainUtility.getScreenHeight()/1.5)));
     }
 
     private void spawnEnemies() {
