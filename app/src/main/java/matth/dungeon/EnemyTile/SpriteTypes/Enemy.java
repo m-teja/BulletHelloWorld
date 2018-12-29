@@ -9,7 +9,7 @@ import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
-public class Enemy implements EnemyBehaviour {
+public abstract class Enemy implements EnemyBehaviour {
 
     final int ANIMATION_DELAY = 15;
     private final int CHECK_DELAY = 20;
@@ -23,7 +23,6 @@ public class Enemy implements EnemyBehaviour {
 
     private ImageView sprite;
     private Handler check = new Handler();
-    private Handler updatePlayerPosition = new Handler();
 
     int destinationDelay;
     float destinationX;
@@ -118,31 +117,11 @@ public class Enemy implements EnemyBehaviour {
                 velocityX = -velocity;
             }
         }
-
     }
 
-    Runnable runUpdatePlayerPosition = new Runnable() {
-        @Override
-        public void run() {
-            destinationX = enemyUtility.getPlayerSprite().getX();
-            destinationY = enemyUtility.getPlayerSprite().getY();
+    public abstract void init();
 
-            calcVelocity();
-
-            if (!terminated) {
-                updatePlayerPosition.postDelayed(runUpdatePlayerPosition, destinationDelay);
-            }
-
-        }
-    };
-
-    public void init() {
-
-    }
-
-    public void delete() {
-        updatePlayerPosition.removeCallbacksAndMessages(null);
-    }
+    public abstract void delete();
 
     public boolean isTerminated() {
         return terminated;

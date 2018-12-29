@@ -19,7 +19,6 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
         super.velocity = VELOCITY;
         super.destinationDelay = DESTINATION_DELAY;
         init();
-
     }
 
     public void init() {
@@ -27,9 +26,15 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
     }
 
     public void delete() {
-        super.delete();
+
     }
 
-   // private Runnable
+    private Runnable move = new Runnable() {
+       @Override
+       public void run() {
+           //EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
+
+       }
+    };
 
 }

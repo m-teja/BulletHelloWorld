@@ -19,6 +19,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     private final int VELOCITY = 15;
 
     private Handler moveSprite = new Handler();
+    private Handler updatePlayerPosition = new Handler();
 
 
     public SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
@@ -38,9 +39,8 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     public void delete() {
         Log.d("test", "square terminated");
         terminated = true;
-        super.delete();
+        updatePlayerPosition.removeCallbacksAndMessages(null);
         moveSprite.removeCallbacksAndMessages(null);
-
 
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getSprite());
@@ -54,7 +54,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
         @Override
         public void run() {
 
-            EnemyUtility.moveImage(SquareEnemy.super.getSprite(), SquareEnemy.super.getX() + velocityX, SquareEnemy.super.getY() + velocityY);
+            EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
 
             if (enemyUtility.checkPlayerOverlap(SquareEnemy.super.getSprite())) {
                 effect();
@@ -64,6 +64,21 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
             if (!SquareEnemy.super.terminated) {
                 moveSprite.postDelayed(move, SquareEnemy.super.ANIMATION_DELAY);
             }
+        }
+    };
+
+    Runnable runUpdatePlayerPosition = new Runnable() {
+        @Override
+        public void run() {
+            destinationX = enemyUtility.getPlayerSprite().getX();
+            destinationY = enemyUtility.getPlayerSprite().getY();
+
+            calcVelocity();
+
+            if (!terminated) {
+                updatePlayerPosition.postDelayed(runUpdatePlayerPosition, destinationDelay);
+            }
+
         }
     };
 
