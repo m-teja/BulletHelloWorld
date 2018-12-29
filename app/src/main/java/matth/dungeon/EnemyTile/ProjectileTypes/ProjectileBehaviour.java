@@ -4,8 +4,10 @@ import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 
 public interface ProjectileBehaviour {
 
-    public void init();
-    public void delete();
-    public void outOfBounds();
-    public void initCheck();
+    void init();
+    void delete();
+    void outOfBounds();
+    void initCheck();
+    void movePattern();
+    void effect(Enemy enemy);
 }

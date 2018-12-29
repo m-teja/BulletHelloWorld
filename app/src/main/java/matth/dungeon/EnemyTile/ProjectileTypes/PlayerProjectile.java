@@ -1,6 +1,7 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
 import android.os.Handler;
+import android.support.annotation.CallSuper;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
@@ -32,16 +33,12 @@ public abstract class PlayerProjectile extends Projectile {
             }
         }
     };
-
     public abstract void init();
 
+    @CallSuper
     public void delete() {
         moveProjectile.removeCallbacksAndMessages(null);
     }
-
-    public abstract void effect(Enemy enemy);
-
-    public abstract void movePattern();
 
     public void initCheck() {
         super.initCheck();

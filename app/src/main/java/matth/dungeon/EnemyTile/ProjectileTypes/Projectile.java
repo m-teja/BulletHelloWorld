@@ -7,7 +7,7 @@ import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.Utility.MainUtility;
 
-public abstract class Projectile implements  ProjectileBehaviour {
+public abstract class Projectile implements ProjectileBehaviour {
 
     private final int CHECK_DELAY = 20;
     final int ANIMATION_DELAY = 15;
@@ -29,6 +29,8 @@ public abstract class Projectile implements  ProjectileBehaviour {
 
     public abstract void init();
     public abstract void delete();
+    public abstract void movePattern();
+    public abstract void effect(Enemy enemy);
 
     public void outOfBounds() {
         if (projectileImage.getY() < 0) {
