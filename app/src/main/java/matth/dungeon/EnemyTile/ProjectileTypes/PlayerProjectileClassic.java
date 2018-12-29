@@ -10,7 +10,7 @@ import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.R;
 
-public class PlayerProjectileClassic extends PlayerProjectile implements  ProjectileBehaviour {
+public class PlayerProjectileClassic extends PlayerProjectile {
 
     private final String PROJECTILE_NAME = "projectile_classic";
     private final float DAMAGE = 10;
@@ -35,21 +35,6 @@ public class PlayerProjectileClassic extends PlayerProjectile implements  Projec
         moveProjectile.removeCallbacksAndMessages(null);
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getProjectileImage());
-    }
-
-    public void outOfBounds() {
-        if (super.getProjectileImage().getY() < 0) {
-            delete();
-        }
-        if (super.getProjectileImage().getY() > mainUtility.getScreenHeight()) {
-            delete();
-        }
-        if (super.getProjectileImage().getX() < 0) {
-            delete();
-        }
-        if (super.getProjectileImage().getY() > mainUtility.getScreenHeight()) {
-            delete();
-        }
     }
 
     public void effect(Enemy enemy) {

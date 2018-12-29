@@ -1,21 +1,62 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
 import android.os.Handler;
+import android.widget.ImageView;
 
+import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.Utility.MainUtility;
 
-public class Projectile {
+public abstract class Projectile implements  ProjectileBehaviour {
 
     private final int CHECK_DELAY = 20;
 
-    public MainUtility mainUtility;
-    public String projectileName;
+    float damage;
+
+    MainUtility mainUtility;
+    String projectileName;
+    ImageView projectileImage;
+
+    boolean terminated;
 
     private Handler check = new Handler();
-    public boolean terminated;
+
 
     Projectile(MainUtility mainUtility) {
         this.mainUtility = mainUtility;
+    }
+
+    public abstract void init();
+    public abstract void delete();
+
+    public void outOfBounds() {
+        if (projectileImage.getY() < 0) {
+            delete();
+        }
+        if (projectileImage.getY() > mainUtility.getScreenHeight()) {
+            delete();
+        }
+        if (projectileImage.getX() < 0) {
+            delete();
+        }
+        if (projectileImage.getY() > mainUtility.getScreenHeight()) {
+            delete();
+        }
+    }
+
+    public void spawnProjectile(float x, float y, Integer width, Integer height) {
+
+        projectileImage = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, projectileName, x, y);
+
+        if (width != null) {
+            projectileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            projectileImage.getLayoutParams().width = width;
+        }
+
+        if (height != null) {
+            projectileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            projectileImage.getLayoutParams().height = height;
+        }
     }
 
     public void initCheck() {
@@ -29,9 +70,6 @@ public class Projectile {
         }, 500);
     }
 
-    public void delete() {
-
-    }
 
     private Runnable runCheck = new Runnable() {
         @Override
@@ -48,4 +86,24 @@ public class Projectile {
 
         }
     };
+
+    public ImageView getProjectileImage() {
+        return projectileImage;
+    }
+
+    public void setX(float x) {
+        projectileImage.setX(x);
+    }
+
+    public void setY(float y) {
+        projectileImage.setY(y);
+    }
+
+    public float getX() {
+        return projectileImage.getX();
+    }
+
+    public float getY() {
+        return projectileImage.getY();
+    }
 }
