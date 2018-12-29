@@ -105,7 +105,7 @@ public abstract class Enemy implements EnemyBehaviour {
                 velocityY = -velocity;
             }
         }
-        else {
+        else if (differenceY == 0) {
             velocityY = 0;
             if (destinationX > getX()) {
                 velocityX = velocity;

@@ -15,7 +15,7 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
     private final String SPRITE_NAME = "circle_enemy";
     private final String PROJECTILE_NAME = "circle_projectile";
     private final int VELOCITY = 8;
-    private final int DESTINATION_DELAY = 20;
+    private final int DESTINATION_DELAY = 800;
     private final int DAMAGE = 2;
 
     private Handler updateDestination = new Handler();
@@ -27,6 +27,7 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
         super.spriteName = SPRITE_NAME;
         super.projectileName = PROJECTILE_NAME;
         super.velocity = VELOCITY;
+        super.destinationY = 200;
     }
 
     public void init() {
@@ -47,11 +48,23 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
     }
 
+    @Override
+    void calcVelocity() {
+
+        float differenceX = destinationX - getX();
+
+        if (differenceX > 0) {
+            velocityX = velocity;
+        }
+        else {
+            velocityX = -velocity;
+        }
+    }
+
     private Runnable runUpdateDestination = new Runnable() {
         @Override
         public void run() {
             destinationX = enemyUtility.getPlayerSprite().getX();
-            destinationY = enemyUtility.getPlayerSprite().getY() - mainUtility.getScreenHeight()/2;
 
             calcVelocity();
 
@@ -65,7 +78,7 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
     private Runnable move = new Runnable() {
        @Override
        public void run() {
-           EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
+           EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY());
 
            if (enemyUtility.checkPlayerOverlap(getSprite())) {
                effect();
