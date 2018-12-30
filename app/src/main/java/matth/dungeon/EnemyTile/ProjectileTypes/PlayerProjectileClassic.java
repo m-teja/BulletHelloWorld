@@ -18,14 +18,11 @@ public class PlayerProjectileClassic extends PlayerProjectile {
 
     PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility, playerUtility);
-        super.damage = DAMAGE;
-        super.projectileName = PROJECTILE_NAME;
+        setDamage();
+        setProjectileName();
     }
 
-    public void init() {
-        move.run();
-    }
-
+    @Override
     public void delete() {
         Log.d("test", "projectile terminated");
         terminated = true;
@@ -35,14 +32,30 @@ public class PlayerProjectileClassic extends PlayerProjectile {
         cl.removeView(super.getProjectileImage());
     }
 
+    @Override
+    public void init() {
+        move.run();
+    }
+
+    @Override
+    public void movePattern() {
+        PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - VELOCITY);
+    }
+
+    @Override
     public void effect(Enemy enemy) {
         enemy.takeDamage(DAMAGE);
         delete();
     }
 
     @Override
-    public void movePattern() {
-        PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - VELOCITY);
+    public void setDamage() {
+        super.damage = DAMAGE;
+    }
+
+    @Override
+    public void setProjectileName() {
+        super.projectileName = PROJECTILE_NAME;
     }
 }
 //TODO comment everything

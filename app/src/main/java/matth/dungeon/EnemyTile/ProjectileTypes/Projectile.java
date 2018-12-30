@@ -13,15 +13,13 @@ public abstract class Projectile implements ProjectileBehaviour {
     final int ANIMATION_DELAY = 15;
 
     float damage;
+    boolean terminated;
 
     MainUtility mainUtility;
     String projectileName;
     ImageView projectileImage;
 
-    boolean terminated;
-
     private Handler check = new Handler();
-
 
     Projectile(MainUtility mainUtility) {
         this.mainUtility = mainUtility;
@@ -63,7 +61,6 @@ public abstract class Projectile implements ProjectileBehaviour {
     }
 
     public void initCheck() {
-
         Handler start = new Handler();
         start.postDelayed(new Runnable() {
             @Override

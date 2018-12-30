@@ -33,7 +33,6 @@ public abstract class PlayerProjectile extends Projectile {
             }
         }
     };
-    public abstract void init();
 
     @CallSuper
     public void delete() {
