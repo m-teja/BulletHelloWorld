@@ -15,7 +15,6 @@ public class CircleEnemy extends Enemy {
 
     private final int STARTING_HEALTH = 50;
     private final String SPRITE_NAME = "circle_enemy";
-    private final String PROJECTILE_NAME = "circle_projectile";
     private final int VELOCITY = 8;
     private final int DESTINATION_DELAY = 800;
     private final int DAMAGE = 2;
@@ -25,11 +24,6 @@ public class CircleEnemy extends Enemy {
 
     public CircleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
-        super.health = STARTING_HEALTH;
-        super.spriteName = SPRITE_NAME;
-        super.projectileName = PROJECTILE_NAME;
-        super.velocity = VELOCITY;
-        super.destinationY = 200;
     }
 
     public void init() {
@@ -54,6 +48,21 @@ public class CircleEnemy extends Enemy {
     @Override
     public void movePattern() {
         EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY());
+    }
+
+    @Override
+    public void setHealth() {
+        super.health = STARTING_HEALTH;
+    }
+
+    @Override
+    public void setSpriteName() {
+        super.spriteName = SPRITE_NAME;
+    }
+
+    @Override
+    public void setVelocity() {
+        super.velocity = VELOCITY;
     }
 
     @Override

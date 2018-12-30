@@ -14,16 +14,11 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     private final float STARTING_HEALTH = 30;
     private final int DAMAGE = 10;
     private final String SPRITE_NAME = "square_enemy";
-    private final String PROJECTILE_NAME = "square_projectile";
     private final int DESTINATION_DELAY = 800;
     private final int VELOCITY = 15;
 
     public SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
-        super.health = STARTING_HEALTH;
-        super.spriteName = SPRITE_NAME;
-        super.projectileName = PROJECTILE_NAME;
-        super.velocity = VELOCITY;
     }
 
     @Override
@@ -47,5 +42,20 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     @Override
     public void setUpdateDestinationDelay() {
         super.destinationUpdateDelay = DESTINATION_DELAY;
+    }
+
+    @Override
+    public void setHealth() {
+        super.health = STARTING_HEALTH;
+    }
+
+    @Override
+    public void setSpriteName() {
+        super.spriteName = SPRITE_NAME;
+    }
+
+    @Override
+    public void setVelocity() {
+        super.velocity = VELOCITY;
     }
 }

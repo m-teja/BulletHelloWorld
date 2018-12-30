@@ -8,4 +8,7 @@ public interface EnemyBehaviour {
     void effect();
     void movePattern();
     void setUpdateDestinationDelay();
+    void setHealth();
+    void setSpriteName();
+    void setVelocity();
 }

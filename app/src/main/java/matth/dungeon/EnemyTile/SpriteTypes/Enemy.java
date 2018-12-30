@@ -22,7 +22,6 @@ public abstract class Enemy implements EnemyBehaviour {
     EnemyUtility enemyUtility;
     float health;
     String spriteName;
-    String projectileName;
     boolean terminated;
 
 
@@ -48,6 +47,9 @@ public abstract class Enemy implements EnemyBehaviour {
         this.terminated = false;
         initCheck();
         setUpdateDestinationDelay();
+        setHealth();
+        setSpriteName();
+        setVelocity();
     }
 
     private Runnable runCheck = new Runnable() {
@@ -111,6 +113,7 @@ public abstract class Enemy implements EnemyBehaviour {
         updatePlayerPosition.removeCallbacksAndMessages(null);
         updateDestination.removeCallbacksAndMessages(null);
         deleteImage();
+        enemyUtility.checkDone();
     }
 
     public void deleteImage() {
@@ -191,6 +194,9 @@ public abstract class Enemy implements EnemyBehaviour {
     public abstract void init();
     public abstract void effect();
     public abstract void movePattern();
+    public abstract void setHealth();
+    public abstract void setSpriteName();
+    public abstract void setVelocity();
 
     public boolean isTerminated() {
         return terminated;

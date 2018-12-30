@@ -49,20 +49,6 @@ public class PlayerUtility {
             return false;
         }
     }
-    public void checkDone() {
-        for (int i = 0; i < enemies.size(); i++) {
-            if ( !((Enemy)enemies.get(i)).isTerminated() ) {
-                return;
-            }
-        }
-        exitWin();
-
-    }
-
-    private void exitWin() {
-        Intent intent = new Intent(getPlayerSprite().getCon(), DungeonActivity.class);
-        getPlayerSprite().getCon().startActivity(intent);
-    }
 
     public PlayerSprite getPlayerSprite() {
         return playerSprite;

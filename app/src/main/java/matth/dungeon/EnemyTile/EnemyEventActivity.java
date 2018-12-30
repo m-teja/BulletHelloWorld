@@ -1,5 +1,7 @@
 package matth.dungeon.EnemyTile;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +13,9 @@ import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
+import matth.dungeon.GameUI.DungeonActivity;
 import matth.dungeon.GameUI.LevelTile;
+import matth.dungeon.GameUI.TileMap;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
@@ -35,8 +39,8 @@ public class EnemyEventActivity extends AppCompatActivity {
 
         mainUtility = new MainUtility(this);
         playerSprite = new PlayerSprite(mainUtility);
+        enemyUtility = new EnemyUtility(playerSprite);
 
-        enemyUtility = new EnemyUtility(playerSprite, enemies);
         getTileInfo();
         spawnEnemies();
 
@@ -63,6 +67,7 @@ public class EnemyEventActivity extends AppCompatActivity {
                 Log.d("test", "circle");
                 enemies.add(new CircleEnemy(mainUtility, enemyUtility));
             }
+            enemyUtility.setEnemies(enemies);
 
         }
     }
@@ -77,6 +82,11 @@ public class EnemyEventActivity extends AppCompatActivity {
             ((Enemy)enemies.get(i)).init();
 
         }
+    }
+
+    public static void exitWin(Context con) {
+        Intent intent = new Intent(con, DungeonActivity.class);
+        con.startActivity(intent);
     }
 
     @Override
