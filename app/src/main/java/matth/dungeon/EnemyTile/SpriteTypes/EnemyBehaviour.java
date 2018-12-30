@@ -6,4 +6,6 @@ public interface EnemyBehaviour {
     void delete();
     void initCheck();
     void effect();
+    void movePattern();
+    void setUpdateDestinationDelay();
 }

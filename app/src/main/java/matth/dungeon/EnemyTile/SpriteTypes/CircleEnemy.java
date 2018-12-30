@@ -12,6 +12,7 @@ import matth.dungeon.Utility.MainUtility;
 
 public class CircleEnemy extends Enemy {
 
+
     private final int STARTING_HEALTH = 50;
     private final String SPRITE_NAME = "circle_enemy";
     private final String PROJECTILE_NAME = "circle_projectile";
@@ -21,8 +22,6 @@ public class CircleEnemy extends Enemy {
 
     private CirclePattern circlePattern;
 
-    private Handler updateDestination = new Handler();
-    private Handler moveSprite = new Handler();
 
     public CircleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
@@ -34,21 +33,32 @@ public class CircleEnemy extends Enemy {
     }
 
     public void init() {
+        runUpdatePlayerPosition.run();
         runUpdateDestination.run();
         move.run();
         circlePattern = new CirclePattern(mainUtility, enemyUtility, this);
         circlePattern.init();
     }
 
+    @Override
     public void delete() {
         super.delete();
-        updateDestination.removeCallbacksAndMessages(null);
         circlePattern.stop();
     }
 
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
         delete();
+    }
+
+    @Override
+    public void movePattern() {
+        EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY());
+    }
+
+    @Override
+    public void setUpdateDestinationDelay() {
+        super.destinationUpdateDelay = DESTINATION_DELAY;
     }
 
     @Override
@@ -63,35 +73,4 @@ public class CircleEnemy extends Enemy {
             velocityX = -velocity;
         }
     }
-
-    private Runnable runUpdateDestination = new Runnable() {
-        @Override
-        public void run() {
-            destinationX = enemyUtility.getPlayerSprite().getX();
-
-            calcVelocity();
-
-            if (!terminated) {
-                updateDestination.postDelayed(runUpdateDestination, DESTINATION_DELAY);
-
-            }
-        }
-    };
-
-    private Runnable move = new Runnable() {
-       @Override
-       public void run() {
-           EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY());
-
-           if (enemyUtility.checkPlayerOverlap(getSprite())) {
-               effect();
-           }
-
-           if (!terminated) {
-               moveSprite.postDelayed(move, ANIMATION_DELAY);
-           }
-
-       }
-    };
-
 }

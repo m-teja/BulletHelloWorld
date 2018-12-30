@@ -18,10 +18,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     private final int DESTINATION_DELAY = 800;
     private final int VELOCITY = 15;
 
-    private Handler moveSprite = new Handler();
-    private Handler updatePlayerPosition = new Handler();
-
-
     public SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
         super.health = STARTING_HEALTH;
@@ -30,51 +26,26 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
         super.velocity = VELOCITY;
     }
 
+    @Override
     public void init() {
         runUpdatePlayerPosition.run();
+        runUpdateDestination.run();
         move.run();
     }
 
-    public void delete() {
-        super.delete();
-        updatePlayerPosition.removeCallbacksAndMessages(null);
-        moveSprite.removeCallbacksAndMessages(null);
-    }
-
+    @Override
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
         delete();
     }
 
-    private Runnable move = new Runnable() {
-        @Override
-        public void run() {
+    @Override
+    public void movePattern() {
+        EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
+    }
 
-            EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
-
-            if (enemyUtility.checkPlayerOverlap(getSprite())) {
-                effect();
-            }
-
-            if (!terminated) {
-                moveSprite.postDelayed(move, ANIMATION_DELAY);
-            }
-        }
-    };
-
-    Runnable runUpdatePlayerPosition = new Runnable() {
-        @Override
-        public void run() {
-            destinationX = enemyUtility.getPlayerSprite().getX();
-            destinationY = enemyUtility.getPlayerSprite().getY();
-
-            calcVelocity();
-
-            if (!terminated) {
-                updatePlayerPosition.postDelayed(runUpdatePlayerPosition, DESTINATION_DELAY);
-            }
-
-        }
-    };
-
+    @Override
+    public void setUpdateDestinationDelay() {
+        super.destinationUpdateDelay = DESTINATION_DELAY;
+    }
 }

@@ -16,6 +16,7 @@ public abstract class Enemy implements EnemyBehaviour {
 
     final int ANIMATION_DELAY = 15;
     private final int CHECK_DELAY = 20;
+    private final int CHECK_PLAYER_DELAY = 20;
 
     MainUtility mainUtility;
     EnemyUtility enemyUtility;
@@ -24,14 +25,21 @@ public abstract class Enemy implements EnemyBehaviour {
     String projectileName;
     boolean terminated;
 
+
     private ImageView sprite;
     private Handler check = new Handler();
+    private Handler moveSprite = new Handler();
+    private Handler updatePlayerPosition = new Handler();
+    private Handler updateDestination = new Handler();
 
+    float playerX;
+    float playerY;
     float destinationX;
     float destinationY;
     int velocity;
     float velocityX;
     float velocityY;
+    int destinationUpdateDelay;
 
 
     public Enemy( MainUtility mainUtility, EnemyUtility enemyUtility) {
@@ -39,11 +47,69 @@ public abstract class Enemy implements EnemyBehaviour {
         this.enemyUtility = enemyUtility;
         this.terminated = false;
         initCheck();
+        setUpdateDestinationDelay();
     }
+
+    private Runnable runCheck = new Runnable() {
+        @Override
+        public void run() {
+
+            if (MainUtility.isActive()) {
+                check.postDelayed(runCheck, CHECK_DELAY);
+            }
+            else {
+                terminated = true;
+
+                check.removeCallbacksAndMessages(null);
+            }
+
+        }
+    };
+
+    Runnable move = new Runnable() {
+        @Override
+        public void run() {
+
+            movePattern();
+            if (enemyUtility.checkPlayerOverlap(getSprite())) {
+                effect();
+            }
+
+            if (!terminated) {
+                moveSprite.postDelayed(move, ANIMATION_DELAY);
+            }
+        }
+    };
+
+    Runnable runUpdatePlayerPosition = new Runnable() {
+        @Override
+        public void run() {
+            playerX = enemyUtility.getPlayerSprite().getX();
+            playerY = enemyUtility.getPlayerSprite().getY();
+
+            if (!terminated) {
+                updatePlayerPosition.postDelayed(runUpdatePlayerPosition, CHECK_PLAYER_DELAY);
+            }
+        }
+    };
+
+    Runnable runUpdateDestination = new Runnable() {
+        @Override
+        public void run() {
+            updateDestination();
+
+            if (!terminated) {
+                updateDestination.postDelayed(runUpdateDestination, destinationUpdateDelay);
+            }
+        }
+    };
 
     @CallSuper
     public void delete() {
         terminated = true;
+        moveSprite.removeCallbacksAndMessages(null);
+        updatePlayerPosition.removeCallbacksAndMessages(null);
+        updateDestination.removeCallbacksAndMessages(null);
         deleteImage();
     }
 
@@ -81,21 +147,12 @@ public abstract class Enemy implements EnemyBehaviour {
         }, 500);
     }
 
-    private Runnable runCheck = new Runnable() {
-        @Override
-        public void run() {
+    void updateDestination() {
+        destinationX = playerX;
+        destinationY = playerY;
 
-            if (MainUtility.isActive()) {
-                check.postDelayed(runCheck, CHECK_DELAY);
-            }
-            else {
-                terminated = true;
-
-                check.removeCallbacksAndMessages(null);
-            }
-
-        }
-    };
+        calcVelocity();
+    }
 
     void calcVelocity() {
 
@@ -133,6 +190,7 @@ public abstract class Enemy implements EnemyBehaviour {
 
     public abstract void init();
     public abstract void effect();
+    public abstract void movePattern();
 
     public boolean isTerminated() {
         return terminated;
