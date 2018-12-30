@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -12,11 +11,12 @@ import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.R;
+import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.MainUtility;
 
 public class TileMap {
 
-    private MainUtility utility;
+    private MainUtility mainUtility;
     private int size;
     private int tunnelLength;
     private int tunnelNum;
@@ -26,8 +26,8 @@ public class TileMap {
     private int playerRow;
 
 
-    TileMap(MainUtility utility, int size) {
-        this.utility = utility;
+    TileMap(MainUtility mainUtility, int size) {
+        this.mainUtility = mainUtility;
         this.size = size;
         tunnelLength = (int) (size * 0.7);
         tunnelNum = (int) (size * 2);
@@ -35,16 +35,16 @@ public class TileMap {
     }
 
     public void buildMap() {
-        ConstraintLayout map = ((Activity) utility.getCon()).findViewById(R.id.mapDisp);
+        ConstraintLayout map = ((Activity) mainUtility.getCon()).findViewById(R.id.mapDisp);
         map.removeAllViews();
         ConstraintSet set = new ConstraintSet();
 
-        int mapWidth = (int) (utility.getScreenWidth() * 0.8);
+        int mapWidth = (int) (mainUtility.getScreenWidth() * 0.8);
         int mapHeight = mapWidth;
         map.getLayoutParams().height = mapHeight;
         map.getLayoutParams().width = mapWidth;
-        map.setX((utility.getScreenWidth() / 2) - map.getLayoutParams().width / 2);
-        map.setY((utility.getScreenHeight() / 2) - map.getLayoutParams().height / 2);
+        map.setX((mainUtility.getScreenWidth() / 2) - map.getLayoutParams().width / 2);
+        map.setY((mainUtility.getScreenHeight() / 2) - map.getLayoutParams().height / 2);
 
         ImageView image;
         ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -54,9 +54,9 @@ public class TileMap {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
-                image = new ImageView(utility.getCon());
+                image = new ImageView(mainUtility.getCon());
                 image.setId(View.generateViewId());
-                image.setImageResource(utility.getCon().getResources().getIdentifier(getImageType(i, j), "drawable", utility.getCon().getPackageName()));
+                image.setImageResource(mainUtility.getCon().getResources().getIdentifier(getImageType(i, j), "drawable", mainUtility.getCon().getPackageName()));
                 image.setLayoutParams(lp);
                 image.getLayoutParams().width = width;
                 image.getLayoutParams().height = height;
@@ -212,14 +212,15 @@ public class TileMap {
         getTile(col, row).setType(LevelTile.PLAYER_POS);
         playerCol = col;
         playerRow = row;
+        FileUtility.saveMap(mainUtility.getCon(), levelMap);
         checkEvent();
     }
 
     private void checkEvent() {
         if (getTile(playerCol, playerRow).getEvent() == LevelTile.ENEMY_EVENT) {
-            Intent intent = new Intent(utility.getCon(), EnemyEventActivity.class);
+            Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
             intent.putExtra("enemies", getTile(playerCol, playerRow).getEnemies());
-            utility.getCon().startActivity(intent);
+            mainUtility.getCon().startActivity(intent);
         }
     }
 

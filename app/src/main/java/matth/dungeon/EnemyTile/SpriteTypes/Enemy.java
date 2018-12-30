@@ -24,7 +24,6 @@ public abstract class Enemy implements EnemyBehaviour {
     String spriteName;
     boolean terminated;
 
-
     private ImageView sprite;
     private Handler check = new Handler();
     private Handler moveSprite = new Handler();

@@ -1,5 +1,6 @@
 package matth.dungeon.EnemyTile;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -68,7 +69,6 @@ public class EnemyEventActivity extends AppCompatActivity {
                 enemies.add(new CircleEnemy(mainUtility, enemyUtility));
             }
             enemyUtility.setEnemies(enemies);
-
         }
     }
 
@@ -86,7 +86,8 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     public static void exitWin(Context con) {
         Intent intent = new Intent(con, DungeonActivity.class);
-        con.startActivity(intent);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        ((Activity)con).startActivityIfNeeded(intent, 0);
     }
 
     @Override
@@ -145,7 +146,5 @@ public class EnemyEventActivity extends AppCompatActivity {
         //mainUtility.setActive(false);
     }
 }
-
-
 
 //TODO fix centering all imageviews after spawn
