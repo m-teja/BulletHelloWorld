@@ -1,6 +1,7 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -80,6 +81,10 @@ public class PlayerSprite {
 
     public float getHealth() {
         return health;
+    }
+
+    public Context getCon() {
+        return mainUtility.getCon();
     }
 
 

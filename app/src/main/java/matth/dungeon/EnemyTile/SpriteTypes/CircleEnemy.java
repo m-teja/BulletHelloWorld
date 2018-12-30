@@ -41,17 +41,14 @@ public class CircleEnemy extends Enemy {
     }
 
     public void delete() {
-        Log.d("test", "circle terminated");
-        terminated = true;
+        super.delete();
         updateDestination.removeCallbacksAndMessages(null);
         circlePattern.stop();
-
-        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
-        cl.removeView(super.getSprite());
     }
 
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+        delete();
     }
 
     @Override
@@ -88,7 +85,6 @@ public class CircleEnemy extends Enemy {
 
            if (enemyUtility.checkPlayerOverlap(getSprite())) {
                effect();
-               delete();
            }
 
            if (!terminated) {

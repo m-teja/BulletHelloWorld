@@ -1,5 +1,6 @@
 package matth.dungeon.Utility;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.widget.ImageView;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
+import matth.dungeon.GameUI.DungeonActivity;
 
 public class PlayerUtility {
 
@@ -46,6 +48,20 @@ public class PlayerUtility {
         else {
             return false;
         }
+    }
+    public void checkDone() {
+        for (int i = 0; i < enemies.size(); i++) {
+            if ( !((Enemy)enemies.get(i)).isTerminated() ) {
+                return;
+            }
+        }
+        exitWin();
+
+    }
+
+    private void exitWin() {
+        Intent intent = new Intent(getPlayerSprite().getCon(), DungeonActivity.class);
+        getPlayerSprite().getCon().startActivity(intent);
     }
 
     public PlayerSprite getPlayerSprite() {

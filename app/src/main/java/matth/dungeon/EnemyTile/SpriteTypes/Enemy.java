@@ -1,10 +1,14 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
 
+import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.CallSuper;
+import android.support.constraint.ConstraintLayout;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
@@ -35,6 +39,17 @@ public abstract class Enemy implements EnemyBehaviour {
         this.enemyUtility = enemyUtility;
         this.terminated = false;
         initCheck();
+    }
+
+    @CallSuper
+    public void delete() {
+        terminated = true;
+        deleteImage();
+    }
+
+    public void deleteImage() {
+        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
+        cl.removeView(getSprite());
     }
 
     public ImageView getSprite() {
@@ -117,9 +132,6 @@ public abstract class Enemy implements EnemyBehaviour {
     }
 
     public abstract void init();
-
-    public abstract void delete();
-
     public abstract void effect();
 
     public boolean isTerminated() {

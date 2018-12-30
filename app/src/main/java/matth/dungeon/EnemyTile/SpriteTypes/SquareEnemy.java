@@ -36,17 +36,14 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     }
 
     public void delete() {
-        Log.d("test", "square terminated");
-        terminated = true;
+        super.delete();
         updatePlayerPosition.removeCallbacksAndMessages(null);
         moveSprite.removeCallbacksAndMessages(null);
-
-        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
-        cl.removeView(super.getSprite());
     }
 
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+        delete();
     }
 
     private Runnable move = new Runnable() {
@@ -57,7 +54,6 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
             if (enemyUtility.checkPlayerOverlap(getSprite())) {
                 effect();
-                delete();
             }
 
             if (!terminated) {
