@@ -2,6 +2,7 @@ package matth.dungeon.EnemyTile.ProjectileTypes;
 
 import android.os.Handler;
 
+import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerUtility;
@@ -9,19 +10,23 @@ import matth.dungeon.Utility.PlayerUtility;
 public class CirclePattern extends Pattern {
 
     private int spawnDelay = 300;
+    private boolean terminated = false;
 
     private EnemyUtility enemyUtility;
     private MainUtility mainUtility;
+    private CircleEnemy circleEnemy;
 
     private Handler spawnProjectile = new Handler();
 
-    public CirclePattern(MainUtility mainUtility, EnemyUtility enemyUtility) {
+    public CirclePattern(MainUtility mainUtility, EnemyUtility enemyUtility, CircleEnemy circleEnemy) {
         super();
         this.mainUtility = mainUtility;
         this.enemyUtility = enemyUtility;
+        this.circleEnemy = circleEnemy;
     }
     @Override
     public void stop() {
+        terminated = true;
         spawnProjectile.removeCallbacksAndMessages(null);
     }
 
@@ -35,10 +40,13 @@ public class CirclePattern extends Pattern {
         public void run() {
 
             CircleProjectile circleProjectile = new CircleProjectile(mainUtility, enemyUtility);
-            circleProjectile.spawnProjectile(enemyUtility.getPlayerSprite().getX() + enemyUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2, enemyUtility.getPlayerSprite().getY(), null, null);
+            circleProjectile.spawnProjectile(circleEnemy.getX() + circleEnemy.getSprite().getMeasuredWidth()/2, circleEnemy.getY() + circleEnemy.getSprite().getMeasuredHeight(), null, null);
             circleProjectile.init();
 
-            spawnProjectile.postDelayed(spawn, spawnDelay);
+            if (!terminated) {
+                spawnProjectile.postDelayed(spawn, spawnDelay);
+            }
+
         }
     };
 }

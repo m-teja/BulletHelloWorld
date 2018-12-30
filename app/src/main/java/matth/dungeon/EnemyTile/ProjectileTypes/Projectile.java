@@ -1,11 +1,15 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.support.annotation.CallSuper;
+import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
+import matth.dungeon.R;
 import matth.dungeon.Utility.MainUtility;
 
 public abstract class Projectile implements ProjectileBehaviour {
@@ -36,7 +40,11 @@ public abstract class Projectile implements ProjectileBehaviour {
 
     @CallSuper
     public void delete() {
+        Log.d("test", "projectile terminated");
+        terminated = true;
         moveProjectile.removeCallbacksAndMessages(null);
+
+        deleteImage();
     }
 
     public void outOfBounds() {
@@ -67,6 +75,11 @@ public abstract class Projectile implements ProjectileBehaviour {
             projectileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
             projectileImage.getLayoutParams().height = height;
         }
+    }
+
+    private void deleteImage() {
+        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
+        cl.removeView(projectileImage);
     }
 
     public void initCheck() {

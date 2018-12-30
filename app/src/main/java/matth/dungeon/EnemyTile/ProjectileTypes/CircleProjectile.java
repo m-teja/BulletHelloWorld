@@ -6,7 +6,7 @@ import matth.dungeon.Utility.MainUtility;
 
 public class CircleProjectile extends EnemyProjectile {
 
-    private final String PROJECTILE_NAME = "projectile_classic";
+    private final String PROJECTILE_NAME = "circle_projectile";
     private final float DAMAGE = 10;
     private final int VELOCITY = 25;
 
@@ -20,11 +20,6 @@ public class CircleProjectile extends EnemyProjectile {
     }
 
     @Override
-    public void delete() {
-        super.delete();
-    }
-
-    @Override
     public void movePattern() {
         EnemyUtility.moveImage(getProjectileImage(), getX(), getY() + VELOCITY);
     }
@@ -32,6 +27,7 @@ public class CircleProjectile extends EnemyProjectile {
     @Override
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
+        delete();
     }
 
     @Override

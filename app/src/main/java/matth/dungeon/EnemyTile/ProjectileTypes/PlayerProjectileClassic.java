@@ -26,16 +26,6 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     }
 
     @Override
-    public void delete() {
-        Log.d("test", "projectile terminated");
-        terminated = true;
-        super.delete();
-
-        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
-        cl.removeView(super.getProjectileImage());
-    }
-
-    @Override
     public void movePattern() {
         PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - VELOCITY);
     }

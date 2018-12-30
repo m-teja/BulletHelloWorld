@@ -10,7 +10,7 @@ import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
-public class CircleEnemy extends Enemy implements EnemyBehaviour {
+public class CircleEnemy extends Enemy {
 
     private final int STARTING_HEALTH = 50;
     private final String SPRITE_NAME = "circle_enemy";
@@ -36,7 +36,7 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
     public void init() {
         runUpdateDestination.run();
         move.run();
-        circlePattern = new CirclePattern(mainUtility, enemyUtility);
+        circlePattern = new CirclePattern(mainUtility, enemyUtility, this);
         circlePattern.init();
     }
 
