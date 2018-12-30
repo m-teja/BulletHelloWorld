@@ -1,11 +1,10 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
 import android.app.Activity;
-import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
-import matth.dungeon.EnemyTile.ProjectileTypes.ClassicPattern;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;

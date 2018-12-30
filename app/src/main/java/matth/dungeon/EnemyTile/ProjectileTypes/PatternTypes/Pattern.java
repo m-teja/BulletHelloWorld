@@ -1,4 +1,4 @@
-package matth.dungeon.EnemyTile.ProjectileTypes;
+package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 import android.os.Handler;
 

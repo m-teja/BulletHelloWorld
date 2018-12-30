@@ -16,7 +16,7 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     private final float DAMAGE = 10;
     private final int VELOCITY = 25;
 
-    PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
+    public PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility, playerUtility);
     }
 

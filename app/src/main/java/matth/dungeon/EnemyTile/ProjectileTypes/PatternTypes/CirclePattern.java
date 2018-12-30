@@ -1,11 +1,11 @@
-package matth.dungeon.EnemyTile.ProjectileTypes;
+package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 import android.os.Handler;
 
+import matth.dungeon.EnemyTile.ProjectileTypes.CircleProjectile;
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
-import matth.dungeon.Utility.PlayerUtility;
 
 public class CirclePattern extends Pattern {
 

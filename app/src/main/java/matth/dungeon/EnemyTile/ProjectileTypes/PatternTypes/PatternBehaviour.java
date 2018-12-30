@@ -1,4 +1,4 @@
-package matth.dungeon.EnemyTile.ProjectileTypes;
+package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 public interface PatternBehaviour {
 

@@ -10,7 +10,7 @@ public class CircleProjectile extends EnemyProjectile {
     private final float DAMAGE = 10;
     private final int VELOCITY = 25;
 
-    CircleProjectile(MainUtility mainUtility, EnemyUtility enemyUtility) {
+    public CircleProjectile(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
     }
 

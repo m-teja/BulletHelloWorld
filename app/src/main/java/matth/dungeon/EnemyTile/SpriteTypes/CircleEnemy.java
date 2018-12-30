@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 
-import matth.dungeon.EnemyTile.ProjectileTypes.CirclePattern;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.CirclePattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
