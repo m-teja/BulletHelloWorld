@@ -4,7 +4,7 @@ import android.os.Handler;
 
 import matth.dungeon.Utility.MainUtility;
 
-public class Pattern implements PatternBehaviour {
+public abstract class Pattern implements PatternBehaviour {
 
     private int CHECK_DELAY = 20;
     private Handler check = new Handler();
@@ -13,9 +13,8 @@ public class Pattern implements PatternBehaviour {
         initCheck();
     }
 
-    public void stop() {
-
-    }
+    public abstract void stop();
+    public abstract void init();
 
     public void initCheck() {
 

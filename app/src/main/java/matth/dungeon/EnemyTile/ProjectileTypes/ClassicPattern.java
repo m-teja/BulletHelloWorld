@@ -5,9 +5,10 @@ import android.os.Handler;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
 
-public class ClassicPattern extends Pattern implements PatternBehaviour{
+public class ClassicPattern extends Pattern {
 
     private int spawnDelay = 250;
+    //change later depending on situation
 
     private MainUtility mainUtility;
     private PlayerUtility playerUtility;
@@ -20,15 +21,17 @@ public class ClassicPattern extends Pattern implements PatternBehaviour{
         this.playerUtility = playerUtility;
     }
 
+    @Override
     public void stop() {
         spawnProjectile.removeCallbacksAndMessages(null);
     }
 
+    @Override
     public void init() {
         spawn.run();
     }
 
-    private Runnable spawn = new Runnable() {
+    public Runnable spawn = new Runnable() {
         @Override
         public void run() {
 
@@ -40,7 +43,5 @@ public class ClassicPattern extends Pattern implements PatternBehaviour{
             spawnProjectile.postDelayed(spawn, spawnDelay);
         }
     };
-
-
 }
 //TODO make initCheck into utility

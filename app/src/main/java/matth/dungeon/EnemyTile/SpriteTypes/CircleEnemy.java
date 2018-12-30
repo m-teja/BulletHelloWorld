@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
 
+import matth.dungeon.EnemyTile.ProjectileTypes.CirclePattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
@@ -17,6 +18,8 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
     private final int VELOCITY = 8;
     private final int DESTINATION_DELAY = 800;
     private final int DAMAGE = 2;
+
+    private CirclePattern circlePattern;
 
     private Handler updateDestination = new Handler();
     private Handler moveSprite = new Handler();
@@ -33,12 +36,15 @@ public class CircleEnemy extends Enemy implements EnemyBehaviour {
     public void init() {
         runUpdateDestination.run();
         move.run();
+        circlePattern = new CirclePattern(mainUtility, enemyUtility);
+        circlePattern.init();
     }
 
     public void delete() {
         Log.d("test", "circle terminated");
         terminated = true;
         updateDestination.removeCallbacksAndMessages(null);
+        circlePattern.stop();
 
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getSprite());
