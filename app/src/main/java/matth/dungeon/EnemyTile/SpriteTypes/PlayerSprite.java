@@ -18,8 +18,8 @@ public class PlayerSprite {
 
     private ImageView playerImage;
 
-    private int maxHealth = 100;
-    private int health = 100;
+    private float maxHealth = 100;
+    private float health = 100;
     //change later to depend on situation
 
     private MainUtility mainUtility;
@@ -48,8 +48,8 @@ public class PlayerSprite {
         healthBar.getLayoutParams().height = 0;
     }
 
-    public void setHealth(int health) {
-        Log.d("test", Integer.toString(health));
+    public void setHealth(float health) {
+        Log.d("test", Float.toString(health));
         this.health = health;
         updateHealthBar();
     }
@@ -79,7 +79,7 @@ public class PlayerSprite {
         playerImage.setY(y);
     }
 
-    public int getHealth() {
+    public float getHealth() {
         return health;
     }
 

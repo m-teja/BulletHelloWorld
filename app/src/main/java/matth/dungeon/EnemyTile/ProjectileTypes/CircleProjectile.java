@@ -1,4 +1,46 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
+import matth.dungeon.Utility.EnemyUtility;
+import matth.dungeon.Utility.MainUtility;
+
 public class CircleProjectile extends EnemyProjectile {
+
+    private final String PROJECTILE_NAME = "projectile_classic";
+    private final float DAMAGE = 10;
+    private final int VELOCITY = 25;
+
+    CircleProjectile(MainUtility mainUtility, EnemyUtility enemyUtility) {
+        super(mainUtility, enemyUtility);
+    }
+
+    @Override
+    public void init() {
+        move.run();
+    }
+
+    @Override
+    public void delete() {
+        super.delete();
+    }
+
+    @Override
+    public void movePattern() {
+        EnemyUtility.moveImage(getProjectileImage(), getX(), getY() + VELOCITY);
+    }
+
+    @Override
+    public void effect() {
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
+    }
+
+    @Override
+    public void setDamage() {
+        super.damage = DAMAGE;
+    }
+
+    @Override
+    public void setProjectileName() {
+        super.projectileName = PROJECTILE_NAME;
+    }
 }

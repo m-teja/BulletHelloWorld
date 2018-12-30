@@ -18,8 +18,11 @@ public class PlayerProjectileClassic extends PlayerProjectile {
 
     PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility, playerUtility);
-        setDamage();
-        setProjectileName();
+    }
+
+    @Override
+    public void init() {
+        move.run();
     }
 
     @Override
@@ -30,11 +33,6 @@ public class PlayerProjectileClassic extends PlayerProjectile {
 
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(super.getProjectileImage());
-    }
-
-    @Override
-    public void init() {
-        move.run();
     }
 
     @Override

@@ -9,7 +9,6 @@ public interface ProjectileBehaviour {
     void outOfBounds();
     void initCheck();
     void movePattern();
-    void effect(Enemy enemy);
 
     void setDamage();
     void setProjectileName();

@@ -1,6 +1,7 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
 import android.os.Handler;
+import android.support.annotation.CallSuper;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
@@ -20,15 +21,23 @@ public abstract class Projectile implements ProjectileBehaviour {
     ImageView projectileImage;
 
     private Handler check = new Handler();
+    Handler moveProjectile = new Handler();
 
     Projectile(MainUtility mainUtility) {
         this.mainUtility = mainUtility;
+        setDamage();
+        setProjectileName();
     }
 
     public abstract void init();
-    public abstract void delete();
     public abstract void movePattern();
-    public abstract void effect(Enemy enemy);
+    public abstract void setDamage();
+    public abstract void setProjectileName();
+
+    @CallSuper
+    public void delete() {
+        moveProjectile.removeCallbacksAndMessages(null);
+    }
 
     public void outOfBounds() {
         if (projectileImage.getY() < 0) {
@@ -74,29 +83,18 @@ public abstract class Projectile implements ProjectileBehaviour {
     private Runnable runCheck = new Runnable() {
         @Override
         public void run() {
-
             if (MainUtility.isActive()) {
                 check.postDelayed(runCheck, CHECK_DELAY);
             }
             else {
                 delete();
-                //terminated = true;
                 check.removeCallbacksAndMessages(null);
             }
-
         }
     };
 
     public ImageView getProjectileImage() {
         return projectileImage;
-    }
-
-    public void setX(float x) {
-        projectileImage.setX(x);
-    }
-
-    public void setY(float y) {
-        projectileImage.setY(y);
     }
 
     public float getX() {

@@ -21,6 +21,8 @@ public abstract class PlayerProjectile extends Projectile {
         initCheck();
     }
 
+    public abstract void effect(Enemy enemy);
+
     Runnable move = new Runnable() {
         @Override
         public void run() {
@@ -33,14 +35,5 @@ public abstract class PlayerProjectile extends Projectile {
             }
         }
     };
-
-    @CallSuper
-    public void delete() {
-        moveProjectile.removeCallbacksAndMessages(null);
-    }
-
-    public void initCheck() {
-        super.initCheck();
-    }
 
 }
