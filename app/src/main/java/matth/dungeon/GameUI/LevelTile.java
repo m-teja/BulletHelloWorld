@@ -1,6 +1,8 @@
 package matth.dungeon.GameUI;
 
-public class LevelTile {
+import java.io.Serializable;
+
+public class LevelTile implements Serializable {
 
     //Tile types
     public static final int EMPTY = 0;

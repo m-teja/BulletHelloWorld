@@ -103,25 +103,28 @@ public class TileMap {
     private void initLevel() {
         levelMap = new ArrayList<>();
 
-        for (int i = 0; i < size; i++) {
-            levelMap.add(i, new ArrayList<LevelTile>());
-            for (int j = 0; j < size; j++) {
-                levelMap.get(i).add(j, new LevelTile(LevelTile.WALL));
+        if (FileUtility.loadMap(mainUtility.getCon()) == null) {
+            for (int i = 0; i < size; i++) {
+                levelMap.add(i, new ArrayList<LevelTile>());
+                for (int j = 0; j < size; j++) {
+                    levelMap.get(i).add(j, new LevelTile(LevelTile.WALL));
+                }
+            }
+            createLevel();
+            //set all outer tiles to wall
+            for (int i = 0; i < size; i++) {
+                getTile(i, 0).setType(LevelTile.WALL);
+                getTile(i, size -1).setType(LevelTile.WALL);
+            }
+
+            for (int i = 0; i < size; i++) {
+                getTile(0, i).setType(LevelTile.WALL);
+                getTile(size - 1, i).setType(LevelTile.WALL);
             }
         }
-        createLevel();
-        //set all outer tiles to wall
-        for (int i = 0; i < size; i++) {
-            getTile(i, 0).setType(LevelTile.WALL);
-            getTile(i, size -1).setType(LevelTile.WALL);
+        else {
+            levelMap = FileUtility.loadMap(mainUtility.getCon());
         }
-
-        for (int i = 0; i < size; i++) {
-            getTile(0, i).setType(LevelTile.WALL);
-            getTile(size - 1, i).setType(LevelTile.WALL);
-        }
-
-
     }
     private void createLevel() {
 
