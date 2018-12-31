@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import java.io.Serializable;
 
+import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
@@ -14,6 +15,7 @@ import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
 
 import static matth.dungeon.EnemyTile.EnemyEventActivity.LAYOUT_NAME;
+import static matth.dungeon.EnemyTile.EnemyEventActivity.exitLose;
 
 public class PlayerSprite implements Serializable {
 
@@ -23,7 +25,8 @@ public class PlayerSprite implements Serializable {
 
     private float maxHealth = 100;
     private float health = 100;
-    //change later to depend on situation
+
+    private boolean terminated = false;
 
     private MainUtility mainUtility;
 
@@ -63,6 +66,14 @@ public class PlayerSprite implements Serializable {
         Log.d("test", Float.toString(health));
         this.health = health;
         updateHealthBar();
+        if (health <= 0 && !terminated) {
+            terminated = true;
+            lose();
+        }
+    }
+
+    private void lose() {
+        EnemyEventActivity.exitLose(getCon());
     }
 
     private void updateHealthBar() {
