@@ -190,6 +190,19 @@ public abstract class Enemy implements EnemyBehaviour {
         }
     }
 
+    ImageView[] initBossHealth() {
+
+        ImageView healthMax = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "max_health", 100, 100, mainUtility.getScreenWidth() - 200, 20);
+        ImageView health = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "health_remaining", 100, 100, mainUtility.getScreenWidth() - 200, 20);
+
+        ImageView healths[] = {health, healthMax};
+        return healths;
+    }
+
+    void changeBossHealth(ImageView healthBar, ImageView healthBarMax, float startingHealth) {
+        healthBar.getLayoutParams().width = (int)(healthBarMax.getLayoutParams().width * (health/startingHealth));
+    }
+
     public abstract void init();
     public abstract void effect();
     public abstract void movePattern();

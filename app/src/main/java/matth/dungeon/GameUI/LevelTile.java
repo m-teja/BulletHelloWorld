@@ -21,7 +21,8 @@ public class LevelTile implements Serializable {
     public static final int ITEM_EVENT = 6;
     public static final String ITEM_EVENT_IMAGE = "item";
 
-    public static final String[] ENEMY_TYPES = {"square", "circle"};
+    public static final String[] ENEMY_TYPES = {"square", "circle", "bossSquare"};
+
     private int[] enemies = new int[ENEMY_TYPES.length];
 
     private int type;

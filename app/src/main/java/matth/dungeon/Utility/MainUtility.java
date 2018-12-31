@@ -66,5 +66,38 @@ public class MainUtility {
         return image;
     }
 
+    public ImageView addImage(String layoutName, String imageName, float x, float y, Integer width, Integer height) {
+        int id = con.getResources().getIdentifier(layoutName, "id", con.getPackageName());
+        ConstraintLayout map = ((Activity)con).findViewById(id);
+        ConstraintSet set = new ConstraintSet();
+        ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
+
+        ImageView image = new ImageView(con);
+        image.setId(View.generateViewId());
+
+
+        image.setImageResource(con.getResources().getIdentifier(imageName, "drawable", con.getPackageName()));
+        image.setLayoutParams(lp);
+        image.setX(x);
+        image.setY(y);
+
+        if (width != null) {
+            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            image.getLayoutParams().width = width;
+        }
+
+        if (height != null) {
+            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            image.getLayoutParams().height = height;
+        }
+
+        map.addView(image);
+        set.clone(map);
+        set.connect(image.getId(), ConstraintSet.TOP, map.getId(), ConstraintSet.TOP, 0);
+        set.applyTo(map);
+
+        return image;
+    }
+
 
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
+import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 import matth.dungeon.GameUI.DungeonActivity;
 import matth.dungeon.PostGameScreens.GameOver;
@@ -68,6 +69,11 @@ public class EnemyEventActivity extends AppCompatActivity {
             for (int i = 0; i < temp[1]; i++) {
                 Log.d("test", "circle");
                 enemies.add(new CircleEnemy(mainUtility, enemyUtility));
+            }
+
+            for (int i = 0; i < temp[2]; i++) {
+                Log.d("test", "squareBoss");
+                enemies.add(new SquareBossEnemy(mainUtility, enemyUtility));
             }
             enemyUtility.setEnemies(enemies);
         }

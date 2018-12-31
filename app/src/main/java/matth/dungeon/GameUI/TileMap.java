@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -148,7 +149,7 @@ public class TileMap {
             setTileEvent(playerCol, playerRow, LevelTile.NO_EVENT);
         }
 
-        checkEvent();
+        checkTile();
     }
 
     private void createLevel() {
@@ -284,11 +285,11 @@ public class TileMap {
 
     public void setPlayerPos(int col, int row) {
         getTile(playerCol, playerRow).setType(LevelTile.EMPTY);
-        getTile(col, row).setType(LevelTile.PLAYER_POS);
         playerCol = col;
         playerRow = row;
+        checkTile();
+        getTile(col, row).setType(LevelTile.PLAYER_POS);
         FileUtility.saveMap(mainUtility.getCon(), levelMap);
-        checkEvent();
     }
 
     public int[] getPos() {
@@ -306,11 +307,22 @@ public class TileMap {
         return pos;
     }
 
-    private void checkEvent() {
+    private void checkTile() {
+
+        if (getTile(playerCol, playerRow).getType() == LevelTile.END_POS) {
+            //temp boss square
+            int[] boss = {0, 0, 1};
+            Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
+            intent.putExtra("enemies", boss);
+            mainUtility.getCon().startActivity(intent);
+        }
+
         if (getTile(playerCol, playerRow).getEvent() == LevelTile.ENEMY_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
             intent.putExtra("enemies", getTile(playerCol, playerRow).getEnemies());
             mainUtility.getCon().startActivity(intent);
         }
+
+
     }
 }
