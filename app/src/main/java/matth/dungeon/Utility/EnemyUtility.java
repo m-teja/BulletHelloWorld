@@ -56,6 +56,25 @@ public class EnemyUtility {
         EnemyEventActivity.exitWin(playerSprite);
     }
 
+    public void addEnemy(Enemy enemy, float x, float y, Integer width, Integer height) {
+        enemies.add(enemy);
+        spawnEnemy(enemy, x, y, width, height);
+    }
+
+    public void spawnEnemy(Enemy enemy, float x, float y, Integer width, Integer height) {
+        enemy.spawnSprite(x, y, width, height);
+        enemy.init();
+    }
+
+    public void spawnAllEnemies(int screenWidth) {
+        int distance = (int)((float) screenWidth/(enemies.size() + 1));
+        for (int i = 0; i < enemies.size(); i++) {
+
+            spawnEnemy(((Enemy)enemies.get(i)), (i+1) * distance, 200, null, null);
+
+        }
+    }
+
     public void setEnemies(ArrayList<Object> enemies) {
         this.enemies = enemies;
     }

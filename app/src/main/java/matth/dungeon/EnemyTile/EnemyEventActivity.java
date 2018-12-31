@@ -7,11 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
-import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
@@ -86,14 +84,7 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     private void spawnEnemies() {
 
-        int distance = (int)((float) mainUtility.getScreenWidth()/(enemies.size() + 1));
-        for (int i = 0; i < enemies.size(); i++) {
-
-            ((Enemy)enemies.get(i)).spawnSprite((i + 1) * distance, 200, null, null);
-            ((Enemy)enemies.get(i)).setX(((Enemy) enemies.get(i)).getX() - playerSprite.getPlayerImage().getMeasuredWidth());
-            ((Enemy)enemies.get(i)).init();
-
-        }
+        enemyUtility.spawnAllEnemies(mainUtility.getScreenWidth());
     }
 
     public static void exitWin(PlayerSprite playerSprite) {

@@ -16,7 +16,7 @@ public abstract class Enemy implements EnemyBehaviour {
 
     final int ANIMATION_DELAY = 15;
     private final int CHECK_DELAY = 20;
-    private final int CHECK_PLAYER_DELAY = 20;
+    private final int CHECK_PLAYER_DELAY = 15;
 
     MainUtility mainUtility;
     EnemyUtility enemyUtility;
@@ -124,7 +124,7 @@ public abstract class Enemy implements EnemyBehaviour {
         return sprite;
     }
 
-    public void spawnSprite(int x, int y, Integer width, Integer height) {
+    public void spawnSprite(float x, float y, Integer width, Integer height) {
 
         sprite = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, spriteName, x, y);
 

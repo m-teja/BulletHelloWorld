@@ -222,7 +222,8 @@ public class TileMap {
             int numEnemies = (int)(Math.random() * 4) + 1;
 
             for (int j = 0; j < numEnemies; j++) {
-                int randEnemy = (int)(Math.random() * LevelTile.ENEMY_TYPES.length);
+                //TODO change enemy generation
+                int randEnemy = (int)(Math.random() * 2);
                 getTile(enemyCol, enemyRow).setEnemy(randEnemy);
             }
 
