@@ -13,6 +13,8 @@ import matth.dungeon.Utility.MainUtility;
 
 public class DungeonActivity extends AppCompatActivity {
 
+    boolean savedGame = false;
+
     MainUtility utility;
     TileMap tileMap;
     Player player;
@@ -23,15 +25,22 @@ public class DungeonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dungeon);
+        getBundle();
 
         utility = new MainUtility(this);
-        tileMap = new TileMap(utility, size, true);
+        tileMap = new TileMap(utility, size, savedGame);
         player = new Player(tileMap);
         updateText();
 
     }
 
+    private void getBundle() {
+        Bundle extras = getIntent().getExtras();
 
+        if (extras != null) {
+            savedGame = extras.getBoolean(MainUtility.LOAD_SAVED);
+        }
+    }
 
     public void toggleMap (View view) {
         if (findViewById(R.id.mapDisp).getVisibility() == View.GONE) {

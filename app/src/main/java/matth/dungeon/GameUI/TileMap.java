@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.R;
@@ -107,7 +106,7 @@ public class TileMap {
     private void initLevel(boolean saveFile) {
         levelMap = new ArrayList<>();
 
-        if (saveFile) {
+        if (!saveFile) {
             for (int i = 0; i < size; i++) {
                 levelMap.add(i, new ArrayList<LevelTile>());
                 for (int j = 0; j < size; j++) {
@@ -195,7 +194,7 @@ public class TileMap {
                 enemyCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
                 enemyRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             }
-            while (getTile(enemyCol, enemyRow).getType() != LevelTile.EMPTY && getTile(enemyCol, enemyRow).getEvent() == LevelTile.NO_EVENT);
+            while (!canGen(enemyCol, enemyRow));
 
             getTile(enemyCol, enemyRow).setEvent(LevelTile.ENEMY_EVENT);
 
@@ -218,7 +217,7 @@ public class TileMap {
                 itemCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
                 itemRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             }
-            while (getTile(itemCol, itemRow).getType() != LevelTile.EMPTY && getTile(itemCol, itemRow).getEvent() == LevelTile.NO_EVENT);
+            while (!canGen(itemCol, itemRow));
 
             getTile(itemCol, itemRow).setEvent(LevelTile.ITEM_EVENT);
         }
@@ -230,8 +229,9 @@ public class TileMap {
             playerRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             playerCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while (getTile(playerCol, playerRow).getType() != LevelTile.EMPTY && getTile(playerCol, playerRow).getEvent() == LevelTile.NO_EVENT);
+        while (!canGen(playerCol, playerRow));
 
+        getTile(playerCol, playerRow).setType(LevelTile.EMPTY);
         getTile(playerCol, playerRow).setType(LevelTile.PLAYER_POS);
     }
 
@@ -243,9 +243,18 @@ public class TileMap {
             row = (int) Math.floor(Math.random() * (size - 1)) + 1;
             col = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while(getTile(col, row).getType() != LevelTile.EMPTY && getTile(playerCol, playerRow).getEvent() == LevelTile.NO_EVENT);
+        while(!canGen(col, row));
 
         getTile(col, row).setType(LevelTile.END_POS);
+    }
+
+    private boolean canGen(int col, int row) {
+        if (getTile(col, row).getType() == LevelTile.EMPTY && getTile(playerCol, playerRow).getEvent() == LevelTile.NO_EVENT) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public void setPlayerPos(int col, int row) {
