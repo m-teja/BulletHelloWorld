@@ -105,6 +105,14 @@ public abstract class Enemy implements EnemyBehaviour {
         }
     };
 
+    void stopMoving() {
+        moveSprite.removeCallbacksAndMessages(null);
+    }
+
+    void startMoving() {
+        move.run();
+    }
+
     @CallSuper
     public void delete() {
         terminated = true;
