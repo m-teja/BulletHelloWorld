@@ -76,6 +76,38 @@ public class DungeonActivity extends AppCompatActivity {
         left.setText(TextLines.getLine(info[3], 3));
 
         TextLines.animateText(up, right, down, left);
+
+        checkArrows(info);
+    }
+
+    private void checkArrows(LevelTile info[]) {
+        if (info[0].getType() == LevelTile.WALL) {
+            findViewById(R.id.arrowUp).setVisibility(View.INVISIBLE);
+        }
+        else {
+            findViewById(R.id.arrowUp).setVisibility(View.VISIBLE);
+        }
+
+        if (info[1].getType() == LevelTile.WALL) {
+            findViewById(R.id.arrowRight).setVisibility(View.INVISIBLE);
+        }
+        else {
+            findViewById(R.id.arrowRight).setVisibility(View.VISIBLE);
+        }
+
+        if (info[2].getType() == LevelTile.WALL) {
+            findViewById(R.id.arrowDown).setVisibility(View.INVISIBLE);
+        }
+        else {
+            findViewById(R.id.arrowDown).setVisibility(View.VISIBLE);
+        }
+
+        if (info[3].getType() == LevelTile.WALL) {
+            findViewById(R.id.arrowLeft).setVisibility(View.INVISIBLE);
+        }
+        else {
+            findViewById(R.id.arrowLeft).setVisibility(View.VISIBLE);
+        }
     }
 
     public void moveUp(View view) {
