@@ -12,6 +12,7 @@ import android.widget.ImageView;
 public class MainUtility {
 
     public static String LOAD_SAVED = "loadSaved";
+    public static String FROM_ENEMY_EVENT = "loadFromEnemy";
 
     private Context con;
     private static boolean active = true;

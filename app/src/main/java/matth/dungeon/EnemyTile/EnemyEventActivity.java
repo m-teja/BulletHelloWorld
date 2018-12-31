@@ -86,8 +86,9 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     public static void exitWin(Context con) {
         Intent intent = new Intent(con, DungeonActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-        ((Activity)con).startActivityIfNeeded(intent, 0);
+        intent.putExtra(MainUtility.LOAD_SAVED, true);
+        intent.putExtra(MainUtility.FROM_ENEMY_EVENT, true);
+        con.startActivity(intent);
     }
 
     @Override

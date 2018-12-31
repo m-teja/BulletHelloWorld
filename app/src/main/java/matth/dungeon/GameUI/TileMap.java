@@ -26,12 +26,12 @@ public class TileMap {
     private int playerRow;
 
 
-    TileMap(MainUtility mainUtility, int size, boolean saveFile) {
+    TileMap(MainUtility mainUtility, int size, boolean saveFile, boolean fromEnemyEvent) {
         this.mainUtility = mainUtility;
         this.size = size;
         tunnelLength = (int) (size * 0.7);
         tunnelNum = (int) (size * 2);
-        initLevel(saveFile);
+        initLevel(saveFile, fromEnemyEvent);
     }
 
     public void buildMap() {
@@ -104,7 +104,15 @@ public class TileMap {
         return levelMap.get(col).get(row);
     }
 
-    private void initLevel(boolean saveFile) {
+    private void setTileType(int col, int row, int type) {
+        levelMap.get(col).get(row).setType(type);
+    }
+
+    private void setTileEvent(int col, int row, int event) {
+        levelMap.get(col).get(row).setEvent(event);
+    }
+
+    private void initLevel(boolean saveFile, boolean fromEnemyEvent) {
         levelMap = new ArrayList<>();
 
         if (!saveFile) {
@@ -128,13 +136,19 @@ public class TileMap {
             gen();
         }
         else {
-            loadLevel();
+            loadLevel(fromEnemyEvent);
         }
     }
 
-    private void loadLevel() {
+    private void loadLevel(boolean fromEnemyEvent) {
         levelMap = FileUtility.loadMap(mainUtility.getCon());
         getPos();
+
+        if (fromEnemyEvent) {
+            setTileEvent(playerCol, playerRow, LevelTile.NO_EVENT);
+        }
+
+        checkEvent();
     }
 
     private void createLevel() {
@@ -282,7 +296,6 @@ public class TileMap {
                 }
             }
         }
-
         int[] pos = {playerCol, playerRow};
         return pos;
     }

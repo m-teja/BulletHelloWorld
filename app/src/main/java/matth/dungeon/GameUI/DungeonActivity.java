@@ -14,6 +14,7 @@ import matth.dungeon.Utility.MainUtility;
 public class DungeonActivity extends AppCompatActivity {
 
     boolean savedGame = false;
+    boolean fromEnemyEvent = false;
 
     MainUtility utility;
     TileMap tileMap;
@@ -28,7 +29,7 @@ public class DungeonActivity extends AppCompatActivity {
         getBundle();
 
         utility = new MainUtility(this);
-        tileMap = new TileMap(utility, size, savedGame);
+        tileMap = new TileMap(utility, size, savedGame, fromEnemyEvent);
         player = new Player(tileMap);
         updateText();
 
@@ -39,6 +40,7 @@ public class DungeonActivity extends AppCompatActivity {
 
         if (extras != null) {
             savedGame = extras.getBoolean(MainUtility.LOAD_SAVED);
+            fromEnemyEvent = extras.getBoolean(MainUtility.FROM_ENEMY_EVENT);
         }
     }
 
