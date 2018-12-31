@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import matth.dungeon.GameUI.DungeonActivity;
+import matth.dungeon.Utility.MainUtility;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,6 +18,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeToGame(View view) {
         Intent intent = new Intent(this, DungeonActivity.class);
+        intent.putExtra(MainUtility.LOAD_SAVED, false);
         startActivity(intent);
+    }
+
+    public void changeToSavedGame(View view) {
+        Intent intent = new Intent(this, DungeonActivity.class);
+        intent.putExtra(MainUtility.LOAD_SAVED, true);
     }
 }

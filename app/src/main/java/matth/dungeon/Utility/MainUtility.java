@@ -11,6 +11,8 @@ import android.widget.ImageView;
 
 public class MainUtility {
 
+    public static String LOAD_SAVED = "loadSaved";
+
     private Context con;
     private static boolean active = true;
 

@@ -31,6 +31,8 @@ public class DungeonActivity extends AppCompatActivity {
 
     }
 
+
+
     public void toggleMap (View view) {
         if (findViewById(R.id.mapDisp).getVisibility() == View.GONE) {
             tileMap.buildMap();
