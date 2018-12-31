@@ -25,7 +25,7 @@ public class DungeonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dungeon);
 
         utility = new MainUtility(this);
-        tileMap = new TileMap(utility, size);
+        tileMap = new TileMap(utility, size, true);
         player = new Player(tileMap);
         updateText();
 

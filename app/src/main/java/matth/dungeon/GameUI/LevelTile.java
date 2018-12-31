@@ -6,14 +6,20 @@ public class LevelTile implements Serializable {
 
     //Tile types
     public static final int EMPTY = 0;
+    public static final String EMPTY_IMAGE = "empty";
     public static final int WALL = 1;
+    public static final String WALL_IMAGE = "wall";
     public static final int PLAYER_POS = 2;
+    public static final String PLAYER_POS_IMAGE = "player";
     public static final int END_POS = 3;
+    public static final String END_POS_IMAGE = "end";
 
     //Event types
     public static final int NO_EVENT = 4;
     public static final int ENEMY_EVENT = 5;
+    public static final String ENEMY_EVENT_IMAGE = "enemy";
     public static final int ITEM_EVENT = 6;
+    public static final String ITEM_EVENT_IMAGE = "item";
 
     public static final String[] ENEMY_TYPES = {"square", "circle"};
     private int[] enemies = new int[ENEMY_TYPES.length];

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.R;
@@ -26,12 +27,12 @@ public class TileMap {
     private int playerRow;
 
 
-    TileMap(MainUtility mainUtility, int size) {
+    TileMap(MainUtility mainUtility, int size, boolean saveFile) {
         this.mainUtility = mainUtility;
         this.size = size;
         tunnelLength = (int) (size * 0.7);
         tunnelNum = (int) (size * 2);
-        initLevel();
+        initLevel(saveFile);
     }
 
     public void buildMap() {
@@ -74,25 +75,28 @@ public class TileMap {
 
     private String getImageType(int col, int row) {
 
-        if (getTile(col, row).getEvent() == LevelTile.ENEMY_EVENT) {
-            return "enemy";
-        }
-        else if (getTile(col, row).getEvent() == LevelTile.ITEM_EVENT) {
-            return "item";
+        if (getTile(col, row).getType() == LevelTile.PLAYER_POS) {
+            return LevelTile.PLAYER_POS_IMAGE;
         }
 
-        if (getTile(col, row).getType() == LevelTile.EMPTY) {
-            return "empty";
+        switch (getTile(col, row).getEvent()) {
+            case LevelTile.ENEMY_EVENT:
+                return LevelTile.ENEMY_EVENT_IMAGE;
+            case LevelTile.ITEM_EVENT:
+                return LevelTile.ITEM_EVENT_IMAGE;
         }
-        else if (getTile(col, row).getType() == LevelTile.WALL) {
-            return "wall";
+
+        switch (getTile(col, row).getType()) {
+            case LevelTile.EMPTY:
+                return LevelTile.EMPTY_IMAGE;
+            case LevelTile.WALL:
+                return LevelTile.WALL_IMAGE;
+            case LevelTile.END_POS:
+                return LevelTile.END_POS_IMAGE;
+            default:
+                break;
         }
-        else if (getTile(col, row).getType() == LevelTile.PLAYER_POS) {
-            return "player";
-        }
-        else if (getTile(col, row).getType() == LevelTile.END_POS) {
-            return "end";
-        }
+
         return "";
     }
 
@@ -100,10 +104,10 @@ public class TileMap {
         return levelMap.get(col).get(row);
     }
 
-    private void initLevel() {
+    private void initLevel(boolean saveFile) {
         levelMap = new ArrayList<>();
 
-        if (FileUtility.loadMap(mainUtility.getCon()) == null) {
+        if (saveFile) {
             for (int i = 0; i < size; i++) {
                 levelMap.add(i, new ArrayList<LevelTile>());
                 for (int j = 0; j < size; j++) {
@@ -121,10 +125,13 @@ public class TileMap {
                 getTile(0, i).setType(LevelTile.WALL);
                 getTile(size - 1, i).setType(LevelTile.WALL);
             }
+            gen();
         }
         else {
             levelMap = FileUtility.loadMap(mainUtility.getCon());
         }
+
+
     }
     private void createLevel() {
 
@@ -172,7 +179,14 @@ public class TileMap {
         }
     }
 
-    public void genEnemies() {
+    private void gen() {
+        genStart();
+        genEnd();
+        genEnemies();
+        genItems();
+    }
+
+    private void genEnemies() {
         for (int i = 0; i < size/5; i++) {
             int enemyCol;
             int enemyRow;
@@ -195,7 +209,7 @@ public class TileMap {
         }
     }
 
-    public void genItems() {
+    private void genItems() {
         for (int i = 0; i < size/4; i++) {
             int itemCol;
             int itemRow;
@@ -208,6 +222,30 @@ public class TileMap {
 
             getTile(itemCol, itemRow).setEvent(LevelTile.ITEM_EVENT);
         }
+    }
+
+    private void genStart() {
+
+        do {
+            playerRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
+            playerCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
+        }
+        while (getTile(playerCol, playerRow).getType() != LevelTile.EMPTY && getTile(playerCol, playerRow).getEvent() == LevelTile.NO_EVENT);
+
+        getTile(playerCol, playerRow).setType(LevelTile.PLAYER_POS);
+    }
+
+    private void genEnd() {
+        int col;
+        int row;
+
+        do {
+            row = (int) Math.floor(Math.random() * (size - 1)) + 1;
+            col = (int) Math.floor(Math.random() * (size - 1)) + 1;
+        }
+        while(getTile(col, row).getType() != LevelTile.EMPTY && getTile(playerCol, playerRow).getEvent() == LevelTile.NO_EVENT);
+
+        getTile(col, row).setType(LevelTile.END_POS);
     }
 
     public void setPlayerPos(int col, int row) {
@@ -227,29 +265,8 @@ public class TileMap {
         }
     }
 
-    public int[] genStart() {
-
-        do {
-            playerRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
-            playerCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
-        }
-        while (getTile(playerCol, playerRow).getType() == LevelTile.WALL);
-
-        getTile(playerCol, playerRow).setType(LevelTile.PLAYER_POS);
-        int result[] = {playerCol, playerRow};
-        return result;
-    }
-
-    public void genEnd() {
-        int col;
-        int row;
-
-        do {
-            row = (int) Math.floor(Math.random() * (size - 1)) + 1;
-            col = (int) Math.floor(Math.random() * (size - 1)) + 1;
-        }
-        while(getTile(col, row).getType() != LevelTile.EMPTY);
-
-        getTile(col, row).setType(LevelTile.END_POS);
+    public int[] getPos() {
+        int pos[] = {playerCol, playerRow};
+        return pos;
     }
 }
