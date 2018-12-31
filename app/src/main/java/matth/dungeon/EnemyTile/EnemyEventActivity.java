@@ -1,7 +1,5 @@
 package matth.dungeon.EnemyTile;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,8 +13,7 @@ import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 import matth.dungeon.GameUI.DungeonActivity;
-import matth.dungeon.GameUI.LevelTile;
-import matth.dungeon.GameUI.TileMap;
+import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
@@ -84,11 +81,13 @@ public class EnemyEventActivity extends AppCompatActivity {
         }
     }
 
-    public static void exitWin(Context con) {
-        Intent intent = new Intent(con, DungeonActivity.class);
-        intent.putExtra(MainUtility.LOAD_SAVED, true);
-        intent.putExtra(MainUtility.FROM_ENEMY_EVENT, true);
-        con.startActivity(intent);
+    public static void exitWin(PlayerSprite playerSprite) {
+        Intent intent = new Intent(playerSprite.getCon(), DungeonActivity.class);
+
+        PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite);
+
+        intent.putExtra(PlayerInfoPassUtility.ENEMY_TO_DUNGEON_INFO, playerInfoPassUtility);
+        playerSprite.getCon().startActivity(intent);
     }
 
     @Override

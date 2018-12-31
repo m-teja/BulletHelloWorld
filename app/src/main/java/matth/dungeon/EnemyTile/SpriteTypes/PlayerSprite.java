@@ -5,6 +5,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
+import java.io.Serializable;
+
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.PlayerUtility;
@@ -12,7 +14,7 @@ import matth.dungeon.Utility.MainUtility;
 
 import static matth.dungeon.EnemyTile.EnemyEventActivity.LAYOUT_NAME;
 
-public class PlayerSprite {
+public class PlayerSprite implements Serializable {
 
     public static String IMAGE_NAME = "player_sprite";
 
@@ -81,6 +83,10 @@ public class PlayerSprite {
 
     public float getHealth() {
         return health;
+    }
+
+    public float getMaxHealth() {
+        return maxHealth;
     }
 
     public Context getCon() {

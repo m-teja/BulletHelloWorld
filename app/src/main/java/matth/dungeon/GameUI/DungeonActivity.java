@@ -1,7 +1,5 @@
 package matth.dungeon.GameUI;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -9,12 +7,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import matth.dungeon.R;
+import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.MainUtility;
 
 public class DungeonActivity extends AppCompatActivity {
 
-    boolean savedGame = false;
-    boolean fromEnemyEvent = false;
+    private PlayerInfoPassUtility playerInfoPassUtility = null;
+    private boolean fromSave = false;
 
     MainUtility utility;
     TileMap tileMap;
@@ -29,8 +28,8 @@ public class DungeonActivity extends AppCompatActivity {
         getBundle();
 
         utility = new MainUtility(this);
-        tileMap = new TileMap(utility, size, savedGame, fromEnemyEvent);
-        player = new Player(tileMap);
+        createTileMap();
+        initPlayer();
         updateText();
 
     }
@@ -39,8 +38,21 @@ public class DungeonActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            savedGame = extras.getBoolean(MainUtility.LOAD_SAVED);
-            fromEnemyEvent = extras.getBoolean(MainUtility.FROM_ENEMY_EVENT);
+            playerInfoPassUtility = (PlayerInfoPassUtility)extras.getSerializable(PlayerInfoPassUtility.ENEMY_TO_DUNGEON_INFO);
+            fromSave = extras.getBoolean(MainUtility.LOAD_SAVED);
+        }
+    }
+
+    private void initPlayer() {
+        player = new Player(tileMap, playerInfoPassUtility);
+    }
+
+    private void createTileMap() {
+        if (playerInfoPassUtility != null) {
+            tileMap = new TileMap(utility, size, true, true);
+        }
+        else {
+            tileMap = new TileMap(utility, size, fromSave, false);
         }
     }
 

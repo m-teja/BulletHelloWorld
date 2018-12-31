@@ -53,7 +53,7 @@ public class EnemyUtility {
             }
         }
 
-        EnemyEventActivity.exitWin(playerSprite.getCon());
+        EnemyEventActivity.exitWin(playerSprite);
     }
 
     public void setEnemies(ArrayList<Object> enemies) {

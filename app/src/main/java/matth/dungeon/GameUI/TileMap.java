@@ -104,10 +104,6 @@ public class TileMap {
         return levelMap.get(col).get(row);
     }
 
-    private void setTileType(int col, int row, int type) {
-        levelMap.get(col).get(row).setType(type);
-    }
-
     private void setTileEvent(int col, int row, int event) {
         levelMap.get(col).get(row).setEvent(event);
     }
@@ -213,7 +209,7 @@ public class TileMap {
                 enemyCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
                 enemyRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             }
-            while (!canGen(enemyCol, enemyRow));
+            while (cannotGen(enemyCol, enemyRow));
 
             getTile(enemyCol, enemyRow).setEvent(LevelTile.ENEMY_EVENT);
 
@@ -236,7 +232,7 @@ public class TileMap {
                 itemCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
                 itemRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             }
-            while (!canGen(itemCol, itemRow));
+            while (cannotGen(itemCol, itemRow));
 
             getTile(itemCol, itemRow).setEvent(LevelTile.ITEM_EVENT);
         }
@@ -248,7 +244,7 @@ public class TileMap {
             playerRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
             playerCol = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while (!canGen(playerCol, playerRow));
+        while (cannotGen(playerCol, playerRow));
 
         getTile(playerCol, playerRow).setType(LevelTile.EMPTY);
         getTile(playerCol, playerRow).setType(LevelTile.PLAYER_POS);
@@ -262,13 +258,13 @@ public class TileMap {
             row = (int) Math.floor(Math.random() * (size - 1)) + 1;
             col = (int) Math.floor(Math.random() * (size - 1)) + 1;
         }
-        while(!canGen(col, row));
+        while(cannotGen(col, row));
 
         getTile(col, row).setType(LevelTile.END_POS);
     }
 
-    private boolean canGen(int col, int row) {
-        if (getTile(col, row).getType() == LevelTile.EMPTY && getTile(playerCol, playerRow).getEvent() == LevelTile.NO_EVENT) {
+    private boolean cannotGen(int col, int row) {
+        if (!(getTile(col, row).getType() == LevelTile.EMPTY && getTile(playerCol, playerRow).getEvent() == LevelTile.NO_EVENT)) {
             return true;
         }
         else {
