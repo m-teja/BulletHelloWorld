@@ -72,6 +72,7 @@ public class TileMap {
         set.applyTo(map);
     }
 
+    //TODO move to leveltile
     private String getImageType(int col, int row) {
 
         if (getTile(col, row).getType() == LevelTile.PLAYER_POS) {
@@ -127,11 +128,15 @@ public class TileMap {
             gen();
         }
         else {
-            levelMap = FileUtility.loadMap(mainUtility.getCon());
+            loadLevel();
         }
-
-
     }
+
+    private void loadLevel() {
+        levelMap = FileUtility.loadMap(mainUtility.getCon());
+        getPos();
+    }
+
     private void createLevel() {
 
         int currentRow = (int) Math.floor(Math.random() * (size - 1)) + 1;
@@ -266,16 +271,27 @@ public class TileMap {
         checkEvent();
     }
 
+    public int[] getPos() {
+
+        for (int i = 0; i < levelMap.size(); i++) {
+            for (int j = 0; j < levelMap.get(i).size(); j++) {
+                if (levelMap.get(i).get(j).getType() == LevelTile.PLAYER_POS) {
+                    playerCol = i;
+                    playerRow = j;
+                    break;
+                }
+            }
+        }
+
+        int[] pos = {playerCol, playerRow};
+        return pos;
+    }
+
     private void checkEvent() {
         if (getTile(playerCol, playerRow).getEvent() == LevelTile.ENEMY_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
             intent.putExtra("enemies", getTile(playerCol, playerRow).getEnemies());
             mainUtility.getCon().startActivity(intent);
         }
-    }
-
-    public int[] getPos() {
-        int pos[] = {playerCol, playerRow};
-        return pos;
     }
 }
