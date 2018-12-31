@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
@@ -13,6 +14,7 @@ import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 import matth.dungeon.GameUI.DungeonActivity;
+import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.PlayerUtility;
@@ -36,7 +38,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_enemy_event);
 
         mainUtility = new MainUtility(this);
-        playerSprite = new PlayerSprite(mainUtility);
+        spawnPlayer();
         enemyUtility = new EnemyUtility(playerSprite);
 
         getTileInfo();
@@ -69,6 +71,11 @@ public class EnemyEventActivity extends AppCompatActivity {
         }
     }
 
+    private void spawnPlayer() {
+        PlayerInfoPassUtility playerInfoPassUtility = FileUtility.loadPlayer(this);
+        playerSprite = new PlayerSprite(mainUtility, playerInfoPassUtility);
+    }
+
     private void spawnEnemies() {
 
         int distance = (int)((float) mainUtility.getScreenWidth()/(enemies.size() + 1));
@@ -85,8 +92,9 @@ public class EnemyEventActivity extends AppCompatActivity {
         Intent intent = new Intent(playerSprite.getCon(), DungeonActivity.class);
 
         PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite);
+        FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
+        intent.putExtra(MainUtility.FROM_ENEMY_EVENT, true);
 
-        intent.putExtra(PlayerInfoPassUtility.ENEMY_TO_DUNGEON_INFO, playerInfoPassUtility);
         playerSprite.getCon().startActivity(intent);
     }
 

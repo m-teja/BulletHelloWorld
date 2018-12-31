@@ -13,6 +13,7 @@ import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.R;
 import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.MainUtility;
+import matth.dungeon.Utility.PlayerInfoPassUtility;
 
 public class TileMap {
 
@@ -21,6 +22,7 @@ public class TileMap {
     private int tunnelLength;
     private int tunnelNum;
     private ArrayList<ArrayList<LevelTile>> levelMap;
+    private PlayerInfoPassUtility playerInfoPassUtility;
 
     private int playerCol;
     private int playerRow;
@@ -138,6 +140,7 @@ public class TileMap {
 
     private void loadLevel(boolean fromEnemyEvent) {
         levelMap = FileUtility.loadMap(mainUtility.getCon());
+        playerInfoPassUtility = FileUtility.loadPlayer(mainUtility.getCon());
         getPos();
 
         if (fromEnemyEvent) {
@@ -198,6 +201,7 @@ public class TileMap {
         genEnd();
         genEnemies();
         genItems();
+        genPlayerInfo();
     }
 
     private void genEnemies() {
@@ -261,6 +265,11 @@ public class TileMap {
         while(cannotGen(col, row));
 
         getTile(col, row).setType(LevelTile.END_POS);
+    }
+
+    private void genPlayerInfo() {
+        playerInfoPassUtility = new PlayerInfoPassUtility();
+        FileUtility.savePlayer(playerInfoPassUtility, mainUtility.getCon());
     }
 
     private boolean cannotGen(int col, int row) {

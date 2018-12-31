@@ -14,6 +14,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     private PlayerInfoPassUtility playerInfoPassUtility = null;
     private boolean fromSave = false;
+    private boolean fromEnemyEvent = false;
 
     MainUtility utility;
     TileMap tileMap;
@@ -38,8 +39,8 @@ public class DungeonActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            playerInfoPassUtility = (PlayerInfoPassUtility)extras.getSerializable(PlayerInfoPassUtility.ENEMY_TO_DUNGEON_INFO);
             fromSave = extras.getBoolean(MainUtility.LOAD_SAVED);
+            fromEnemyEvent = extras.getBoolean(MainUtility.FROM_ENEMY_EVENT);
         }
     }
 
@@ -48,7 +49,7 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void createTileMap() {
-        if (playerInfoPassUtility != null) {
+        if (fromEnemyEvent) {
             tileMap = new TileMap(utility, size, true, true);
         }
         else {

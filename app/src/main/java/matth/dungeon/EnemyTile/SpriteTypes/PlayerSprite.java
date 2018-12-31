@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.R;
+import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
 
@@ -26,10 +27,17 @@ public class PlayerSprite implements Serializable {
 
     private MainUtility mainUtility;
 
-    public PlayerSprite(MainUtility mainUtility) {
+    public PlayerSprite(MainUtility mainUtility, PlayerInfoPassUtility playerInfoPassUtility) {
         this.mainUtility = mainUtility;
+        getPlayerInfo(playerInfoPassUtility);
         initHealthBar();
         setPlayerImage();
+    }
+
+    private void getPlayerInfo(PlayerInfoPassUtility playerInfoPassUtility) {
+        maxHealth = playerInfoPassUtility.getMaxHealth();
+        health = playerInfoPassUtility.getHealth();
+        Log.d("test", Float.toString(health));
     }
 
     public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
@@ -48,6 +56,7 @@ public class PlayerSprite implements Serializable {
         healthBar.setY(0);
         healthBar.getLayoutParams().width = mainUtility.getScreenWidth();
         healthBar.getLayoutParams().height = 0;
+        updateHealthBar();
     }
 
     public void setHealth(float health) {
@@ -58,7 +67,7 @@ public class PlayerSprite implements Serializable {
 
     private void updateHealthBar() {
         ImageView healthBar = ((Activity)mainUtility.getCon()).findViewById(R.id.healthBar);
-        healthBar.getLayoutParams().height = mainUtility.getScreenHeight() - (int)(mainUtility.getScreenHeight() * ((float)health/maxHealth));
+        healthBar.getLayoutParams().height = mainUtility.getScreenHeight() - (int)(mainUtility.getScreenHeight() * (health/maxHealth));
     }
 
     public ImageView getPlayerImage() {
