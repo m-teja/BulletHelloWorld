@@ -2,6 +2,7 @@ package matth.dungeon.Utility;
 
 import android.content.Context;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInput;
@@ -73,5 +74,14 @@ public class FileUtility {
             e.printStackTrace();
         }
         return playerInfoPassUtility;
+    }
+
+    public static void deleteFiles(Context con) {
+        File dir = con.getFilesDir();
+        File map = new File(dir, MAP_FILE);
+        File player = new File(dir, PLAYER_FILE);
+
+        map.delete();
+        player.delete();
     }
 }

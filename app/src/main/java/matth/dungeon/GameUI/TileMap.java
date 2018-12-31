@@ -136,6 +136,7 @@ public class TileMap {
         else {
             loadLevel(fromEnemyEvent);
         }
+        FileUtility.saveMap(mainUtility.getCon(), levelMap);
     }
 
     private void loadLevel(boolean fromEnemyEvent) {
