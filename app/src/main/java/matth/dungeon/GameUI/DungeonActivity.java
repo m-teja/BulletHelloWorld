@@ -149,4 +149,9 @@ public class DungeonActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    @Override
+    public void onBackPressed() {
+        //prevent back press
+    }
 }

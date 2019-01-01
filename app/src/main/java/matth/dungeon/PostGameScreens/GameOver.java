@@ -15,4 +15,9 @@ public class GameOver extends AppCompatActivity {
 
         FileUtility.deleteFiles(this);
     }
+
+    @Override
+    public void onBackPressed() {
+        //prevent back press
+    }
 }
