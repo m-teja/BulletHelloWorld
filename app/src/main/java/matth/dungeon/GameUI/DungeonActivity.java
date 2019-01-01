@@ -13,8 +13,8 @@ import matth.dungeon.Utility.MainUtility;
 public class DungeonActivity extends AppCompatActivity {
 
     private PlayerInfoPassUtility playerInfoPassUtility = null;
-    private boolean fromSave = false;
-    private boolean fromEnemyEvent = false;
+    private boolean loadSave = false;
+    private boolean loadPlayer = false;
 
     MainUtility utility;
     TileMap tileMap;
@@ -39,8 +39,8 @@ public class DungeonActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
 
         if (extras != null) {
-            fromSave = extras.getBoolean(MainUtility.LOAD_SAVED);
-            fromEnemyEvent = extras.getBoolean(MainUtility.FROM_ENEMY_EVENT);
+            loadSave = extras.getBoolean(MainUtility.LOAD_SAVED);
+            loadPlayer = extras.getBoolean(MainUtility.LOAD_PLAYER);
         }
     }
 
@@ -49,12 +49,7 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void createTileMap() {
-        if (fromEnemyEvent) {
-            tileMap = new TileMap(utility, size, true, true);
-        }
-        else {
-            tileMap = new TileMap(utility, size, fromSave, false);
-        }
+        tileMap = new TileMap(utility, size, loadSave, loadPlayer);
     }
 
     public void toggleMap (View view) {

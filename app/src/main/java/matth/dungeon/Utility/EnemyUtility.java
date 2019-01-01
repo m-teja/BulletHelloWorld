@@ -17,6 +17,7 @@ public class EnemyUtility {
 
     private PlayerSprite playerSprite;
     private ArrayList<Object> enemies;
+    private boolean boss;
 
     public EnemyUtility(PlayerSprite playerSprite) {
         this.playerSprite = playerSprite;
@@ -53,7 +54,7 @@ public class EnemyUtility {
             }
         }
 
-        EnemyEventActivity.exitWin(playerSprite);
+        EnemyEventActivity.exitWin(playerSprite, boss);
     }
 
     public void addEnemy(Enemy enemy, float x, float y, Integer width, Integer height) {
@@ -79,4 +80,7 @@ public class EnemyUtility {
         this.enemies = enemies;
     }
 
+    public void setBoss(boolean boss) {
+        this.boss = boss;
+    }
 }

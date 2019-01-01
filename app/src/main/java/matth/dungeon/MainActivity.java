@@ -30,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
     public void changeToGame(View view) {
         Intent intent = new Intent(this, DungeonActivity.class);
         intent.putExtra(MainUtility.LOAD_SAVED, false);
+        intent.putExtra(MainUtility.LOAD_PLAYER, false);
         startActivity(intent);
     }
 
     public void changeToSavedGame(View view) {
         Intent intent = new Intent(this, DungeonActivity.class);
         intent.putExtra(MainUtility.LOAD_SAVED, true);
+        intent.putExtra(MainUtility.LOAD_PLAYER, true);
         startActivity(intent);
     }
 }

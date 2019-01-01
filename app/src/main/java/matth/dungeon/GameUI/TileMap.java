@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
@@ -29,12 +30,12 @@ public class TileMap {
     private int playerRow;
 
 
-    TileMap(MainUtility mainUtility, int size, boolean saveFile, boolean fromEnemyEvent) {
+    TileMap(MainUtility mainUtility, int size, boolean loadSavedMap, boolean loadPlayer) {
         this.mainUtility = mainUtility;
         this.size = size;
         tunnelLength = (int) (size * 0.7);
         tunnelNum = (int) (size * 2);
-        initLevel(saveFile, fromEnemyEvent);
+        initLevel(loadSavedMap, loadPlayer);
     }
 
     public void buildMap() {
@@ -87,6 +88,8 @@ public class TileMap {
                 return LevelTile.ENEMY_EVENT_IMAGE;
             case LevelTile.ITEM_EVENT:
                 return LevelTile.ITEM_EVENT_IMAGE;
+            case LevelTile.END_POS:
+                return LevelTile.END_POS_IMAGE;
         }
 
         switch (getTile(col, row).getType()) {
@@ -94,8 +97,6 @@ public class TileMap {
                 return LevelTile.EMPTY_IMAGE;
             case LevelTile.WALL:
                 return LevelTile.WALL_IMAGE;
-            case LevelTile.END_POS:
-                return LevelTile.END_POS_IMAGE;
             default:
                 break;
         }
@@ -111,44 +112,53 @@ public class TileMap {
         levelMap.get(col).get(row).setEvent(event);
     }
 
-    private void initLevel(boolean saveFile, boolean fromEnemyEvent) {
+    private void initMap() {
+        for (int i = 0; i < size; i++) {
+            levelMap.add(i, new ArrayList<LevelTile>());
+            for (int j = 0; j < size; j++) {
+                levelMap.get(i).add(j, new LevelTile(LevelTile.WALL));
+            }
+        }
+        createLevel();
+        //set all outer tiles to wall
+        for (int i = 0; i < size; i++) {
+            getTile(i, 0).setType(LevelTile.WALL);
+            getTile(i, size -1).setType(LevelTile.WALL);
+        }
+
+        for (int i = 0; i < size; i++) {
+            getTile(0, i).setType(LevelTile.WALL);
+            getTile(size - 1, i).setType(LevelTile.WALL);
+        }
+    }
+
+    private void initLevel(boolean loadSavedMap, boolean loadPlayer) {
         levelMap = new ArrayList<>();
 
-        if (!saveFile) {
-            for (int i = 0; i < size; i++) {
-                levelMap.add(i, new ArrayList<LevelTile>());
-                for (int j = 0; j < size; j++) {
-                    levelMap.get(i).add(j, new LevelTile(LevelTile.WALL));
-                }
-            }
-            createLevel();
-            //set all outer tiles to wall
-            for (int i = 0; i < size; i++) {
-                getTile(i, 0).setType(LevelTile.WALL);
-                getTile(i, size -1).setType(LevelTile.WALL);
-            }
-
-            for (int i = 0; i < size; i++) {
-                getTile(0, i).setType(LevelTile.WALL);
-                getTile(size - 1, i).setType(LevelTile.WALL);
-            }
-            gen();
+        if (!loadSavedMap) {
+            initMap();
+            genEnemies();
+            genItems();
+            genEnd();
+            genStart();
         }
         else {
-            loadLevel(fromEnemyEvent);
+            loadLevel();
         }
+        if (!loadSavedMap && loadPlayer) {
+            playerInfoPassUtility = FileUtility.loadPlayer(mainUtility.getCon());
+        }
+        else if (!loadSavedMap && !loadPlayer) {
+            genPlayerInfo();
+        }
+
         FileUtility.saveMap(mainUtility.getCon(), levelMap);
     }
 
-    private void loadLevel(boolean fromEnemyEvent) {
+    private void loadLevel() {
         levelMap = FileUtility.loadMap(mainUtility.getCon());
-        playerInfoPassUtility = FileUtility.loadPlayer(mainUtility.getCon());
         getPos();
-
-        if (fromEnemyEvent) {
-            setTileEvent(playerCol, playerRow, LevelTile.NO_EVENT);
-        }
-
+        setTileEvent(playerCol, playerRow, LevelTile.NO_EVENT);
         checkTile();
     }
 
@@ -196,14 +206,6 @@ public class TileMap {
                 tunnelNum--;
             }
         }
-    }
-
-    private void gen() {
-        genStart();
-        genEnd();
-        genEnemies();
-        genItems();
-        genPlayerInfo();
     }
 
     private void genEnemies() {
@@ -267,7 +269,7 @@ public class TileMap {
         }
         while(cannotGen(col, row));
 
-        getTile(col, row).setType(LevelTile.END_POS);
+        getTile(col, row).setEvent(LevelTile.END_POS);
     }
 
     private void genPlayerInfo() {
@@ -310,17 +312,19 @@ public class TileMap {
 
     private void checkTile() {
 
-        if (getTile(playerCol, playerRow).getType() == LevelTile.END_POS) {
+        if (getTile(playerCol, playerRow).getEvent() == LevelTile.END_POS) {
             //temp boss square
             int[] boss = {0, 0, 1};
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
-            intent.putExtra("enemies", boss);
+            intent.putExtra(MainUtility.ENEMIES, boss);
+            intent.putExtra(MainUtility.BOSS, true);
             mainUtility.getCon().startActivity(intent);
         }
 
         if (getTile(playerCol, playerRow).getEvent() == LevelTile.ENEMY_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
-            intent.putExtra("enemies", getTile(playerCol, playerRow).getEnemies());
+            intent.putExtra(MainUtility.ENEMIES, getTile(playerCol, playerRow).getEnemies());
+            intent.putExtra(mainUtility.BOSS, false);
             mainUtility.getCon().startActivity(intent);
         }
 

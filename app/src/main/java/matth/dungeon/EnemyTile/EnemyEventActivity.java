@@ -56,7 +56,8 @@ public class EnemyEventActivity extends AppCompatActivity {
             int[] temp;
 
             enemies = new ArrayList<>();
-            temp = extras.getIntArray("enemies");
+            enemyUtility.setBoss(extras.getBoolean(MainUtility.BOSS));
+            temp = extras.getIntArray(MainUtility.ENEMIES);
 
             //have to add new for loop for each enemy, so should probably optimize
             for (int i = 0; i < temp[0]; i++) {
@@ -83,16 +84,24 @@ public class EnemyEventActivity extends AppCompatActivity {
     }
 
     private void spawnEnemies() {
-
         enemyUtility.spawnAllEnemies(mainUtility.getScreenWidth());
     }
 
-    public static void exitWin(PlayerSprite playerSprite) {
+    public static void exitWin(PlayerSprite playerSprite, boolean boss) {
         Intent intent = new Intent(playerSprite.getCon(), DungeonActivity.class);
+
 
         PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite);
         FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
-        intent.putExtra(MainUtility.FROM_ENEMY_EVENT, true);
+        intent.putExtra(MainUtility.LOAD_PLAYER, true);
+
+        if (boss) {
+            intent.putExtra(MainUtility.LOAD_SAVED, false);
+        }
+        else {
+            intent.putExtra(MainUtility.LOAD_SAVED, true);
+        }
+
 
         playerSprite.getCon().startActivity(intent);
     }
