@@ -1,8 +1,11 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
+import android.app.Activity;
 import android.os.Handler;
+import android.support.constraint.ConstraintLayout;
 import android.widget.ImageView;
 
+import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
@@ -13,6 +16,7 @@ public class SquareBossEnemy extends SquareEnemy {
     private final String SPRITE_NAME = "square_enemy";
     private final int VELOCITY = 7;
 
+    //TODO make health bars nicer
     private ImageView healthBar;
     private ImageView maxHealthBar;
     private boolean spawned = false;
@@ -33,6 +37,14 @@ public class SquareBossEnemy extends SquareEnemy {
     @Override
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+    }
+
+    @Override
+    public void delete() {
+        super.delete();
+        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
+        cl.removeView(healthBar);
+        cl.removeView(maxHealthBar);
     }
 
     @Override

@@ -123,7 +123,7 @@ public abstract class Enemy implements EnemyBehaviour {
         enemyUtility.checkDone();
     }
 
-    public void deleteImage() {
+    private void deleteImage() {
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(getSprite());
     }
@@ -157,7 +157,7 @@ public abstract class Enemy implements EnemyBehaviour {
         }, 500);
     }
 
-    void updateDestination() {
+    private void updateDestination() {
         destinationX = playerX;
         destinationY = playerY;
 
