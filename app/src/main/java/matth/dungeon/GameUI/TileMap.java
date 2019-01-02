@@ -4,15 +4,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.R;
+import matth.dungeon.Utility.DungeonInitUtility;
 import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
@@ -30,12 +29,12 @@ public class TileMap {
     private int playerRow;
 
 
-    TileMap(MainUtility mainUtility, int size, boolean loadSavedMap, boolean loadPlayer) {
+    TileMap(MainUtility mainUtility, int size, DungeonInitUtility dungeonInitUtility) {
         this.mainUtility = mainUtility;
         this.size = size;
         tunnelLength = (int) (size * 0.7);
         tunnelNum = (int) (size * 2);
-        initLevel(loadSavedMap, loadPlayer);
+        initLevel(dungeonInitUtility);
     }
 
     public void buildMap() {
@@ -128,10 +127,10 @@ public class TileMap {
         }
     }
 
-    private void initLevel(boolean loadSavedMap, boolean loadPlayer) {
+    private void initLevel(DungeonInitUtility dungeonInitUtility) {
         levelMap = new ArrayList<>();
 
-        if (!loadSavedMap) {
+        if (!dungeonInitUtility.loadSave()) {
             initMap();
             genEnemies();
             genItems();
@@ -139,22 +138,28 @@ public class TileMap {
             genStart();
         }
         else {
-            loadLevel();
+            loadLevel(dungeonInitUtility);
         }
-        if (!loadSavedMap && loadPlayer) {
+        if (!dungeonInitUtility.loadSave() && dungeonInitUtility.loadPlayer()) {
             playerInfoPassUtility = FileUtility.loadPlayer(mainUtility.getCon());
         }
-        else if (!loadSavedMap && !loadPlayer) {
+        else if (!dungeonInitUtility.loadSave() && !dungeonInitUtility.loadPlayer()) {
             genPlayerInfo();
         }
 
         FileUtility.saveMap(mainUtility.getCon(), levelMap);
     }
 
-    private void loadLevel() {
+    private void loadLevel(DungeonInitUtility dungeonInitUtility) {
         levelMap = FileUtility.loadMap(mainUtility.getCon());
         getPos();
-        checkTile();
+        if (dungeonInitUtility.deleteCurrentTile()) {
+            getTile(playerCol, playerRow).setEvent(LevelTile.EMPTY);
+            getTile(playerCol, playerRow).setType(LevelTile.PLAYER_POS);
+        }
+        else {
+            checkTile();
+        }
     }
 
     private void createLevel() {

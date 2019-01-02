@@ -93,6 +93,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite);
         FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
         intent.putExtra(MainUtility.LOAD_PLAYER, true);
+        intent.putExtra(MainUtility.DELETE_CURRENT_TILE, true);
 
         if (boss) {
             intent.putExtra(MainUtility.LOAD_SAVED, false);

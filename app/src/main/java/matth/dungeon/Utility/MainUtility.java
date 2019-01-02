@@ -13,6 +13,7 @@ public class MainUtility {
 
     public static String LOAD_SAVED = "loadSaved";
     public static String LOAD_PLAYER = "loadPlayer";
+    public static String DELETE_CURRENT_TILE = "deleteCurrentTile";
     public static String ENEMIES = "enemies";
     public static String BOSS = "boss";
 

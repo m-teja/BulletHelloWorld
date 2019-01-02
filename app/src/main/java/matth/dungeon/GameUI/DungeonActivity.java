@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.TextView;
 
 import matth.dungeon.R;
+import matth.dungeon.Utility.DungeonInitUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.MainUtility;
 
 public class DungeonActivity extends AppCompatActivity {
 
     private PlayerInfoPassUtility playerInfoPassUtility = null;
-    private boolean loadSave = false;
-    private boolean loadPlayer = false;
+    private DungeonInitUtility dungeonInitUtility;
 
     MainUtility utility;
     TileMap tileMap;
@@ -36,11 +36,18 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void getBundle() {
+
         Bundle extras = getIntent().getExtras();
+        dungeonInitUtility = new DungeonInitUtility(extras);
 
         if (extras != null) {
-            loadSave = extras.getBoolean(MainUtility.LOAD_SAVED);
-            loadPlayer = extras.getBoolean(MainUtility.LOAD_PLAYER);
+            boolean loadSave = extras.getBoolean(MainUtility.LOAD_SAVED);
+            boolean loadPlayer = extras.getBoolean(MainUtility.LOAD_PLAYER);
+            boolean deleteCurrentTile = extras.getBoolean(MainUtility.DELETE_CURRENT_TILE);
+
+            dungeonInitUtility.setLoadSave(loadSave);
+            dungeonInitUtility.setLoadPlayer(loadPlayer);
+            dungeonInitUtility.setDeleteCurrentTile(deleteCurrentTile);
         }
     }
 
@@ -49,7 +56,7 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void createTileMap() {
-        tileMap = new TileMap(utility, size, loadSave, loadPlayer);
+        tileMap = new TileMap(utility, size, dungeonInitUtility);
     }
 
     public void toggleMap (View view) {
