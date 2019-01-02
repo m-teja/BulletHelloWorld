@@ -1,12 +1,6 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
-import android.app.Activity;
-import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.util.Log;
-
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.CirclePattern;
-import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
@@ -37,7 +31,7 @@ public class CircleEnemy extends Enemy {
     @Override
     public void delete() {
         super.delete();
-        circlePattern.stop();
+        circlePattern.delete();
     }
 
     public void effect() {

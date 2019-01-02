@@ -108,10 +108,6 @@ public class TileMap {
         return levelMap.get(col).get(row);
     }
 
-    private void setTileEvent(int col, int row, int event) {
-        levelMap.get(col).get(row).setEvent(event);
-    }
-
     private void initMap() {
         for (int i = 0; i < size; i++) {
             levelMap.add(i, new ArrayList<LevelTile>());
@@ -158,7 +154,6 @@ public class TileMap {
     private void loadLevel() {
         levelMap = FileUtility.loadMap(mainUtility.getCon());
         getPos();
-        setTileEvent(playerCol, playerRow, LevelTile.NO_EVENT);
         checkTile();
     }
 

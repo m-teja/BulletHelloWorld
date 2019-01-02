@@ -1,6 +1,7 @@
 package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 import android.os.Handler;
+import android.util.Log;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
@@ -9,13 +10,10 @@ import matth.dungeon.Utility.MainUtility;
 
 public class ClassicPattern extends Pattern {
 
-    private int spawnDelay = 250;
     //change later depending on situation
 
     private MainUtility mainUtility;
     private PlayerUtility playerUtility;
-
-    private Handler spawnProjectile = new Handler();
 
     public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
         super();
@@ -24,26 +22,22 @@ public class ClassicPattern extends Pattern {
     }
 
     @Override
-    public void stop() {
-        spawnProjectile.removeCallbacksAndMessages(null);
-    }
-
-    @Override
     public void init() {
+        Log.d("test", "init");
         spawn.run();
     }
 
-    public Runnable spawn = new Runnable() {
-        @Override
-        public void run() {
+    @Override
+    public void spawnPattern() {
+        PlayerProjectileClassic playerProjectileClassic = new PlayerProjectileClassic(mainUtility, playerUtility);
+        playerProjectileClassic.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2, playerUtility.getPlayerSprite().getY(), null, null);
+        //TODO fix centering issue
+        playerProjectileClassic.init();
+    }
 
-            PlayerProjectileClassic playerProjectileClassic = new PlayerProjectileClassic(mainUtility, playerUtility);
-            playerProjectileClassic.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2, playerUtility.getPlayerSprite().getY(), null, null);
-            //TODO fix centering issue
-
-            playerProjectileClassic.init();
-            spawnProjectile.postDelayed(spawn, spawnDelay);
-        }
-    };
+    @Override
+    public void getSpawnDelay() {
+        super.spawnDelay = 250;
+    }
 }
 //TODO make initCheck into utility

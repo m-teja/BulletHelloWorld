@@ -1,22 +1,34 @@
 package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 import android.os.Handler;
+import android.support.annotation.CallSuper;
 
 import matth.dungeon.Utility.MainUtility;
 
 public abstract class Pattern implements PatternBehaviour {
 
+
     private int CHECK_DELAY = 20;
+    int spawnDelay;
+    private boolean terminated = false;
     private Handler check = new Handler();
+    private Handler spawnProjectileDelay = new Handler();
 
     Pattern() {
+        getSpawnDelay();
         initCheck();
     }
 
-    public abstract void stop();
     public abstract void init();
+    public abstract void spawnPattern();
+    public abstract void getSpawnDelay();
 
-    public void initCheck() {
+    @CallSuper
+    public void delete() {
+        spawnProjectileDelay.removeCallbacksAndMessages(null);
+    }
+
+    private void initCheck() {
 
         Handler start = new Handler();
         start.postDelayed(new Runnable() {
@@ -27,6 +39,18 @@ public abstract class Pattern implements PatternBehaviour {
         }, 500);
     }
 
+    Runnable spawn = new Runnable() {
+        @Override
+        public void run() {
+
+            spawnPattern();
+            if (!terminated) {
+                spawnProjectileDelay.postDelayed(spawn, spawnDelay);
+            }
+
+        }
+    };
+
     private Runnable runCheck = new Runnable() {
         @Override
         public void run() {
@@ -35,8 +59,8 @@ public abstract class Pattern implements PatternBehaviour {
                 check.postDelayed(runCheck, CHECK_DELAY);
             }
             else {
-                stop();
-                //terminated = true;
+                delete();
+                terminated = true;
                 check.removeCallbacksAndMessages(null);
             }
 

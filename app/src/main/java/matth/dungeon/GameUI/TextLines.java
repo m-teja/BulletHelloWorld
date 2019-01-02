@@ -15,9 +15,6 @@ public class TextLines {
         else if (tile.getType() == LevelTile.WALL) {
             result += "There is a wall";
         }
-        else if (tile.getType() == LevelTile.END_POS) {
-            result += "You see the end";
-        }
 
         if (direction == 0) {
             result += " in front of you";
@@ -40,6 +37,9 @@ public class TextLines {
         }
         else if (tile.getEvent() == LevelTile.ITEM_EVENT) {
             result += "\n An item of interest here";
+        }
+        else if (tile.getEvent() == LevelTile.END_POS) {
+            result += "You see the end";
         }
 
         return result;
