@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.annotation.CallSuper;
 import android.support.constraint.ConstraintLayout;
 import android.util.Log;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
@@ -92,7 +93,6 @@ public abstract class Projectile implements ProjectileBehaviour {
         }, 500);
     }
 
-
     private Runnable runCheck = new Runnable() {
         @Override
         public void run() {
@@ -116,5 +116,23 @@ public abstract class Projectile implements ProjectileBehaviour {
 
     public float getY() {
         return projectileImage.getY();
+    }
+
+    public void setX(int x) {
+        projectileImage.setX(x);
+    }
+
+    public void setY(int y) {
+        projectileImage.setY(y);
+    }
+
+    public int getWidth() {
+        projectileImage.measure(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        return projectileImage.getMeasuredWidth();
+    }
+
+    public int getHeight() {
+        projectileImage.measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        return projectileImage.getMeasuredHeight();
     }
 }

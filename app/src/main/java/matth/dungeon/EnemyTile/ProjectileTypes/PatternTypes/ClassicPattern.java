@@ -2,6 +2,7 @@ package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
@@ -31,6 +32,9 @@ public class ClassicPattern extends Pattern {
     public void spawnPattern() {
         PlayerProjectileClassic playerProjectileClassic = new PlayerProjectileClassic(mainUtility, playerUtility);
         playerProjectileClassic.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2, playerUtility.getPlayerSprite().getY(), null, null);
+        playerProjectileClassic.setX((int)(playerProjectileClassic.getX() - playerProjectileClassic.getWidth()/2));
+        Log.d("test", Float.toString(playerProjectileClassic.getWidth()));
+
         //TODO fix centering issue
         playerProjectileClassic.init();
     }

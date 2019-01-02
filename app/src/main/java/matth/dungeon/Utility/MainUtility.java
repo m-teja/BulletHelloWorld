@@ -7,6 +7,7 @@ import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 public class MainUtility {
@@ -78,7 +79,6 @@ public class MainUtility {
         ImageView image = new ImageView(con);
         image.setId(View.generateViewId());
 
-
         image.setImageResource(con.getResources().getIdentifier(imageName, "drawable", con.getPackageName()));
         image.setLayoutParams(lp);
         image.setX(x);
@@ -101,6 +101,5 @@ public class MainUtility {
 
         return image;
     }
-
 
 }

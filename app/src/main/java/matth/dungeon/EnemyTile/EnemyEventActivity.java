@@ -102,7 +102,6 @@ public class EnemyEventActivity extends AppCompatActivity {
             intent.putExtra(MainUtility.LOAD_SAVED, true);
         }
 
-
         playerSprite.getCon().startActivity(intent);
     }
 
