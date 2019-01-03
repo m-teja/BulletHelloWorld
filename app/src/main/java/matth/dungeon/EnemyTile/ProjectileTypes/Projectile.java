@@ -78,6 +78,17 @@ public abstract class Projectile implements ProjectileBehaviour {
         }
     }
 
+    public void spawnProjectile(float x, float y, boolean invert) {
+        projectileImage = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, projectileName, x, y);
+
+        if (invert) {
+            projectileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            int temp = getWidth();
+            projectileImage.getLayoutParams().width = getHeight();
+            projectileImage.getLayoutParams().height = temp;
+        }
+    }
+
     private void deleteImage() {
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(projectileImage);
