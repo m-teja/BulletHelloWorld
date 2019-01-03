@@ -43,6 +43,12 @@ public class ClassicPattern extends Pattern {
                 right.getProjectileImage().setRotation(90);
                 right.setY((int)(right.getY() - right.getHeight()/2 + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredHeight()/2));
                 right.init();
+
+                PlayerProjectile left = new PlayerProjectileClassic(mainUtility, playerUtility, 3);
+                left.spawnProjectile(playerUtility.getPlayerSprite().getX(), playerUtility.getPlayerSprite().getY(), null, null);
+                left.getProjectileImage().setRotation(-90);
+                left.setY((int)(right.getY() - right.getHeight()/2 + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredHeight()/2));
+                left.init();
             case 2:
                 PlayerProjectile down = new PlayerProjectileClassic(mainUtility, playerUtility, 2);
                 down.spawnProjectile(playerUtility.getPlayerSprite().getX(),playerUtility.getPlayerSprite().getY() + playerUtility.getPlayerSprite().getPlayerImage().getLayoutParams().height, null, null);
