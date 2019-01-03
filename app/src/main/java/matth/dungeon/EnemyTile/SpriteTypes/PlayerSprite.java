@@ -44,7 +44,7 @@ public class PlayerSprite implements Serializable {
     }
 
     public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
-        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 1);
+        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 2);
         classicPattern.init();
         // update this to check for which pattern
     }
