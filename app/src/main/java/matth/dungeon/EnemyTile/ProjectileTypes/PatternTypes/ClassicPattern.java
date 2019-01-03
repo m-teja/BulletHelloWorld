@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
+import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileBounce;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
 import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
@@ -34,7 +35,7 @@ public class ClassicPattern extends Pattern {
 
     @Override
     public void spawnPattern() {
-
+        
         switch (level) {
             case 3:
                 PlayerProjectile right = new PlayerProjectileClassic(mainUtility, playerUtility, 1);
@@ -49,6 +50,7 @@ public class ClassicPattern extends Pattern {
                 left.getProjectileImage().setRotation(-90);
                 left.setY((int)(right.getY() - right.getHeight()/2 + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredHeight()/2));
                 left.init();
+                //FALL THROUGH
             case 2:
                 PlayerProjectile down = new PlayerProjectileClassic(mainUtility, playerUtility, 2);
                 down.spawnProjectile(playerUtility.getPlayerSprite().getX(),playerUtility.getPlayerSprite().getY() + playerUtility.getPlayerSprite().getPlayerImage().getLayoutParams().height, null, null);
@@ -62,7 +64,7 @@ public class ClassicPattern extends Pattern {
                 //center projectile
                 up.setX((int)(up.getX() - up.getWidth()/2 + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2));
                 up.init();
-
+                break;
             default:
                 break;
         }
