@@ -111,6 +111,46 @@ public abstract class Projectile implements ProjectileBehaviour {
         }, 500);
     }
 
+    float[] calcVelocity(float destinationX, float destinationY, int velocity) {
+
+        float velocityX;
+        float velocityY;
+
+        float differenceX = destinationX - getX();
+        float differenceY = destinationY - getY();
+
+        if (differenceX != 0 && differenceY != 0) {
+            float differenceXY = (float)Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
+
+            float cosAngle = (float)Math.acos(differenceY/differenceXY);
+            float sinAngle = (float)Math.asin(differenceX/differenceXY);
+
+            velocityY = (float)(Math.cos(cosAngle) * velocity);
+            velocityX = (float)(Math.sin(sinAngle) * velocity);
+        }
+        else if (differenceX == 0) {
+            velocityX = 0;
+            if (destinationY > getY()) {
+                velocityY = velocity;
+            }
+            else {
+                velocityY = -velocity;
+            }
+        }
+        else  {
+            velocityY = 0;
+            if (destinationX > getX()) {
+                velocityX = velocity;
+            }
+            else {
+                velocityX = -velocity;
+            }
+        }
+        float vel[] = { velocityX, velocityY};
+        return vel;
+
+    }
+
     private Runnable runCheck = new Runnable() {
         @Override
         public void run() {

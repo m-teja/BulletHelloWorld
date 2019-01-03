@@ -53,7 +53,7 @@ public class PlayerUtility {
     public Enemy getClosestEnemy(PlayerProjectile playerProjectile) {
 
         float differenceTotal = 99999;
-        int enemyIndex = 0;
+        int enemyIndex = -1;
 
         for (int i = 0; i < enemies.size(); i++) {
 
@@ -67,7 +67,13 @@ public class PlayerUtility {
                 }
             }
         }
-        return ((Enemy) enemies.get(enemyIndex));
+        if (enemyIndex == -1) {
+            return null;
+        }
+        else {
+            return ((Enemy) enemies.get(enemyIndex));
+        }
+
     }
 
     public PlayerSprite getPlayerSprite() {

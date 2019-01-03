@@ -10,6 +10,8 @@ import java.io.Serializable;
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BouncePattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
+import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
+import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileHoming;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileOrbit;
 import matth.dungeon.R;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
@@ -52,8 +54,8 @@ public class PlayerSprite implements Serializable {
 //        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
 //        bouncePattern.init();
 
-        PlayerProjectileOrbit test = new PlayerProjectileOrbit(mainUtility, playerUtility);
-        test.spawnProjectile(500, 500, null, null);
+        PlayerProjectileHoming test = new PlayerProjectileHoming(mainUtility, playerUtility);
+        test.spawnProjectile(1000, 1000, null, null);
         test.init();
         // update this to check for which pattern
     }
