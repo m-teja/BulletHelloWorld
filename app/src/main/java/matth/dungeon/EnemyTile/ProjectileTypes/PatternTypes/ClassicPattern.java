@@ -16,10 +16,13 @@ public class ClassicPattern extends Pattern {
     private MainUtility mainUtility;
     private PlayerUtility playerUtility;
 
-    public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
+    private int level;
+
+    public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility, int level) {
         super();
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
+        this.level = level;
     }
 
     @Override
@@ -33,9 +36,9 @@ public class ClassicPattern extends Pattern {
         PlayerProjectileClassic playerProjectileClassic = new PlayerProjectileClassic(mainUtility, playerUtility);
         playerProjectileClassic.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2, playerUtility.getPlayerSprite().getY(), null, null);
         playerProjectileClassic.setX((int)(playerProjectileClassic.getX() - playerProjectileClassic.getWidth()/2));
-
-        //TODO fix centering issue
         playerProjectileClassic.init();
+
+
     }
 
     @Override

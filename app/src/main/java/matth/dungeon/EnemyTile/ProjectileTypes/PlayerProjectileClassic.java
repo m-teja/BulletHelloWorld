@@ -16,8 +16,15 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     private final float DAMAGE = 10;
     private final int VELOCITY = 25;
 
+    private int direction = -1;
+
     public PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility, playerUtility);
+    }
+
+    public PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility, int direction) {
+        super(mainUtility, playerUtility);
+        this.direction = direction;
     }
 
     @Override
@@ -27,7 +34,19 @@ public class PlayerProjectileClassic extends PlayerProjectile {
 
     @Override
     public void movePattern() {
-        PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - VELOCITY);
+
+        if (direction == -1 || direction == 0) {
+            PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - VELOCITY);
+        }
+        else if (direction == 1) {
+            PlayerUtility.moveImage(getProjectileImage(), getX() + VELOCITY, getY());
+        }
+        else if (direction == 2) {
+            PlayerUtility.moveImage(getProjectileImage(), getX(), getY() + VELOCITY);
+        }
+        else if (direction == 3) {
+            PlayerUtility.moveImage(getProjectileImage(), getX() - VELOCITY, getY());
+        }
     }
 
     @Override
