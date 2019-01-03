@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import java.io.Serializable;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BouncePattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
@@ -44,8 +45,11 @@ public class PlayerSprite implements Serializable {
     }
 
     public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
-        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 3);
-        classicPattern.init();
+//        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 3);
+//        classicPattern.init();
+
+        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
+        bouncePattern.init();
         // update this to check for which pattern
     }
 

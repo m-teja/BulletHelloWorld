@@ -35,7 +35,7 @@ public class ClassicPattern extends Pattern {
 
     @Override
     public void spawnPattern() {
-        
+
         switch (level) {
             case 3:
                 PlayerProjectile right = new PlayerProjectileClassic(mainUtility, playerUtility, 1);
