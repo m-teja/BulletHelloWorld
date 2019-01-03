@@ -1,5 +1,7 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
+import android.util.Log;
+
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerUtility;
@@ -10,8 +12,8 @@ public class PlayerProjectileOrbit extends PlayerProjectile {
     private final float DAMAGE = 10;
     private final int VELOCITY = 25;
 
-    private float currentX;
-    private float currentY;
+    private float currentPlayerProjectileDifferenceX;
+    private float currentPlayerProjectileDifferenceY;
 
     private float radius = 0;
 
@@ -34,6 +36,13 @@ public class PlayerProjectileOrbit extends PlayerProjectile {
     @Override
     public void movePattern() {
 
+        //TODO make this work
+
+        float playerCenterX = playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getLayoutParams().width/2;
+        float playerCenterY = playerUtility.getPlayerSprite().getY() + playerUtility.getPlayerSprite().getPlayerImage().getLayoutParams().height/2;
+
+        PlayerUtility.moveImage(getProjectileImage(), currentPlayerProjectileDifferenceX + playerCenterX - getProjectileImage().getLayoutParams().width/2, currentPlayerProjectileDifferenceY + playerCenterY - getProjectileImage().getLayoutParams().height);
+
     }
 
     @Override
@@ -54,9 +63,14 @@ public class PlayerProjectileOrbit extends PlayerProjectile {
         float projectileCenterX = getX() + getProjectileImage().getLayoutParams().width/2;
         float projectileCenterY = getY() + getProjectileImage().getLayoutParams().height/2;
 
-        float differenceX = Math.abs(projectileCenterX - playerCenterX);
-        float differenceY = Math.abs(projectileCenterY - playerCenterY);
+        float differenceX = projectileCenterX - playerCenterX;
+        float differenceY = projectileCenterY - playerCenterY;
 
         radius = (float)Math.sqrt(Math.pow(differenceX, 2) + Math.pow(differenceY, 2));
+
+Log.d("testP", Float.toString(radius));
+Log.d("testP", Float.toString(differenceX));
+        currentPlayerProjectileDifferenceX = differenceX;
+        currentPlayerProjectileDifferenceY = differenceY;
     }
 }

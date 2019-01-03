@@ -50,6 +50,26 @@ public class PlayerUtility {
         }
     }
 
+    public Enemy getClosestEnemy(PlayerProjectile playerProjectile) {
+
+        float differenceTotal = 99999;
+        int enemyIndex = 0;
+
+        for (int i = 0; i < enemies.size(); i++) {
+
+            if ( !((Enemy)enemies.get(i)).isTerminated() ) {
+                float differenceX = Math.abs(((Enemy)enemies.get(i)).getX() - playerProjectile.getX());
+                float differenceY = Math.abs(((Enemy)enemies.get(i)).getY() - playerProjectile.getY());
+
+                if (differenceX + differenceY < differenceTotal) {
+                    differenceTotal = differenceX + differenceY;
+                    enemyIndex = i;
+                }
+            }
+        }
+        return ((Enemy) enemies.get(enemyIndex));
+    }
+
     public PlayerSprite getPlayerSprite() {
         return playerSprite;
     }
