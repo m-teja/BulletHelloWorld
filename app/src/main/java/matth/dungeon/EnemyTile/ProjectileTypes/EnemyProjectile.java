@@ -11,7 +11,7 @@ public abstract class EnemyProjectile extends Projectile {
     EnemyUtility enemyUtility;
 
     EnemyProjectile(MainUtility mainUtility, EnemyUtility enemyUtility) {
-        super(mainUtility);
+        super(mainUtility, enemyUtility);
         this.enemyUtility = enemyUtility;
         initCheck();
     }

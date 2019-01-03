@@ -110,6 +110,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         con.startActivity(intent);
     }
 
+    //TODO change depending on enemy and projectile behaviour
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         float x = event.getX();

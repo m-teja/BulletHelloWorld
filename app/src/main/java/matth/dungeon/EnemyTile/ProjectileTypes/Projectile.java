@@ -11,7 +11,9 @@ import android.widget.ImageView;
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.R;
+import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
+import matth.dungeon.Utility.PlayerUtility;
 
 public abstract class Projectile implements ProjectileBehaviour {
 
@@ -22,17 +24,32 @@ public abstract class Projectile implements ProjectileBehaviour {
     boolean terminated;
 
     MainUtility mainUtility;
+    private EnemyUtility enemyUtility = null;
+    private PlayerUtility playerUtility = null;
     String projectileName;
     ImageView projectileImage;
 
+    private float playerX = 0;
+    private float playerY = 0;
+
     private Handler check = new Handler();
+    private Handler updatePlayer = new Handler();
     Handler moveProjectile = new Handler();
 
-    Projectile(MainUtility mainUtility) {
+    Projectile(MainUtility mainUtility, PlayerUtility playerUtility) {
         this.mainUtility = mainUtility;
+        this.playerUtility = playerUtility;
         setDamage();
         setProjectileName();
     }
+
+    Projectile(MainUtility mainUtility, EnemyUtility enemyUtility) {
+        this.mainUtility = mainUtility;
+        this.enemyUtility = enemyUtility;
+        setDamage();
+        setProjectileName();
+    }
+
 
     public abstract void init();
     public abstract void movePattern();
@@ -44,6 +61,7 @@ public abstract class Projectile implements ProjectileBehaviour {
         Log.d("test", "projectile terminated");
         terminated = true;
         moveProjectile.removeCallbacksAndMessages(null);
+        updatePlayer.removeCallbacksAndMessages(null);
 
         deleteImage();
     }
@@ -106,6 +124,24 @@ public abstract class Projectile implements ProjectileBehaviour {
         }
     };
 
+    Runnable runUpdatePlayer = new Runnable() {
+        @Override
+        public void run() {
+            if (enemyUtility != null) {
+                playerX = enemyUtility.getPlayerSprite().getX();
+                playerY = enemyUtility.getPlayerSprite().getY();
+            }
+            else if (playerUtility != null) {
+                playerX = playerUtility.getPlayerSprite().getX();
+                playerY = playerUtility.getPlayerSprite().getY();
+            }
+
+            if (!terminated) {
+                updatePlayer.postDelayed(runUpdatePlayer, CHECK_DELAY);
+            }
+        }
+    };
+
     public ImageView getProjectileImage() {
         return projectileImage;
     }
@@ -134,5 +170,13 @@ public abstract class Projectile implements ProjectileBehaviour {
     public int getHeight() {
         projectileImage.measure(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
         return projectileImage.getMeasuredHeight();
+    }
+
+    public float getPlayerX() {
+        return playerX;
+    }
+
+    public float getPlayerY() {
+        return playerY;
     }
 }

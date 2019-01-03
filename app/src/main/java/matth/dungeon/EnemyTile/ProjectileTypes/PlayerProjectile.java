@@ -14,7 +14,7 @@ public abstract class PlayerProjectile extends Projectile {
     PlayerUtility playerUtility;
 
     PlayerProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
-        super(mainUtility);
+        super(mainUtility, playerUtility);
         this.playerUtility = playerUtility;
         initCheck();
     }

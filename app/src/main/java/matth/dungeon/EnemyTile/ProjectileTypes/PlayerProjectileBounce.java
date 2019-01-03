@@ -8,7 +8,7 @@ public class PlayerProjectileBounce extends PlayerProjectile {
 
     private final String PROJECTILE_NAME = "projectile_bounce";
     private final float DAMAGE = 8;
-    private final float VELOCITY = 15;
+    private final float VELOCITY = 25;
 
     private boolean bounce = false;
 
@@ -18,7 +18,14 @@ public class PlayerProjectileBounce extends PlayerProjectile {
 
     @Override
     public void effect(Enemy enemy) {
-        enemy.takeDamage(damage);
+
+        if (bounce) {
+            enemy.takeDamage(damage * 2);
+        }
+        else {
+            enemy.takeDamage(damage);
+        }
+
         delete();
     }
 
