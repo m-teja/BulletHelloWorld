@@ -40,7 +40,7 @@ public class PlayerSprite implements Serializable {
     private void getPlayerInfo(PlayerInfoPassUtility playerInfoPassUtility) {
         maxHealth = playerInfoPassUtility.getMaxHealth();
         health = playerInfoPassUtility.getHealth();
-        Log.d("test", Float.toString(health));
+
     }
 
     public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {

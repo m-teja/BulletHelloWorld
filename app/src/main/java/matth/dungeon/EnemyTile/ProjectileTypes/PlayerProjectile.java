@@ -13,8 +13,6 @@ public abstract class PlayerProjectile extends Projectile {
 
     PlayerUtility playerUtility;
 
-    private Handler moveProjectile = new Handler();
-
     PlayerProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility);
         this.playerUtility = playerUtility;

@@ -29,6 +29,8 @@ public class CirclePattern extends Pattern {
     public void spawnPattern() {
         CircleProjectile circleProjectile = new CircleProjectile(mainUtility, enemyUtility);
         circleProjectile.spawnProjectile(circleEnemy.getX() + circleEnemy.getSprite().getMeasuredWidth()/2, circleEnemy.getY() + circleEnemy.getSprite().getMeasuredHeight(), null, null);
+        circleProjectile.setX((int)(circleProjectile.getX() - circleProjectile.getWidth()/2));
+
         circleProjectile.init();
     }
 

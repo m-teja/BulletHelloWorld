@@ -7,9 +7,8 @@ import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 
 public abstract class EnemyProjectile extends Projectile {
-    EnemyUtility enemyUtility;
 
-    private Handler moveProjectile = new Handler();
+    EnemyUtility enemyUtility;
 
     EnemyProjectile(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility);

@@ -33,7 +33,6 @@ public class ClassicPattern extends Pattern {
         PlayerProjectileClassic playerProjectileClassic = new PlayerProjectileClassic(mainUtility, playerUtility);
         playerProjectileClassic.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredWidth()/2, playerUtility.getPlayerSprite().getY(), null, null);
         playerProjectileClassic.setX((int)(playerProjectileClassic.getX() - playerProjectileClassic.getWidth()/2));
-        Log.d("test", Float.toString(playerProjectileClassic.getWidth()));
 
         //TODO fix centering issue
         playerProjectileClassic.init();

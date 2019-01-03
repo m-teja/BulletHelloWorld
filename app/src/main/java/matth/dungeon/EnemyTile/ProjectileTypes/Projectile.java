@@ -26,7 +26,7 @@ public abstract class Projectile implements ProjectileBehaviour {
     ImageView projectileImage;
 
     private Handler check = new Handler();
-    private Handler moveProjectile = new Handler();
+    Handler moveProjectile = new Handler();
 
     Projectile(MainUtility mainUtility) {
         this.mainUtility = mainUtility;
