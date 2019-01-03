@@ -38,8 +38,9 @@ public class ClassicPattern extends Pattern {
         switch (level) {
             case 3:
                 PlayerProjectile right = new PlayerProjectileClassic(mainUtility, playerUtility, 1);
-                right.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getWidth(), playerUtility.getPlayerSprite().getY(), true);
+                right.spawnProjectile(playerUtility.getPlayerSprite().getX() + playerUtility.getPlayerSprite().getPlayerImage().getWidth(), playerUtility.getPlayerSprite().getY(), null, null);
                 //center projectile
+                right.getProjectileImage().setRotation(90);
                 right.setY((int)(right.getY() - right.getHeight()/2 + playerUtility.getPlayerSprite().getPlayerImage().getMeasuredHeight()/2));
                 right.init();
             case 2:
