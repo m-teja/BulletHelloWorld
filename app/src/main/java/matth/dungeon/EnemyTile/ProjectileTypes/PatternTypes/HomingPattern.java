@@ -14,6 +14,11 @@ public class HomingPattern extends Pattern {
         this.playerUtility = playerUtility;
     }
 
+    public HomingPattern (MainUtility mainUtility, PlayerUtility playerUtility, int level) {
+        this.mainUtility = mainUtility;
+        this.playerUtility = playerUtility;
+    }
+
     @Override
     public void init() {
         spawn.run();

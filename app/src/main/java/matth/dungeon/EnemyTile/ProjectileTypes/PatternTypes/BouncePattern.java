@@ -15,6 +15,11 @@ public class BouncePattern extends Pattern {
         this.playerUtility = playerUtility;
     }
 
+    public BouncePattern(MainUtility mainUtility, PlayerUtility playerUtility, int level) {
+        this.mainUtility = mainUtility;
+        this.playerUtility = playerUtility;
+    }
+
     @Override
     public void init() {
         spawn.run();

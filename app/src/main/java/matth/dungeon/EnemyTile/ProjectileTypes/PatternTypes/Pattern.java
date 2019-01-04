@@ -7,6 +7,9 @@ import matth.dungeon.Utility.MainUtility;
 
 public abstract class Pattern implements PatternBehaviour {
 
+    public static final int CLASSIC_PATTERN = 0;
+    public static final int HOMING_PATTERN = 1;
+    public static final int BOUNCE_PATTERN = 2;
 
     private int CHECK_DELAY = 20;
     int spawnDelay;
