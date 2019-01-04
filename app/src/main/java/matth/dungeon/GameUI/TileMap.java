@@ -275,6 +275,9 @@ public class TileMap {
     private void genPlayerInfo() {
         playerInfoPassUtility = new PlayerInfoPassUtility();
         FileUtility.savePlayer(playerInfoPassUtility, mainUtility.getCon());
+
+        Inventory inventory = new Inventory();
+        FileUtility.saveInventory(inventory, mainUtility.getCon());
     }
 
     private boolean cannotGen(int col, int row) {
