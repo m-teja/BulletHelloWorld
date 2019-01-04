@@ -44,4 +44,20 @@ public class PlayerInfoPassUtility implements Serializable {
     public float getMaxHealth() {
         return maxHealth;
     }
+
+    public void setPattern(int pattern) {
+        this.pattern = pattern;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getPattern() {
+        return pattern;
+    }
+
+    public int getLevel() {
+        return level;
+    }
 }
