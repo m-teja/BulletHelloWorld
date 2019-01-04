@@ -11,7 +11,7 @@ public class PlayerProjectileHoming extends PlayerProjectile {
 
     private final String PROJECTILE_NAME = "projectile_homing";
     private final float DAMAGE = 10;
-    private final int VELOCITY = 2;
+    private final int VELOCITY = 10;
 
     private Enemy enemy = null;
 
@@ -33,11 +33,11 @@ public class PlayerProjectileHoming extends PlayerProjectile {
 
     @Override
     public void movePattern() {
-        if (!enemy.isTerminated()) {
+        if (!terminated && !enemy.isTerminated()) {
             float vel[] = calcVelocity(enemy.getX(), enemy.getY(), VELOCITY);
             PlayerUtility.moveImage(getProjectileImage(), getX() + vel[0], getY() + vel[1]);
         }
-        else {
+        else if (!terminated){
             calcNearEnemy();
         }
 
