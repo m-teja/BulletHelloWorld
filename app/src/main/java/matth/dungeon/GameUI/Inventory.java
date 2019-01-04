@@ -1,4 +1,6 @@
 package matth.dungeon.GameUI;
 
-public class Inventory {
+import java.io.Serializable;
+
+public class Inventory implements Serializable {
 }

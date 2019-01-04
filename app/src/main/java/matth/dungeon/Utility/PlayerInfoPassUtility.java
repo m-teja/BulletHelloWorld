@@ -23,7 +23,7 @@ public class PlayerInfoPassUtility implements Serializable {
     private int pattern;
     private int level;
 
-    public PlayerInfoPassUtility(PlayerSprite playerSprite) {
+    public PlayerInfoPassUtility(PlayerSprite playerSprite, Inventory inventory) {
         this.health = playerSprite.getHealth();
         this.maxHealth = playerSprite.getMaxHealth();
         this.inventory = inventory;
