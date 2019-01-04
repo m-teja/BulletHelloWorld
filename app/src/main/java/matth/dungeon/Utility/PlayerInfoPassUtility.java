@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
+import matth.dungeon.GameUI.Inventory;
 
 public class PlayerInfoPassUtility implements Serializable {
 
@@ -14,20 +15,18 @@ public class PlayerInfoPassUtility implements Serializable {
     private final int DEFAULT_PATTERN = Pattern.CLASSIC_PATTERN;
     private final int DEFAULT_LEVEL = 1;
 
+    private Inventory inventory;
+
     private float health;
     private float maxHealth;
 
     private int pattern;
     private int level;
 
-    public PlayerInfoPassUtility(PlayerSprite playerSprite) {
+    public PlayerInfoPassUtility(PlayerSprite playerSprite, Inventory inventory) {
         this.health = playerSprite.getHealth();
         this.maxHealth = playerSprite.getMaxHealth();
-    }
-
-    public PlayerInfoPassUtility(int health, int maxHealth) {
-        this.health = health;
-        this.maxHealth = maxHealth;
+        this.inventory = inventory;
     }
 
     public PlayerInfoPassUtility() {
@@ -35,6 +34,7 @@ public class PlayerInfoPassUtility implements Serializable {
         this.maxHealth = DEFAULT_MAX_HEALTH;
         this.pattern = DEFAULT_PATTERN;
         this.level = DEFAULT_LEVEL;
+        this.inventory = new Inventory();
     }
 
     public float getHealth() {

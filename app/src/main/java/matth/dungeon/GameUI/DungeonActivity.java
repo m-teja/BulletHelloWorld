@@ -69,6 +69,15 @@ public class DungeonActivity extends AppCompatActivity {
         }
     }
 
+    public void toggleInventory (View view) {
+        if (findViewById(R.id.invDisp).getVisibility() == View.GONE) {
+            findViewById(R.id.invDisp).setVisibility(View.VISIBLE);
+        }
+        else {
+            findViewById(R.id.invDisp).setVisibility(View.GONE);
+        }
+    }
+
     private void updateText() {
         int[] playerPos = player.getPlayerPos();
         int col = playerPos[0];
