@@ -90,7 +90,7 @@ public class EnemyEventActivity extends AppCompatActivity {
     public static void exitWin(PlayerSprite playerSprite, boolean boss) {
         Intent intent = new Intent(playerSprite.getCon(), DungeonActivity.class);
 
-        PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite, FileUtility.loadInventory(playerSprite.getCon()));
+        PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite);
         FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
         intent.putExtra(MainUtility.LOAD_PLAYER, true);
         intent.putExtra(MainUtility.DELETE_CURRENT_TILE, true);

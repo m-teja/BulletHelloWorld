@@ -8,14 +8,10 @@ import matth.dungeon.GameUI.Inventory;
 
 public class PlayerInfoPassUtility implements Serializable {
 
-    public static final String ENEMY_TO_DUNGEON_INFO = "enemyToDungeon";
-
     private final float DEFAULT_HEALTH = 100;
     private final float DEFAULT_MAX_HEALTH = 100;
     private final int DEFAULT_PATTERN = Pattern.CLASSIC_PATTERN;
     private final int DEFAULT_LEVEL = 1;
-
-    private Inventory inventory;
 
     private float health;
     private float maxHealth;
@@ -23,10 +19,9 @@ public class PlayerInfoPassUtility implements Serializable {
     private int pattern;
     private int level;
 
-    public PlayerInfoPassUtility(PlayerSprite playerSprite, Inventory inventory) {
+    public PlayerInfoPassUtility(PlayerSprite playerSprite) {
         this.health = playerSprite.getHealth();
         this.maxHealth = playerSprite.getMaxHealth();
-        this.inventory = inventory;
     }
 
     public PlayerInfoPassUtility() {
@@ -34,7 +29,6 @@ public class PlayerInfoPassUtility implements Serializable {
         this.maxHealth = DEFAULT_MAX_HEALTH;
         this.pattern = DEFAULT_PATTERN;
         this.level = DEFAULT_LEVEL;
-        this.inventory = new Inventory();
     }
 
     public float getHealth() {

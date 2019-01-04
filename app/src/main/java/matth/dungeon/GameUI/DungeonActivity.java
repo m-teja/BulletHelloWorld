@@ -15,6 +15,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     private PlayerInfoPassUtility playerInfoPassUtility = null;
     private DungeonInitUtility dungeonInitUtility;
+    private InventoryDisplay inventoryDisplay;
 
     MainUtility utility;
     TileMap tileMap;
@@ -28,6 +29,7 @@ public class DungeonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dungeon);
         getBundle();
 
+        inventoryDisplay = new InventoryDisplay();
         utility = new MainUtility(this);
         createTileMap();
         initPlayer();
