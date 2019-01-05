@@ -12,7 +12,6 @@ public class LevelTile implements Serializable {
     public static final int PLAYER_POS = 2;
     public static final String PLAYER_POS_IMAGE = "player";
 
-
     //Event types
     public static final int END_POS = 3;
     public static final String END_POS_IMAGE = "end";
@@ -26,6 +25,7 @@ public class LevelTile implements Serializable {
     public static final String[] RANDOM_EVENT_TYPES = {"healthPotion", "maxHealthPotion"};
 
     private int[] enemies = new int[ENEMY_TYPES.length];
+    private int randomEvent;
 
     private int type;
     private int event;
@@ -59,5 +59,13 @@ public class LevelTile implements Serializable {
 
     public int[] getEnemies() {
         return enemies;
+    }
+
+    public int getRandomEvent() {
+        return randomEvent;
+    }
+
+    public void setRandomEvent(int randomEvent) {
+        this.randomEvent = randomEvent;
     }
 }

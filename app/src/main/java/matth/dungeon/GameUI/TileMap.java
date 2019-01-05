@@ -11,8 +11,10 @@ import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.R;
+import matth.dungeon.RandomEventTile.RandomEventActivity;
 import matth.dungeon.Utility.DungeonInitUtility;
 import matth.dungeon.Utility.FileUtility;
+import matth.dungeon.Utility.LevelTileGenerationUtility;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
 
@@ -59,7 +61,7 @@ public class TileMap {
 
                 image = new ImageView(mainUtility.getCon());
                 image.setId(View.generateViewId());
-                image.setImageResource(mainUtility.getCon().getResources().getIdentifier(getImageType(i, j), "drawable", mainUtility.getCon().getPackageName()));
+                image.setImageResource(mainUtility.getCon().getResources().getIdentifier(LevelTileGenerationUtility.getImageType(getTile(i, j)), "drawable", mainUtility.getCon().getPackageName()));
                 image.setLayoutParams(lp);
                 image.getLayoutParams().width = width;
                 image.getLayoutParams().height = height;
@@ -73,34 +75,6 @@ public class TileMap {
             }
         }
         set.applyTo(map);
-    }
-
-    //TODO move to leveltile
-    private String getImageType(int col, int row) {
-
-        if (getTile(col, row).getType() == LevelTile.PLAYER_POS) {
-            return LevelTile.PLAYER_POS_IMAGE;
-        }
-
-        switch (getTile(col, row).getEvent()) {
-            case LevelTile.ENEMY_EVENT:
-                return LevelTile.ENEMY_EVENT_IMAGE;
-            case LevelTile.ITEM_EVENT:
-                return LevelTile.ITEM_EVENT_IMAGE;
-            case LevelTile.END_POS:
-                return LevelTile.END_POS_IMAGE;
-        }
-
-        switch (getTile(col, row).getType()) {
-            case LevelTile.EMPTY:
-                return LevelTile.EMPTY_IMAGE;
-            case LevelTile.WALL:
-                return LevelTile.WALL_IMAGE;
-            default:
-                break;
-        }
-
-        return "";
     }
 
     public LevelTile getTile(int col, int row) {
@@ -244,6 +218,7 @@ public class TileMap {
             while (cannotGen(itemCol, itemRow));
 
             getTile(itemCol, itemRow).setEvent(LevelTile.ITEM_EVENT);
+            getTile(itemCol, itemRow).setRandomEvent(LevelTileGenerationUtility.genRandomEvent());
         }
     }
 
@@ -329,6 +304,10 @@ public class TileMap {
             intent.putExtra(MainUtility.ENEMIES, getTile(playerCol, playerRow).getEnemies());
             intent.putExtra(mainUtility.BOSS, false);
             mainUtility.getCon().startActivity(intent);
+        }
+
+        if (getTile(playerCol, playerRow).getEvent() == LevelTile.ITEM_EVENT) {
+            Intent intent = new Intent(mainUtility.getCon(), RandomEventActivity.class);
         }
 
 
