@@ -31,7 +31,7 @@ public class LevelTile implements Serializable {
     private int event;
     private boolean visited;
 
-    LevelTile(int type) {
+    public LevelTile(int type) {
         this.type = type;
         this.event = NO_EVENT;
         visited = false;

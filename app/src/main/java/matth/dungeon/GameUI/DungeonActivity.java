@@ -6,8 +6,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import matth.dungeon.R;
 import matth.dungeon.Utility.DungeonInitUtility;
+import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.MainUtility;
 
@@ -76,6 +79,7 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     private void updateText() {
+        ArrayList<ArrayList<LevelTile>> levelMap = FileUtility.loadMap(this);
         int[] playerPos = player.getPlayerPos();
         int col = playerPos[0];
         int row = playerPos[1];

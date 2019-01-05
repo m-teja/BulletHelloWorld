@@ -43,30 +43,23 @@ public class Player {
     }
 
     public void moveUp() {
-        if (!(tileMap.getTile(playerCol, playerRow - 1).getType() == LevelTile.WALL)) {
-            playerRow--;
-            tileMap.setPlayerPos(playerCol, playerRow);
-        }
+        playerRow--;
+        tileMap.setPlayerPos(playerCol, playerRow);
     }
 
     public void moveRight() {
-        if (!(tileMap.getTile(playerCol + 1, playerRow).getType() == LevelTile.WALL)) {
-            playerCol++;
-            tileMap.setPlayerPos(playerCol, playerRow);
-        }
+        playerCol++;
+        tileMap.setPlayerPos(playerCol, playerRow);
     }
 
     public void moveDown() {
-        if (!(tileMap.getTile(playerCol, playerRow + 1).getType() == LevelTile.WALL)) {
-            playerRow++;
-            tileMap.setPlayerPos(playerCol, playerRow);
-        }
+        playerRow++;
+        tileMap.setPlayerPos(playerCol, playerRow);
+
     }
 
     public void moveLeft() {
-        if (!(tileMap.getTile(playerCol - 1, playerRow).getType() == LevelTile.WALL)) {
-            playerCol--;
-            tileMap.setPlayerPos(playerCol, playerRow);
-        }
+        playerCol--;
+        tileMap.setPlayerPos(playerCol, playerRow);
     }
 }
