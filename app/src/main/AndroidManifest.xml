@@ -19,7 +19,8 @@
         <activity android:name=".GameUI.DungeonActivity" />
         <activity android:name=".EnemyTile.EnemyEventActivity" />
         <activity android:name=".PostGameScreens.GameOver" />
-        <activity android:name=".PostGameScreens.GameWin"></activity>
+        <activity android:name=".PostGameScreens.GameWin" />
+        <activity android:name=".RandomEventTile.RandomEventActivity"></activity>
     </application>
 
 </manifest>
