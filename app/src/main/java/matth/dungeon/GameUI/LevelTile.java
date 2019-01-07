@@ -84,4 +84,8 @@ public class LevelTile implements Serializable {
     public void setRandomEvent(int randomEvent) {
         this.randomEvent = RANDOM_EVENT_TYPES.get(randomEvent);
     }
+
+    public Class getRandomEvent() {
+        return randomEvent;
+    }
 }
