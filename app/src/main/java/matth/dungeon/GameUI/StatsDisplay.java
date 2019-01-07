@@ -12,14 +12,19 @@ public class StatsDisplay {
 
     StatsDisplay(MainUtility mainUtility) {
         this.mainUtility = mainUtility;
+        init();
+    }
+
+    private void init() {
+
     }
 
     void toggle() {
-        if (((Activity) mainUtility.getCon()).findViewById(R.id.invDisp).getVisibility() == View.GONE) {
-            ((Activity) mainUtility.getCon()).findViewById(R.id.invDisp).setVisibility(View.VISIBLE);
+        if (((Activity) mainUtility.getCon()).findViewById(R.id.statsDisp).getVisibility() == View.GONE) {
+            ((Activity) mainUtility.getCon()).findViewById(R.id.statsDisp).setVisibility(View.VISIBLE);
         }
         else {
-            ((Activity) mainUtility.getCon()).findViewById(R.id.invDisp).setVisibility(View.GONE);
+            ((Activity) mainUtility.getCon()).findViewById(R.id.statsDisp).setVisibility(View.GONE);
         }
     }
 }

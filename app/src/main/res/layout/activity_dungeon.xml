@@ -212,5 +212,11 @@
         android:elevation="3dp"
         android:visibility="gone" />
 
+    <include
+        android:id="@+id/statsDisp"
+        layout="@layout/dungeon_stats"
+        android:elevation="3dp"
+        android:visibility="gone" />
+
 
 </android.support.constraint.ConstraintLayout>
