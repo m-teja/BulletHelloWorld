@@ -145,6 +145,7 @@ public class TileMap {
 
         if (getTile(col, row).getEvent() == LevelTile.ITEM_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), RandomEventActivity.class);
+            mainUtility.getCon().startActivity(intent);
         }
 
     }

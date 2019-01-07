@@ -1,7 +1,9 @@
 package matth.dungeon.RandomEventTile;
 
 import android.content.Context;
+import android.util.Log;
 
+import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
 
 public class MaxHealthPotionEvent extends RandomEvent {
@@ -17,5 +19,7 @@ public class MaxHealthPotionEvent extends RandomEvent {
     @Override
     public void immediateEffect() {
         playerInfoPassUtility.setMaxHealth(playerInfoPassUtility.getMaxHealth() + 50);
+        FileUtility.savePlayer(playerInfoPassUtility, con);
+        Log.d("test", Float.toString(playerInfoPassUtility.getMaxHealth()));
     }
 }

@@ -26,6 +26,7 @@ public class RandomEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_random_event);
         getTile();
         getEvent(getPlayerInfoPassUtility());
+        initRandomEvent();
     }
 
     private PlayerInfoPassUtility getPlayerInfoPassUtility() {
@@ -50,6 +51,11 @@ public class RandomEventActivity extends AppCompatActivity {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void initRandomEvent() {
+        randomEvent.setText();
+        randomEvent.immediateEffect();
     }
 
 
