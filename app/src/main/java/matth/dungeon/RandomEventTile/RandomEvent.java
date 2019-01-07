@@ -2,6 +2,8 @@ package matth.dungeon.RandomEventTile;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import matth.dungeon.R;
@@ -24,6 +26,11 @@ public abstract class RandomEvent {
     public void setText() {
         TextView description = ((Activity) con).findViewById(R.id.eventInfo);
         description.setText(textDescription());
+    }
+
+    void displayLeaveButton() {
+        Button leave = ((Activity) con).findViewById(R.id.eventToDungeonButton);
+        leave.setVisibility(View.VISIBLE);
     }
 
 }

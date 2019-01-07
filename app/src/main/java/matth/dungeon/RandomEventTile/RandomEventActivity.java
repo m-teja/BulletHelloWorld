@@ -1,12 +1,15 @@
 package matth.dungeon.RandomEventTile;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import matth.dungeon.GameUI.DungeonActivity;
 import matth.dungeon.GameUI.LevelTile;
 import matth.dungeon.GameUI.TileMap;
 import matth.dungeon.R;
@@ -56,6 +59,18 @@ public class RandomEventActivity extends AppCompatActivity {
     private void initRandomEvent() {
         randomEvent.setText();
         randomEvent.immediateEffect();
+    }
+
+    public void changeToDungeon(View view) {
+        Intent intent = new Intent(this, DungeonActivity.class);
+        intent.putExtra(MainUtility.LOAD_SAVED, true);
+        intent.putExtra(MainUtility.DELETE_CURRENT_TILE, true);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //prevent back button
     }
 
 
