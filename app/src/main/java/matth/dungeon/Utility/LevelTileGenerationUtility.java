@@ -1,13 +1,11 @@
 package matth.dungeon.Utility;
 
 import android.content.Context;
-import android.service.quicksettings.Tile;
 
 import java.util.ArrayList;
 
 import matth.dungeon.GameUI.Inventory;
 import matth.dungeon.GameUI.LevelTile;
-import matth.dungeon.GameUI.TileMap;
 
 public class LevelTileGenerationUtility {
 
@@ -135,7 +133,7 @@ public class LevelTileGenerationUtility {
             for (int j = 0; j < numEnemies; j++) {
                 //TODO change enemy generation
                 int randEnemy = (int)(Math.random() * 2);
-                getTile(enemyCol, enemyRow).setEnemy(randEnemy);
+                getTile(enemyCol, enemyRow).addEnemy(randEnemy);
             }
 
         }

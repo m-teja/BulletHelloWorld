@@ -13,10 +13,10 @@ import matth.dungeon.GameUI.DungeonActivity;
 
 public class PlayerUtility {
 
-    private ArrayList<Object> enemies;
+    private ArrayList<Enemy> enemies;
     private PlayerSprite playerSprite;
 
-    public PlayerUtility(ArrayList<Object> enemies, PlayerSprite playerSprite) {
+    public PlayerUtility(ArrayList<Enemy> enemies, PlayerSprite playerSprite) {
         this.enemies = enemies;
         this.playerSprite = playerSprite;
     }
@@ -29,8 +29,8 @@ public class PlayerUtility {
     public void enemyOverlap(PlayerProjectile playerProjectile) {
 
         for (int i = 0; i < enemies.size(); i++) {
-            if ( !((Enemy)enemies.get(i)).isTerminated() && checkOverlap((Enemy)enemies.get(i), playerProjectile.getProjectileImage())) {
-                playerProjectile.effect((Enemy)enemies.get(i));
+            if ( !enemies.get(i).isTerminated() && checkOverlap(enemies.get(i), playerProjectile.getProjectileImage())) {
+                playerProjectile.effect(enemies.get(i));
             }
         }
     }

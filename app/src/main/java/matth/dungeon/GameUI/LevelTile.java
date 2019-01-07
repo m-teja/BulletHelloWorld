@@ -1,6 +1,12 @@
 package matth.dungeon.GameUI;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+
+import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
+import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
+import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 
 public class LevelTile implements Serializable {
 
@@ -21,10 +27,11 @@ public class LevelTile implements Serializable {
     public static final int ITEM_EVENT = 6;
     public static final String ITEM_EVENT_IMAGE = "item";
 
-    public static final String[] ENEMY_TYPES = {"square", "circle", "bossSquare"};
+    private static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
+  //  public static final Enemy[] ENEMY_TYPES = {SquareEnemy.class, CircleEnemy.class, SquareBossEnemy.class};
     public static final String[] RANDOM_EVENT_TYPES = {"healthPotion", "maxHealthPotion"};
 
-    private int[] enemies = new int[ENEMY_TYPES.length];
+    private ArrayList<Class> enemies = new ArrayList<>();
     private int randomEvent;
 
     private int type;
@@ -35,6 +42,13 @@ public class LevelTile implements Serializable {
         this.type = type;
         this.event = NO_EVENT;
         visited = false;
+        initEnemies();
+    }
+
+    private void initEnemies() {
+        ENEMY_TYPES.add(SquareEnemy.class);
+        ENEMY_TYPES.add(CircleEnemy.class);
+        ENEMY_TYPES.add(SquareBossEnemy.class);
     }
 
     public int getType() {
@@ -53,16 +67,12 @@ public class LevelTile implements Serializable {
         return event;
     }
 
-    public void setEnemy(int type) {
-        enemies[type]++;
+    public void addEnemy(int enemy) {
+        enemies.add(ENEMY_TYPES.get(enemy));
     }
 
-    public int[] getEnemies() {
+    public ArrayList<Class> getEnemies() {
         return enemies;
-    }
-
-    public int getRandomEvent() {
-        return randomEvent;
     }
 
     public void setRandomEvent(int randomEvent) {

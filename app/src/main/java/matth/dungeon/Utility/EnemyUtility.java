@@ -16,7 +16,7 @@ import matth.dungeon.GameUI.DungeonActivity;
 public class EnemyUtility {
 
     private PlayerSprite playerSprite;
-    private ArrayList<Object> enemies;
+    private ArrayList<Enemy> enemies;
     private boolean boss;
 
     public EnemyUtility(PlayerSprite playerSprite) {
@@ -49,7 +49,7 @@ public class EnemyUtility {
 
     public void checkDone() {
         for (int i = 0; i < enemies.size(); i++) {
-            if ( !((Enemy)enemies.get(i)).isTerminated() ) {
+            if ( !enemies.get(i).isTerminated() ) {
                 return;
             }
         }
@@ -71,12 +71,12 @@ public class EnemyUtility {
         int distance = (int)((float) screenWidth/(enemies.size() + 1));
         for (int i = 0; i < enemies.size(); i++) {
 
-            spawnEnemy(((Enemy)enemies.get(i)), (i+1) * distance, 200, null, null);
+            spawnEnemy(enemies.get(i), (i+1) * distance, 200, null, null);
 
         }
     }
 
-    public void setEnemies(ArrayList<Object> enemies) {
+    public void setEnemies(ArrayList<Enemy> enemies) {
         this.enemies = enemies;
     }
 

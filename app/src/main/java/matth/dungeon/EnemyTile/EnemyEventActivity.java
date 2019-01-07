@@ -7,13 +7,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 import matth.dungeon.GameUI.DungeonActivity;
+import matth.dungeon.GameUI.LevelTile;
+import matth.dungeon.GameUI.TileMap;
 import matth.dungeon.PostGameScreens.GameOver;
 import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
@@ -28,7 +33,7 @@ public class EnemyEventActivity extends AppCompatActivity {
 
     PlayerSprite playerSprite;
 
-    private ArrayList<Object> enemies;
+    private ArrayList<Enemy> enemies = new ArrayList<>();
     private MainUtility mainUtility;
     private EnemyUtility enemyUtility;
     private PlayerUtility playerUtility;
@@ -50,32 +55,28 @@ public class EnemyEventActivity extends AppCompatActivity {
     }
 
     private void getTileInfo() {
-        Bundle extras = getIntent().getExtras();
 
-        if (extras != null) {
-            int[] temp;
+        ArrayList<ArrayList<LevelTile>> levelMap = FileUtility.loadMap(mainUtility.getCon());
+        int pos[] = TileMap.getPos(levelMap);
 
-            enemies = new ArrayList<>();
-            enemyUtility.setBoss(extras.getBoolean(MainUtility.BOSS));
-            temp = extras.getIntArray(MainUtility.ENEMIES);
+        ArrayList<Class> enemyClasses = levelMap.get(pos[0]).get(pos[1]).getEnemies();
 
-            //have to add new for loop for each enemy, so should probably optimize
-            for (int i = 0; i < temp[0]; i++) {
-                Log.d("test", "square");
-                enemies.add(new SquareEnemy(mainUtility, enemyUtility));
+        Class enemyArgs[] = new Class[2];
+        enemyArgs[0] = MainUtility.class;
+        enemyArgs[1] = EnemyUtility.class;
+        for (int i = 0; i < enemyClasses.size(); i++) {
+            Class<?> classType;
+            classType = enemyClasses.get(i);
+
+            try {
+                enemies.add((Enemy) classType.getDeclaredConstructor(enemyArgs).newInstance(mainUtility, enemyUtility));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
             }
 
-            for (int i = 0; i < temp[1]; i++) {
-                Log.d("test", "circle");
-                enemies.add(new CircleEnemy(mainUtility, enemyUtility));
-            }
-
-            for (int i = 0; i < temp[2]; i++) {
-                Log.d("test", "squareBoss");
-                enemies.add(new SquareBossEnemy(mainUtility, enemyUtility));
-            }
-            enemyUtility.setEnemies(enemies);
         }
+        enemyUtility.setEnemies(enemies);
     }
 
     private void spawnPlayer() {

@@ -111,9 +111,9 @@ public class TileMap {
     public void setPlayerPos(int col, int row) {
         int pos[] = getPos();
         getTile(pos[0], pos[1]).setType(LevelTile.EMPTY);
-        checkTile(col, row);
         getTile(col, row).setType(LevelTile.PLAYER_POS);
         FileUtility.saveMap(mainUtility.getCon(), levelMap);
+        checkTile(col, row);
     }
 
     public int[] getPos() {
@@ -130,11 +130,10 @@ public class TileMap {
                 }
             }
         }
-        int[] pos = {col, row};
-        return pos;
+        return new int[]{col, row};
     }
 
-    public void checkTile(int col, int row) {
+    private void checkTile(int col, int row) {
 
         if (getTile(col, row).getEvent() == LevelTile.END_POS) {
             //temp boss square
@@ -156,5 +155,22 @@ public class TileMap {
             Intent intent = new Intent(mainUtility.getCon(), RandomEventActivity.class);
         }
 
+    }
+
+    public static int[] getPos(ArrayList<ArrayList<LevelTile>> levelMap) {
+
+        int col = 1;
+        int row = 1;
+
+        for (int i = 0; i < levelMap.size(); i++) {
+            for (int j = 0; j < levelMap.get(i).size(); j++) {
+                if (levelMap.get(i).get(j).getType() == LevelTile.PLAYER_POS) {
+                    col = i;
+                    row = j;
+                    break;
+                }
+            }
+        }
+        return new int[]{col, row};
     }
 }
