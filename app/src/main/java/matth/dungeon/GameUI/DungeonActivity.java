@@ -19,6 +19,7 @@ public class DungeonActivity extends AppCompatActivity {
     private PlayerInfoPassUtility playerInfoPassUtility = null;
     private DungeonInitUtility dungeonInitUtility;
     private InventoryDisplay inventoryDisplay;
+    private StatsDisplay statsDisplay;
 
     MainUtility mainUtility;
     TileMap tileMap;
@@ -34,6 +35,7 @@ public class DungeonActivity extends AppCompatActivity {
 
         mainUtility = new MainUtility(this);
         inventoryDisplay = new InventoryDisplay(mainUtility);
+        statsDisplay = new StatsDisplay(mainUtility);
         createTileMap();
         initPlayer();
         updateText();
@@ -65,6 +67,7 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void toggleMap (View view) {
+        //TODO move this to tilemap
         if (findViewById(R.id.mapDisp).getVisibility() == View.GONE) {
             tileMap.buildMap();
             findViewById(R.id.mapDisp).setVisibility(View.VISIBLE);
@@ -76,6 +79,10 @@ public class DungeonActivity extends AppCompatActivity {
 
     public void toggleInventory (View view) {
         inventoryDisplay.toggleInventory();
+    }
+
+    public void toggleStats(View view) {
+        statsDisplay.toggle();
     }
 
     private void updateText() {
