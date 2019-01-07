@@ -1,6 +1,7 @@
 package matth.dungeon.GameUI;
 
 import android.app.Activity;
+import android.support.constraint.ConstraintLayout;
 import android.view.View;
 
 import matth.dungeon.R;
@@ -16,7 +17,12 @@ public class StatsDisplay {
     }
 
     private void init() {
-
+        ConstraintLayout cl = ((Activity) mainUtility.getCon()).findViewById(R.id.statsDisp);
+        int width = (int) (mainUtility.getScreenWidth() * 0.8);
+        cl.getLayoutParams().width = width;
+        cl.getLayoutParams().height = width;
+        cl.setX(mainUtility.getScreenWidth()/2 - width/2);
+        cl.setY(mainUtility.getScreenHeight()/2 - width/2);
     }
 
     void toggle() {
