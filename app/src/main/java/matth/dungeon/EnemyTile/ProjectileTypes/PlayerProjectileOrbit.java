@@ -24,7 +24,7 @@ public class PlayerProjectileOrbit extends PlayerProjectile {
     @Override
     public void effect(Enemy enemy) {
         enemy.takeDamage(damage);
-        delete();
+        deleteAll();
     }
 
     @Override
@@ -53,6 +53,11 @@ public class PlayerProjectileOrbit extends PlayerProjectile {
     @Override
     public void setProjectileName() {
         super.projectileName = PROJECTILE_NAME;
+    }
+
+    @Override
+    public void delete() {
+
     }
 
     private void calcRadius() {

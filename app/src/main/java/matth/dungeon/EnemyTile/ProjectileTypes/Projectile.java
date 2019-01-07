@@ -55,8 +55,8 @@ public abstract class Projectile implements ProjectileBehaviour {
     public abstract void setDamage();
     public abstract void setProjectileName();
 
-    @CallSuper
-    public void delete() {
+    final void deleteAll() {
+        delete();
         Log.d("test", "projectile terminated");
         terminated = true;
         moveProjectile.removeCallbacksAndMessages(null);
@@ -64,6 +64,8 @@ public abstract class Projectile implements ProjectileBehaviour {
 
         deleteImage();
     }
+
+    public abstract void delete();
 
     public void outOfBounds() {
         if (projectileImage.getY() < 0) {

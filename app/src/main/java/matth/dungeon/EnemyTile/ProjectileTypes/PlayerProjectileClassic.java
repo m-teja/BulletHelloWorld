@@ -46,7 +46,7 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     @Override
     public void effect(Enemy enemy) {
         enemy.takeDamage(DAMAGE);
-        delete();
+        deleteAll();
     }
 
     @Override
@@ -57,6 +57,11 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     @Override
     public void setProjectileName() {
         super.projectileName = PROJECTILE_NAME;
+    }
+
+    @Override
+    public void delete() {
+
     }
 }
 //TODO comment everything

@@ -26,7 +26,7 @@ public class PlayerProjectileBounce extends PlayerProjectile {
             enemy.takeDamage(damage);
         }
 
-        delete();
+        deleteAll();
     }
 
     @Override
@@ -52,6 +52,11 @@ public class PlayerProjectileBounce extends PlayerProjectile {
     @Override
     public void setProjectileName() {
         super.projectileName = PROJECTILE_NAME;
+    }
+
+    @Override
+    public void delete() {
+
     }
 
     @Override

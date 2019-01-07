@@ -26,7 +26,7 @@ public class CircleProjectile extends EnemyProjectile {
     @Override
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
-        delete();
+        deleteAll();
     }
 
     @Override
@@ -37,5 +37,10 @@ public class CircleProjectile extends EnemyProjectile {
     @Override
     public void setProjectileName() {
         super.projectileName = PROJECTILE_NAME;
+    }
+
+    @Override
+    public void delete() {
+
     }
 }
