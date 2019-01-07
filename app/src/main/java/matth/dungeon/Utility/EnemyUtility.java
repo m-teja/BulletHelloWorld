@@ -1,17 +1,13 @@
 package matth.dungeon.Utility;
 
-import android.content.Intent;
 import android.graphics.Rect;
-import android.util.Log;
 import android.widget.ImageView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
-import matth.dungeon.GameUI.DungeonActivity;
 
 public class EnemyUtility {
 
@@ -40,12 +36,7 @@ public class EnemyUtility {
         playerSprite.getPlayerImage().getHitRect(playerRect);
         image.getHitRect(imageRect);
 
-        if (playerRect.intersect(imageRect)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return playerRect.intersect(imageRect);
     }
 
     public void checkDone() {

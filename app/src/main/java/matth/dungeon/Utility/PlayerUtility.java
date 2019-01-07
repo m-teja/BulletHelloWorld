@@ -1,15 +1,13 @@
 package matth.dungeon.Utility;
 
-import android.content.Intent;
 import android.graphics.Rect;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
+import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
-import matth.dungeon.GameUI.DungeonActivity;
 
 public class PlayerUtility {
 

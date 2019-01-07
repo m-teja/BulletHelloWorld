@@ -1,13 +1,11 @@
 package matth.dungeon.Utility;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 public class MainUtility {

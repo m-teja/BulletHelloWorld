@@ -113,8 +113,8 @@ public abstract class Enemy implements EnemyBehaviour {
         move.run();
     }
 
-    @CallSuper
-    public void delete() {
+    final void deleteAll() {
+        delete();
         terminated = true;
         moveSprite.removeCallbacksAndMessages(null);
         updatePlayerPosition.removeCallbacksAndMessages(null);
@@ -122,6 +122,8 @@ public abstract class Enemy implements EnemyBehaviour {
         deleteImage();
         enemyUtility.checkDone();
     }
+
+    public abstract void delete();
 
     private void deleteImage() {
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
@@ -242,7 +244,7 @@ public abstract class Enemy implements EnemyBehaviour {
         health -= x;
 
         if (health <= 0) {
-            delete();
+            deleteAll();
         }
     }
 

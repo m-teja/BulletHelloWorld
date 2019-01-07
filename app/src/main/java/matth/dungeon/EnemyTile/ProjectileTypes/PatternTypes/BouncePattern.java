@@ -1,7 +1,6 @@
 package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileBounce;
-import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerUtility;
 

@@ -1,6 +1,5 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
-import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 

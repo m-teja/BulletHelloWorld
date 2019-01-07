@@ -1,8 +1,5 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
-import android.os.Handler;
-
-import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 

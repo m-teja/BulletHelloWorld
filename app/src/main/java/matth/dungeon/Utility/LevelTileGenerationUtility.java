@@ -155,7 +155,7 @@ public class LevelTileGenerationUtility {
         }
     }
 
-    public void genStart() {
+    private void genStart() {
 
         int playerRow;
         int playerCol;
@@ -169,7 +169,7 @@ public class LevelTileGenerationUtility {
         getTile(playerCol, playerRow).setType(LevelTile.PLAYER_POS);
     }
 
-    public void genEnd() {
+    private void genEnd() {
         int col;
         int row;
 
@@ -185,7 +185,7 @@ public class LevelTileGenerationUtility {
         //temp boss adding
     }
 
-    public void genPlayerInfo(Context con) {
+    private void genPlayerInfo(Context con) {
         PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility();
         FileUtility.savePlayer(playerInfoPassUtility, con);
 

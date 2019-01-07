@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
-import matth.dungeon.GameUI.Inventory;
 
 public class PlayerInfoPassUtility implements Serializable {
 

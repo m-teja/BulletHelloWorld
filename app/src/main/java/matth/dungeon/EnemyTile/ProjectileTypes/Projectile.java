@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
-import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;

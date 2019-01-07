@@ -8,19 +8,13 @@ import android.widget.ImageView;
 import java.io.Serializable;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
-import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BouncePattern;
-import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
-import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
-import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileHoming;
-import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileOrbit;
 import matth.dungeon.R;
+import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.PlayerUtility;
-import matth.dungeon.Utility.MainUtility;
 
 import static matth.dungeon.EnemyTile.EnemyEventActivity.LAYOUT_NAME;
-import static matth.dungeon.EnemyTile.EnemyEventActivity.exitLose;
 
 public class PlayerSprite implements Serializable {
 

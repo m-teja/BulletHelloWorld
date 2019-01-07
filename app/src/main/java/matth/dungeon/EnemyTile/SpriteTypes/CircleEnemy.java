@@ -30,13 +30,12 @@ public class CircleEnemy extends Enemy {
 
     @Override
     public void delete() {
-        super.delete();
         circlePattern.delete();
     }
 
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
-        delete();
+        deleteAll();
     }
 
     @Override

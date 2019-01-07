@@ -1,14 +1,8 @@
 package matth.dungeon.EnemyTile.ProjectileTypes;
 
-import android.app.Activity;
-import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.util.Log;
-
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
-import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
-import matth.dungeon.R;
+import matth.dungeon.Utility.PlayerUtility;
 
 public class PlayerProjectileClassic extends PlayerProjectile {
 

@@ -1,15 +1,11 @@
 package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
-import android.os.Handler;
 import android.util.Log;
-import android.view.ViewGroup;
 
-import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
-import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileBounce;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
-import matth.dungeon.Utility.PlayerUtility;
 import matth.dungeon.Utility.MainUtility;
+import matth.dungeon.Utility.PlayerUtility;
 
 public class ClassicPattern extends Pattern {
 

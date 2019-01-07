@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
-import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 

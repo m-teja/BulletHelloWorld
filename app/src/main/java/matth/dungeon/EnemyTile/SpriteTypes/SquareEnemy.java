@@ -1,13 +1,7 @@
 package matth.dungeon.EnemyTile.SpriteTypes;
 
-import android.app.Activity;
-import android.os.Handler;
-import android.support.constraint.ConstraintLayout;
-import android.util.Log;
-
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
-import matth.dungeon.R;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
@@ -22,6 +16,11 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     }
 
     @Override
+    public void delete() {
+
+    }
+
+    @Override
     public void init() {
         runUpdatePlayerPosition.run();
         runUpdateDestination.run();
@@ -31,7 +30,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
     @Override
     public void effect() {
         enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
-        delete();
+        deleteAll();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
-import android.os.Handler;
-
 import matth.dungeon.EnemyTile.ProjectileTypes.CircleProjectile;
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.Utility.EnemyUtility;

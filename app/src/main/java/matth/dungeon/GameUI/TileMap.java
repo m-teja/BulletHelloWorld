@@ -1,7 +1,6 @@
 package matth.dungeon.GameUI;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -17,7 +16,6 @@ import matth.dungeon.Utility.DungeonInitUtility;
 import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.LevelTileGenerationUtility;
 import matth.dungeon.Utility.MainUtility;
-import matth.dungeon.Utility.PlayerInfoPassUtility;
 
 public class TileMap {
 

@@ -2,30 +2,24 @@ package matth.dungeon.EnemyTile;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
-import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.Enemy;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
-import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
-import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 import matth.dungeon.GameUI.DungeonActivity;
 import matth.dungeon.GameUI.LevelTile;
 import matth.dungeon.GameUI.TileMap;
 import matth.dungeon.PostGameScreens.GameOver;
-import matth.dungeon.Utility.FileUtility;
-import matth.dungeon.Utility.PlayerInfoPassUtility;
-import matth.dungeon.Utility.EnemyUtility;
-import matth.dungeon.Utility.PlayerUtility;
-import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.R;
+import matth.dungeon.Utility.EnemyUtility;
+import matth.dungeon.Utility.FileUtility;
+import matth.dungeon.Utility.MainUtility;
+import matth.dungeon.Utility.PlayerInfoPassUtility;
+import matth.dungeon.Utility.PlayerUtility;
 
 public class EnemyEventActivity extends AppCompatActivity {
 
