@@ -151,7 +151,7 @@ public class LevelTileGenerationUtility {
             while (cannotGen(itemCol, itemRow));
 
             getTile(itemCol, itemRow).setEvent(LevelTile.ITEM_EVENT);
-            getTile(itemCol, itemRow).setRandomEvent(LevelTileGenerationUtility.genRandomEvent());
+            getTile(itemCol, itemRow).setRandomEvent(genRandomEvent());
         }
     }
 
@@ -215,9 +215,9 @@ public class LevelTileGenerationUtility {
         return pos;
     }
 
-    private static int genRandomEvent() {
+    private int genRandomEvent() {
 
-        return (int)(Math.random() * LevelTile.RANDOM_EVENT_TYPES.length);
+        return (int)(Math.random() * LevelTile.RANDOM_EVENT_TYPES.size());
     }
 
     private LevelTile getTile(int col, int row) {

@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
+import matth.dungeon.RandomEventTile.HealthPotionEvent;
+import matth.dungeon.RandomEventTile.MaxHealthPotionEvent;
 
 public class LevelTile implements Serializable {
 
@@ -26,12 +28,11 @@ public class LevelTile implements Serializable {
     public static final int ITEM_EVENT = 6;
     public static final String ITEM_EVENT_IMAGE = "item";
 
-    private static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
-  //  public static final Enemy[] ENEMY_TYPES = {SquareEnemy.class, CircleEnemy.class, SquareBossEnemy.class};
-    public static final String[] RANDOM_EVENT_TYPES = {"healthPotion", "maxHealthPotion"};
+    public static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
+    public static final ArrayList<Class<?>> RANDOM_EVENT_TYPES = new ArrayList<>();
 
     private ArrayList<Class> enemies = new ArrayList<>();
-    private int randomEvent;
+    private Class randomEvent;
 
     private int type;
     private int event;
@@ -42,6 +43,12 @@ public class LevelTile implements Serializable {
         this.event = NO_EVENT;
         visited = false;
         initEnemies();
+        initRandomEvents();
+    }
+
+    private void initRandomEvents() {
+        RANDOM_EVENT_TYPES.add(HealthPotionEvent.class);
+        RANDOM_EVENT_TYPES.add(MaxHealthPotionEvent.class);
     }
 
     private void initEnemies() {
@@ -75,6 +82,6 @@ public class LevelTile implements Serializable {
     }
 
     public void setRandomEvent(int randomEvent) {
-        this.randomEvent = randomEvent;
+        this.randomEvent = RANDOM_EVENT_TYPES.get(randomEvent);
     }
 }
