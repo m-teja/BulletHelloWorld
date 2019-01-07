@@ -34,6 +34,14 @@ public class PlayerInfoPassUtility implements Serializable {
         return health;
     }
 
+    public void setHealth(float health) {
+        this.health = health;
+    }
+
+    public void setMaxHealth(float maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
     public float getMaxHealth() {
         return maxHealth;
     }

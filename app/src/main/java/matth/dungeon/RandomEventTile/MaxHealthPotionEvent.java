@@ -11,6 +11,11 @@ public class MaxHealthPotionEvent extends RandomEvent {
 
     @Override
     public String textDescription() {
-        return null;
+        return "Your maximum health has been increased";
+    }
+
+    @Override
+    public void immediateEffect() {
+        playerInfoPassUtility.setMaxHealth(playerInfoPassUtility.getMaxHealth() + 50);
     }
 }

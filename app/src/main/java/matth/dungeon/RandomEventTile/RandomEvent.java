@@ -15,11 +15,14 @@ public abstract class RandomEvent {
     public RandomEvent(PlayerInfoPassUtility playerInfoPassUtility, Context con) {
         this.playerInfoPassUtility = playerInfoPassUtility;
         this.con = con;
+        setText();
+        immediateEffect();
     }
 
     public abstract String textDescription();
+    public abstract void immediateEffect();
 
-    public void setText() {
+    private void setText() {
         TextView description = ((Activity) con).findViewById(R.id.patternDescription);
         description.setText(textDescription());
     }

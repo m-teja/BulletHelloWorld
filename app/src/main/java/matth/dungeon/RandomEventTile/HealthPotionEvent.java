@@ -12,6 +12,11 @@ public class HealthPotionEvent extends RandomEvent {
 
     @Override
     public String textDescription() {
-        return null;
+        return "Your health has been restored";
+    }
+
+    @Override
+    public void immediateEffect() {
+        playerInfoPassUtility.setHealth(playerInfoPassUtility.getMaxHealth());
     }
 }
