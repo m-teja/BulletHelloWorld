@@ -136,18 +136,12 @@ public class TileMap {
     private void checkTile(int col, int row) {
 
         if (getTile(col, row).getEvent() == LevelTile.END_POS) {
-            //temp boss square
-            int[] boss = {0, 0, 1};
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
-            intent.putExtra(MainUtility.ENEMIES, boss);
-            intent.putExtra(MainUtility.BOSS, true);
             mainUtility.getCon().startActivity(intent);
         }
 
         if (getTile(col, row).getEvent() == LevelTile.ENEMY_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
-            intent.putExtra(MainUtility.ENEMIES, getTile(col, row).getEnemies());
-            intent.putExtra(MainUtility.BOSS, false);
             mainUtility.getCon().startActivity(intent);
         }
 

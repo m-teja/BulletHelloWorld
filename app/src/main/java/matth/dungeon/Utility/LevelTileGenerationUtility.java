@@ -180,6 +180,9 @@ public class LevelTileGenerationUtility {
         while(cannotGen(col, row));
 
         getTile(col, row).setEvent(LevelTile.END_POS);
+
+        getTile(col, row).addEnemy(2);
+        //temp boss adding
     }
 
     public void genPlayerInfo(Context con) {

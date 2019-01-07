@@ -38,6 +38,8 @@ public class EnemyEventActivity extends AppCompatActivity {
     private EnemyUtility enemyUtility;
     private PlayerUtility playerUtility;
 
+    private LevelTile levelTile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,7 @@ public class EnemyEventActivity extends AppCompatActivity {
 
         mainUtility = new MainUtility(this);
         spawnPlayer();
-        enemyUtility = new EnemyUtility(playerSprite);
+        enemyUtility = new EnemyUtility(playerSprite, this);
 
         getTileInfo();
         spawnEnemies();
@@ -59,7 +61,8 @@ public class EnemyEventActivity extends AppCompatActivity {
         ArrayList<ArrayList<LevelTile>> levelMap = FileUtility.loadMap(mainUtility.getCon());
         int pos[] = TileMap.getPos(levelMap);
 
-        ArrayList<Class> enemyClasses = levelMap.get(pos[0]).get(pos[1]).getEnemies();
+        levelTile = levelMap.get(pos[0]).get(pos[1]);
+        ArrayList<Class> enemyClasses = levelTile.getEnemies();
 
         Class enemyArgs[] = new Class[2];
         enemyArgs[0] = MainUtility.class;
@@ -88,7 +91,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         enemyUtility.spawnAllEnemies(mainUtility.getScreenWidth());
     }
 
-    public static void exitWin(PlayerSprite playerSprite, boolean boss) {
+    public void exitWin() {
         Intent intent = new Intent(playerSprite.getCon(), DungeonActivity.class);
 
         PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite);
@@ -96,7 +99,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         intent.putExtra(MainUtility.LOAD_PLAYER, true);
         intent.putExtra(MainUtility.DELETE_CURRENT_TILE, true);
 
-        if (boss) {
+        if (checkBoss()) {
             intent.putExtra(MainUtility.LOAD_SAVED, false);
         }
         else {
@@ -104,6 +107,10 @@ public class EnemyEventActivity extends AppCompatActivity {
         }
 
         playerSprite.getCon().startActivity(intent);
+    }
+
+    private boolean checkBoss() {
+        return levelTile.getEvent() == LevelTile.END_POS;
     }
 
     public static void exitLose(Context con) {

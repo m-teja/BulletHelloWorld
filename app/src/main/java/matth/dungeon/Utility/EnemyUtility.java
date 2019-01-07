@@ -16,11 +16,12 @@ import matth.dungeon.GameUI.DungeonActivity;
 public class EnemyUtility {
 
     private PlayerSprite playerSprite;
+    private EnemyEventActivity enemyEventActivity;
     private ArrayList<Enemy> enemies;
-    private boolean boss;
 
-    public EnemyUtility(PlayerSprite playerSprite) {
+    public EnemyUtility(PlayerSprite playerSprite, EnemyEventActivity enemyEventActivity) {
         this.playerSprite = playerSprite;
+        this.enemyEventActivity = enemyEventActivity;
     }
 
     public static void moveImage(ImageView image, float x, float y) {
@@ -54,7 +55,7 @@ public class EnemyUtility {
             }
         }
 
-        EnemyEventActivity.exitWin(playerSprite, boss);
+        enemyEventActivity.exitWin();
     }
 
     public void addEnemy(Enemy enemy, float x, float y, Integer width, Integer height) {
@@ -62,7 +63,7 @@ public class EnemyUtility {
         spawnEnemy(enemy, x, y, width, height);
     }
 
-    public void spawnEnemy(Enemy enemy, float x, float y, Integer width, Integer height) {
+    private void spawnEnemy(Enemy enemy, float x, float y, Integer width, Integer height) {
         enemy.spawnSprite(x, y, width, height);
         enemy.init();
     }
@@ -78,9 +79,5 @@ public class EnemyUtility {
 
     public void setEnemies(ArrayList<Enemy> enemies) {
         this.enemies = enemies;
-    }
-
-    public void setBoss(boolean boss) {
-        this.boss = boss;
     }
 }
