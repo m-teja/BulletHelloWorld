@@ -8,10 +8,20 @@
     android:id="@+id/enemyLay">
 
     <ImageView
+        android:id="@+id/backgroundHealthBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/darker_gray" />
+
+    <ImageView
         android:id="@+id/healthBar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/background_dark" />
+
+
 </android.support.constraint.ConstraintLayout>

@@ -7,8 +7,8 @@ import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 
 public class PlayerInfoPassUtility implements Serializable {
 
-    private final float DEFAULT_HEALTH = 100;
-    private final float DEFAULT_MAX_HEALTH = 100;
+    private final float DEFAULT_HEALTH = 300;
+    private final float DEFAULT_MAX_HEALTH = 300;
     private final int DEFAULT_PATTERN = Pattern.CLASSIC_PATTERN;
     private final int DEFAULT_LEVEL = 1;
 

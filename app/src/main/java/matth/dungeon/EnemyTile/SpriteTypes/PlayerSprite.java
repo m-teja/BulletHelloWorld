@@ -65,6 +65,13 @@ public class PlayerSprite implements Serializable {
         healthBar.setY(0);
         healthBar.getLayoutParams().width = mainUtility.getScreenWidth();
         healthBar.getLayoutParams().height = 0;
+
+        ImageView backgroundHealthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.backgroundHealthBar);
+        backgroundHealthBar.setX(0);
+        backgroundHealthBar.setY(0);
+        backgroundHealthBar.getLayoutParams().width = mainUtility.getScreenWidth();
+        backgroundHealthBar.getLayoutParams().height = mainUtility.getScreenHeight();
+
         updateHealthBar();
     }
 
@@ -96,18 +103,23 @@ public class PlayerSprite implements Serializable {
 
     private void colourHealthBar() {
         ImageView healthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.healthBar);
+        ImageView backgroundHealthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.backgroundHealthBar);
 
         if (health <= 100) {
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.black));
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.gray));
+            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.black));
         }
         else if (health > 100 && health <= 200) {
             healthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
+            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.gray));
         }
         else if (health > 200 && health <= 300) {
             healthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
+            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
         }
         else if (health > 300 && health <= 400) {
             healthBar.setColorFilter(getCon().getResources().getColor(R.color.green));
+            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
         }
     }
 
