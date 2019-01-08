@@ -71,5 +71,10 @@ public class ClassicPattern extends Pattern {
     public void getSpawnDelay() {
         super.spawnDelay = 250;
     }
+
+    @Override
+    public void delete() {
+
+    }
 }
 //TODO make initCheck into utility

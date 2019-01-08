@@ -40,4 +40,9 @@ public class HomingPattern extends Pattern {
     public void getSpawnDelay() {
         super.spawnDelay = 600;
     }
+
+    @Override
+    public void delete() {
+
+    }
 }

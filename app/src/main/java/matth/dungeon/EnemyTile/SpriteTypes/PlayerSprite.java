@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import java.io.Serializable;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.MainUtility;
@@ -44,18 +45,18 @@ public class PlayerSprite implements Serializable {
     }
 
     public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
-//        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 3);
-//        classicPattern.init();
+        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 2);
+        classicPattern.init();
 
 //        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
 //        bouncePattern.init();
 
-        HomingPattern homingPattern = new HomingPattern(mainUtility, playerUtility);
-        homingPattern.init();
+//        HomingPattern homingPattern = new HomingPattern(mainUtility, playerUtility);
+//        homingPattern.init();
         // update this to check for which pattern
     }
 
-    public void setPlayerImage() {
+    private void setPlayerImage() {
        playerImage = mainUtility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, mainUtility.getScreenWidth()/2, (float)(mainUtility.getScreenHeight()/1.5));
     }
 
@@ -106,20 +107,24 @@ public class PlayerSprite implements Serializable {
         ImageView backgroundHealthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.backgroundHealthBar);
 
         if (health <= 100) {
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.gray));
             backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.black));
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.gray));
         }
         else if (health > 100 && health <= 200) {
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
             backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.gray));
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
         }
         else if (health > 200 && health <= 300) {
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
             backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
         }
         else if (health > 300 && health <= 400) {
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.green));
             backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.green));
+        }
+        else if (health > 400 && health <= 500) {
+            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.green));
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.purple));
         }
     }
 

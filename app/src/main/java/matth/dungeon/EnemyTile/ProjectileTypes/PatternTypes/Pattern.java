@@ -26,10 +26,12 @@ public abstract class Pattern implements PatternBehaviour {
     public abstract void spawnPattern();
     public abstract void getSpawnDelay();
 
-    @CallSuper
-    public void delete() {
+    public final void deleteAll() {
+        delete();
         spawnProjectileDelay.removeCallbacksAndMessages(null);
     }
+
+    public abstract void delete();
 
     private void initCheck() {
 
@@ -62,7 +64,7 @@ public abstract class Pattern implements PatternBehaviour {
                 check.postDelayed(runCheck, CHECK_DELAY);
             }
             else {
-                delete();
+                deleteAll();
                 terminated = true;
                 check.removeCallbacksAndMessages(null);
             }

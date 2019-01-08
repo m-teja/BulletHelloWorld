@@ -36,4 +36,9 @@ public class CirclePattern extends Pattern {
     public void getSpawnDelay() {
         super.spawnDelay = 300;
     }
+
+    @Override
+    public void delete() {
+
+    }
 }

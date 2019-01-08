@@ -37,4 +37,10 @@ public class BouncePattern extends Pattern {
     public void getSpawnDelay() {
         super.spawnDelay = 400;
     }
+
+    @Override
+    public void delete() {
+
+
+    }
 }
