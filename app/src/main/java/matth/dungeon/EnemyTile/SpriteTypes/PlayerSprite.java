@@ -2,6 +2,7 @@ package matth.dungeon.EnemyTile.SpriteTypes;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -83,7 +84,31 @@ public class PlayerSprite implements Serializable {
 
     private void updateHealthBar() {
         ImageView healthBar = ((Activity)mainUtility.getCon()).findViewById(R.id.healthBar);
-        healthBar.getLayoutParams().height = mainUtility.getScreenHeight() - (int)(mainUtility.getScreenHeight() * (health/maxHealth));
+
+        float healthBarHeight = health % 100;
+        if (healthBarHeight == 0.0) {
+            healthBarHeight = 100;
+        }
+
+        healthBar.getLayoutParams().height = (int)(mainUtility.getScreenHeight() * (healthBarHeight/100));
+        colourHealthBar();
+    }
+
+    private void colourHealthBar() {
+        ImageView healthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.healthBar);
+
+        if (health <= 100) {
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.black));
+        }
+        else if (health > 100 && health <= 200) {
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
+        }
+        else if (health > 200 && health <= 300) {
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
+        }
+        else if (health > 300 && health <= 400) {
+            healthBar.setColorFilter(getCon().getResources().getColor(R.color.green));
+        }
     }
 
     public ImageView getPlayerImage() {
