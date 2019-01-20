@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
@@ -14,6 +15,7 @@ import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BouncePattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
+import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectile;
 import matth.dungeon.R;
 import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
@@ -60,17 +62,24 @@ public class PlayerSprite implements Serializable {
         patternArgs[1] = PlayerUtility.class;
         for (int i = 0; i < patterns.size(); i++) {
             Class<?> classType = patterns.get(i);
-            
+
+            try {
+                Pattern pattern = (Pattern)classType.getDeclaredConstructor(patternArgs).newInstance(mainUtility, playerUtility);
+                pattern.init();
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
-        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 2);
-        classicPattern.init();
-
-        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
-        bouncePattern.init();
-
-        HomingPattern homingPattern = new HomingPattern(mainUtility, playerUtility);
-        homingPattern.init();
+//
+//        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 2);
+//        classicPattern.init();
+//
+//        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
+//        bouncePattern.init();
+//
+//        HomingPattern homingPattern = new HomingPattern(mainUtility, playerUtility);
+//        homingPattern.init();
         // update this to check for which pattern
     }
 

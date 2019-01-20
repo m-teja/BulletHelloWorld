@@ -3,6 +3,7 @@ package matth.dungeon.Utility;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
@@ -11,7 +12,7 @@ public class PlayerInfoPassUtility implements Serializable {
 
     private final float DEFAULT_HEALTH = 400;
     private final float DEFAULT_MAX_HEALTH = 400;
-    private final Class DEFAULT_PATTERN = PlayerProjectileClassic.class;
+    private final Class DEFAULT_PATTERN = ClassicPattern.class;
     private final int DEFAULT_LEVEL = 1;
 
     private float health;

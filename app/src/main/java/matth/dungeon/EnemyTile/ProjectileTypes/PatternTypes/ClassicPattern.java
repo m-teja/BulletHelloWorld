@@ -14,13 +14,18 @@ public class ClassicPattern extends Pattern {
     private MainUtility mainUtility;
     private PlayerUtility playerUtility;
 
-    private int level;
+    private int level = 1;
 
     public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility, int level) {
         super();
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
         this.level = level;
+    }
+    public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
+        super();
+        this.mainUtility = mainUtility;
+        this.playerUtility = playerUtility;
     }
 
     @Override
