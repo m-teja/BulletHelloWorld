@@ -37,9 +37,9 @@ public class PlayerHealthBar {
         if (healthBarHeight == 0.0) {
             healthBarHeight = 100;
         }
-
-        healthBar.getLayoutParams().height = (int)(mainUtility.getScreenHeight() * (healthBarHeight/100));
         colourHealthBar(health);
+        healthBar.getLayoutParams().height = (int)(mainUtility.getScreenHeight() * (healthBarHeight/100));
+
     }
 
     private void colourHealthBar(float health) {

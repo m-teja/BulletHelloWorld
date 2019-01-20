@@ -62,8 +62,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         enemyArgs[0] = MainUtility.class;
         enemyArgs[1] = EnemyUtility.class;
         for (int i = 0; i < enemyClasses.size(); i++) {
-            Class<?> classType;
-            classType = enemyClasses.get(i);
+            Class<?> classType = enemyClasses.get(i);
 
             try {
                 enemies.add((Enemy) classType.getDeclaredConstructor(enemyArgs).newInstance(mainUtility, enemyUtility));

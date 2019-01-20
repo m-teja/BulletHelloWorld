@@ -7,12 +7,15 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.EnemyEventActivity;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BouncePattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.R;
+import matth.dungeon.Utility.EnemyUtility;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
 import matth.dungeon.Utility.PlayerUtility;
@@ -25,38 +28,49 @@ public class PlayerSprite implements Serializable {
 
     private ImageView playerImage;
     private PlayerHealthBar playerHealthBar;
+    private PlayerInfoPassUtility playerInfoPassUtility;
 
     private float maxHealth = 100;
     private float health = 100;
-    private Pattern pattern;
-
     private boolean terminated = false;
 
     private MainUtility mainUtility;
 
     public PlayerSprite(MainUtility mainUtility, PlayerInfoPassUtility playerInfoPassUtility) {
         this.mainUtility = mainUtility;
-        getPlayerInfo(playerInfoPassUtility);
+        this.playerInfoPassUtility = playerInfoPassUtility;
+
+        getPlayerInfo();
         playerHealthBar = new PlayerHealthBar(mainUtility);
         playerHealthBar.initHealthBar(health);
         setPlayerImage();
     }
 
-    private void getPlayerInfo(PlayerInfoPassUtility playerInfoPassUtility) {
+    private void getPlayerInfo() {
         maxHealth = playerInfoPassUtility.getMaxHealth();
         health = playerInfoPassUtility.getHealth();
 
     }
 
     public void initProjectile(MainUtility mainUtility, PlayerUtility playerUtility) {
+        ArrayList<Class<?>> patterns = playerInfoPassUtility.getUnlockedPatterns();
+
+        Class patternArgs[] = new Class[2];
+        patternArgs[0] = MainUtility.class;
+        patternArgs[1] = PlayerUtility.class;
+        for (int i = 0; i < patterns.size(); i++) {
+            Class<?> classType = patterns.get(i);
+            
+        }
+
         ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 2);
         classicPattern.init();
 
-//        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
-//        bouncePattern.init();
+        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
+        bouncePattern.init();
 
-//        HomingPattern homingPattern = new HomingPattern(mainUtility, playerUtility);
-//        homingPattern.init();
+        HomingPattern homingPattern = new HomingPattern(mainUtility, playerUtility);
+        homingPattern.init();
         // update this to check for which pattern
     }
 

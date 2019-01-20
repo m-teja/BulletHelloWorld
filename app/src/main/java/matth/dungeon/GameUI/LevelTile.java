@@ -28,7 +28,7 @@ public class LevelTile implements Serializable {
     public static final int ITEM_EVENT = 6;
     public static final String ITEM_EVENT_IMAGE = "item";
 
-    public static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
+    private static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
     public static final ArrayList<Class<?>> RANDOM_EVENT_TYPES = new ArrayList<>();
 
     private ArrayList<Class> enemies = new ArrayList<>();
