@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
+import matth.dungeon.EnemyTile.SpriteTypes.TriangleEnemy;
 import matth.dungeon.RandomEventTile.HealthPotionEvent;
 import matth.dungeon.RandomEventTile.MaxHealthPotionEvent;
 import matth.dungeon.RandomEventTile.PatternGetEvent;
@@ -56,6 +57,7 @@ public class LevelTile implements Serializable {
     private void initEnemies() {
         ENEMY_TYPES.add(SquareEnemy.class);
         ENEMY_TYPES.add(CircleEnemy.class);
+        ENEMY_TYPES.add(TriangleEnemy.class);
         ENEMY_TYPES.add(SquareBossEnemy.class);
     }
 
