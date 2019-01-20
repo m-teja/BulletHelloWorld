@@ -128,11 +128,11 @@ public class LevelTileGenerationUtility {
 
             getTile(enemyCol, enemyRow).setEvent(LevelTile.ENEMY_EVENT);
 
-            int numEnemies = (int)(Math.random() * 4) + 1;
+            int numEnemies = (int)(Math.random() * 4) + 2;
 
             for (int j = 0; j < numEnemies; j++) {
                 //TODO change enemy generation
-                int randEnemy = (int)(Math.random() * 2);
+                int randEnemy = (int)(Math.random() * LevelTile.ENEMY_TYPES.size());
                 getTile(enemyCol, enemyRow).addEnemy(randEnemy);
             }
 
@@ -181,7 +181,7 @@ public class LevelTileGenerationUtility {
 
         getTile(col, row).setEvent(LevelTile.END_POS);
 
-        getTile(col, row).addEnemy(2);
+        getTile(col, row).addBoss(0);
         //temp boss adding
     }
 

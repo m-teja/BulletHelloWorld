@@ -57,10 +57,13 @@ public class EnemyEventActivity extends AppCompatActivity {
 
         levelTile = levelMap.get(pos[0]).get(pos[1]);
         ArrayList<Class> enemyClasses = levelTile.getEnemies();
+        ArrayList<Class> bossClasses = levelTile.getBosses();
 
         Class enemyArgs[] = new Class[2];
         enemyArgs[0] = MainUtility.class;
         enemyArgs[1] = EnemyUtility.class;
+
+        //get normal enemies
         for (int i = 0; i < enemyClasses.size(); i++) {
             Class<?> classType = enemyClasses.get(i);
 
@@ -70,7 +73,18 @@ public class EnemyEventActivity extends AppCompatActivity {
             catch (Exception e) {
                 e.printStackTrace();
             }
+        }
 
+        //get bosses
+        for (int i = 0; i < bossClasses.size(); i++) {
+            Class<?> classType = bossClasses.get(i);
+
+            try {
+                enemies.add((Enemy) classType.getDeclaredConstructor(enemyArgs).newInstance(mainUtility, enemyUtility));
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         enemyUtility.setEnemies(enemies);
     }

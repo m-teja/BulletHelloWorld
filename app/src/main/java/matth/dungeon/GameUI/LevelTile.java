@@ -30,10 +30,12 @@ public class LevelTile implements Serializable {
     public static final int ITEM_EVENT = 6;
     public static final String ITEM_EVENT_IMAGE = "item";
 
-    private static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
+    public static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
+    private static final ArrayList<Class<?>> ENEMY_BOSS_TYPES = new ArrayList<>();
     public static final ArrayList<Class<?>> RANDOM_EVENT_TYPES = new ArrayList<>();
 
     private ArrayList<Class> enemies = new ArrayList<>();
+    private ArrayList<Class> bosses = new ArrayList<>();
     private Class randomEvent;
 
     private int type;
@@ -58,7 +60,8 @@ public class LevelTile implements Serializable {
         ENEMY_TYPES.add(SquareEnemy.class);
         ENEMY_TYPES.add(CircleEnemy.class);
         ENEMY_TYPES.add(TriangleEnemy.class);
-        ENEMY_TYPES.add(SquareBossEnemy.class);
+
+        ENEMY_BOSS_TYPES.add(SquareBossEnemy.class);
     }
 
     public int getType() {
@@ -83,6 +86,14 @@ public class LevelTile implements Serializable {
 
     public ArrayList<Class> getEnemies() {
         return enemies;
+    }
+
+    public void addBoss(int boss) {
+        bosses.add(ENEMY_BOSS_TYPES.get(boss));
+    }
+
+    public ArrayList<Class> getBosses() {
+        return bosses;
     }
 
     public void setRandomEvent(int randomEvent) {
