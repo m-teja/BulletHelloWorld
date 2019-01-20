@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
@@ -31,6 +32,7 @@ public class PlayerInfoPassUtility implements Serializable {
         this.maxHealth = DEFAULT_MAX_HEALTH;
         this.unlockedPatterns = new ArrayList<>();
         this.unlockedPatterns.add(DEFAULT_PATTERN);
+        this.unlockedPatterns.add(HomingPattern.class);
         this.level = DEFAULT_LEVEL;
     }
 
@@ -50,8 +52,13 @@ public class PlayerInfoPassUtility implements Serializable {
         return maxHealth;
     }
 
-    public void setPattern(Class pattern) {
-        this.unlockedPatterns.add(pattern);
+    public void addPattern(Class pattern) {
+
+        for (int i = 0; i < unlockedPatterns.size(); i++) {
+            if (unlockedPatterns.get(i) != pattern) {
+                this.unlockedPatterns.add(pattern);
+            }
+        }
     }
 
     public void setLevel(int level) {

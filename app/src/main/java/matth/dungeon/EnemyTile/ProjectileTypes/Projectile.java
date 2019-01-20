@@ -67,7 +67,7 @@ public abstract class Projectile implements ProjectileBehaviour {
     }
 
     public void outOfBounds() {
-        if (projectileImage.getY() < 200) {
+        if (projectileImage.getY() < 0) {
             deleteAll();
         }
         if (projectileImage.getY() > mainUtility.getScreenHeight()) {
