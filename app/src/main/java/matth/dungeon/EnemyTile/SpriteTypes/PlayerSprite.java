@@ -11,6 +11,7 @@ import java.io.Serializable;
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.R;
 import matth.dungeon.Utility.MainUtility;
 import matth.dungeon.Utility.PlayerInfoPassUtility;
@@ -20,12 +21,13 @@ import static matth.dungeon.EnemyTile.EnemyEventActivity.LAYOUT_NAME;
 
 public class PlayerSprite implements Serializable {
 
-    public static String IMAGE_NAME = "player_sprite";
+    private static String IMAGE_NAME = "player_sprite";
 
     private ImageView playerImage;
 
     private float maxHealth = 100;
     private float health = 100;
+    private Pattern pattern;
 
     private boolean terminated = false;
 

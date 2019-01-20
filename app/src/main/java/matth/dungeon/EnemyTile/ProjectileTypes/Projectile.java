@@ -54,6 +54,7 @@ public abstract class Projectile implements ProjectileBehaviour {
     public abstract void movePattern();
     public abstract void setDamage();
     public abstract void setProjectileName();
+    public abstract void delete();
 
     final void deleteAll() {
         delete();
@@ -65,20 +66,18 @@ public abstract class Projectile implements ProjectileBehaviour {
         deleteImage();
     }
 
-    public abstract void delete();
-
     public void outOfBounds() {
-        if (projectileImage.getY() < 0) {
-            delete();
+        if (projectileImage.getY() < 200) {
+            deleteAll();
         }
         if (projectileImage.getY() > mainUtility.getScreenHeight()) {
-            delete();
+            deleteAll();
         }
         if (projectileImage.getX() < 0) {
-            delete();
+            deleteAll();
         }
         if (projectileImage.getY() > mainUtility.getScreenHeight()) {
-            delete();
+            deleteAll();
         }
     }
 
