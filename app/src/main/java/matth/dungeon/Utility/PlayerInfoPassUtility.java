@@ -28,7 +28,6 @@ public class PlayerInfoPassUtility implements Serializable {
         this.maxHealth = DEFAULT_MAX_HEALTH;
         this.unlockedPatterns = new ArrayList<>();
         this.unlockedPatterns.add(DEFAULT_PATTERN);
-        this.unlockedPatterns.add(HomingPattern.class);
         this.level = DEFAULT_LEVEL;
     }
 
@@ -57,10 +56,6 @@ public class PlayerInfoPassUtility implements Serializable {
         }
         this.unlockedPatterns.add(pattern);
         return true;
-    }
-
-    public boolean isAllUnlocked() {
-        return LevelTile.RANDOM_EVENT_TYPES.size() == unlockedPatterns.size();
     }
 
     public void setLevel(int level) {

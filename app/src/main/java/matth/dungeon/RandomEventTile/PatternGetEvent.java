@@ -39,13 +39,17 @@ public class PatternGetEvent extends RandomEvent {
     }
 
     private void addRandomPattern() {
-        Class classType;
-        do {
-            classType = possiblePatterns.get((int)(Math.random() * possiblePatterns.size()));
-        }
-        while (!playerInfoPassUtility.addPattern(classType) && !playerInfoPassUtility.isAllUnlocked());
+        Class classType = possiblePatterns.get((int)(Math.random() * possiblePatterns.size()));
 
-        text = "You have received a new pattern";
+        boolean success = playerInfoPassUtility.addPattern(classType);
+
+        if (success) {
+            text = "You have received a new pattern";
+        }
+        else {
+            text = "fix this later me";
+        }
+
         FileUtility.savePlayer(playerInfoPassUtility, con);
         setText();
         displayLeaveButton();
