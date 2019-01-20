@@ -8,6 +8,7 @@ import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PlayerProjectileClassic;
 import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
+import matth.dungeon.GameUI.LevelTile;
 
 public class PlayerInfoPassUtility implements Serializable {
 
@@ -21,11 +22,6 @@ public class PlayerInfoPassUtility implements Serializable {
 
     private ArrayList<Class<?>> unlockedPatterns;
     private int level;
-
-    public PlayerInfoPassUtility(PlayerSprite playerSprite) {
-        this.health = playerSprite.getHealth();
-        this.maxHealth = playerSprite.getMaxHealth();
-    }
 
     public PlayerInfoPassUtility() {
         this.health = DEFAULT_HEALTH;
@@ -52,13 +48,19 @@ public class PlayerInfoPassUtility implements Serializable {
         return maxHealth;
     }
 
-    public void addPattern(Class pattern) {
+    public boolean addPattern(Class pattern) {
 
         for (int i = 0; i < unlockedPatterns.size(); i++) {
-            if (unlockedPatterns.get(i) != pattern) {
-                this.unlockedPatterns.add(pattern);
+            if (unlockedPatterns.get(i) == pattern) {
+                return false;
             }
         }
+        this.unlockedPatterns.add(pattern);
+        return true;
+    }
+
+    public boolean isAllUnlocked() {
+        return LevelTile.RANDOM_EVENT_TYPES.size() == unlockedPatterns.size();
     }
 
     public void setLevel(int level) {

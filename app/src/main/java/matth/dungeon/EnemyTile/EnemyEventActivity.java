@@ -85,9 +85,11 @@ public class EnemyEventActivity extends AppCompatActivity {
     }
 
     public void exitWin() {
-        Intent intent = new Intent(playerSprite.getCon(), DungeonActivity.class);
+        Intent intent = new Intent(mainUtility.getCon(), DungeonActivity.class);
+        PlayerInfoPassUtility playerInfoPassUtility = FileUtility.loadPlayer(mainUtility.getCon());
+        playerInfoPassUtility.setHealth(playerSprite.getHealth());
+        playerInfoPassUtility.setHealth(playerSprite.getMaxHealth());
 
-        PlayerInfoPassUtility playerInfoPassUtility = new PlayerInfoPassUtility(playerSprite);
         FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
         intent.putExtra(MainUtility.LOAD_PLAYER, true);
         intent.putExtra(MainUtility.DELETE_CURRENT_TILE, true);

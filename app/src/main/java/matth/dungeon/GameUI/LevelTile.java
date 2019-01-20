@@ -8,6 +8,7 @@ import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
 import matth.dungeon.RandomEventTile.HealthPotionEvent;
 import matth.dungeon.RandomEventTile.MaxHealthPotionEvent;
+import matth.dungeon.RandomEventTile.PatternGetEvent;
 
 public class LevelTile implements Serializable {
 
@@ -47,8 +48,9 @@ public class LevelTile implements Serializable {
     }
 
     private void initRandomEvents() {
-        RANDOM_EVENT_TYPES.add(HealthPotionEvent.class);
-        RANDOM_EVENT_TYPES.add(MaxHealthPotionEvent.class);
+//        RANDOM_EVENT_TYPES.add(HealthPotionEvent.class);
+//        RANDOM_EVENT_TYPES.add(MaxHealthPotionEvent.class);
+        RANDOM_EVENT_TYPES.add(PatternGetEvent.class);
     }
 
     private void initEnemies() {
