@@ -35,6 +35,7 @@ public class TriangleEnemy extends Enemy{
 
     @Override
     public void movePattern() {
+        getSprite().setRotation(getSprite().getRotation() + 10);
         EnemyUtility.moveImage(getSprite(), getX() + velocityX, getY() + velocityY);
     }
 
@@ -57,4 +58,12 @@ public class TriangleEnemy extends Enemy{
     public void setVelocity() {
         super.velocity = VELOCITY;
     }
+
+    @Override
+    public void takeDamage(float x) {
+        super.takeDamage(x);
+        getSprite().setX((float)Math.random() * mainUtility.getScreenWidth() - getSprite().getMeasuredWidth());
+        getSprite().setY((float)mainUtility.getScreenHeight()/10);
+    }
 }
+//TODO spamming move into a wall will glitch
