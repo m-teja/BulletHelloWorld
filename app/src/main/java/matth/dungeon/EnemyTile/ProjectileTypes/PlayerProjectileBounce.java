@@ -65,13 +65,13 @@ public class PlayerProjectileBounce extends PlayerProjectile {
             bounce = true;
         }
         if (projectileImage.getY() > mainUtility.getScreenHeight()) {
-            delete();
+            deleteAll();
         }
         if (projectileImage.getX() < 0) {
-            delete();
+            deleteAll();
         }
         if (projectileImage.getY() > mainUtility.getScreenHeight()) {
-            delete();
+            deleteAll();
         }
     }
 }

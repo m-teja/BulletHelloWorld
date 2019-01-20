@@ -34,7 +34,6 @@ public class PatternGetEvent extends RandomEvent {
 
     private void initPatterns() {
         possiblePatterns.add(BouncePattern.class);
-        possiblePatterns.add(ClassicPattern.class);
         possiblePatterns.add(HomingPattern.class);
     }
 

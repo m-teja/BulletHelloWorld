@@ -48,8 +48,8 @@ public class LevelTile implements Serializable {
     }
 
     private void initRandomEvents() {
-//        RANDOM_EVENT_TYPES.add(HealthPotionEvent.class);
-//        RANDOM_EVENT_TYPES.add(MaxHealthPotionEvent.class);
+        RANDOM_EVENT_TYPES.add(HealthPotionEvent.class);
+        RANDOM_EVENT_TYPES.add(MaxHealthPotionEvent.class);
         RANDOM_EVENT_TYPES.add(PatternGetEvent.class);
     }
 
