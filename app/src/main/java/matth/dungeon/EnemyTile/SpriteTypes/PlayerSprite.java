@@ -24,6 +24,7 @@ public class PlayerSprite implements Serializable {
     private static String IMAGE_NAME = "player_sprite";
 
     private ImageView playerImage;
+    private PlayerHealthBar playerHealthBar;
 
     private float maxHealth = 100;
     private float health = 100;
@@ -36,7 +37,8 @@ public class PlayerSprite implements Serializable {
     public PlayerSprite(MainUtility mainUtility, PlayerInfoPassUtility playerInfoPassUtility) {
         this.mainUtility = mainUtility;
         getPlayerInfo(playerInfoPassUtility);
-        initHealthBar();
+        playerHealthBar = new PlayerHealthBar(mainUtility);
+        playerHealthBar.initHealthBar(health);
         setPlayerImage();
     }
 
@@ -62,26 +64,11 @@ public class PlayerSprite implements Serializable {
        playerImage = mainUtility.addImage(LAYOUT_NAME, PlayerSprite.IMAGE_NAME, mainUtility.getScreenWidth()/2, (float)(mainUtility.getScreenHeight()/1.5));
     }
 
-    private void initHealthBar() {
-        ImageView healthBar = ((Activity)mainUtility.getCon()).findViewById(R.id.healthBar);
-        healthBar.setX(0);
-        healthBar.setY(0);
-        healthBar.getLayoutParams().width = mainUtility.getScreenWidth();
-        healthBar.getLayoutParams().height = 0;
-
-        ImageView backgroundHealthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.backgroundHealthBar);
-        backgroundHealthBar.setX(0);
-        backgroundHealthBar.setY(0);
-        backgroundHealthBar.getLayoutParams().width = mainUtility.getScreenWidth();
-        backgroundHealthBar.getLayoutParams().height = mainUtility.getScreenHeight();
-
-        updateHealthBar();
-    }
-
     public void setHealth(float health) {
         Log.d("test", Float.toString(health));
         this.health = health;
-        updateHealthBar();
+        playerHealthBar.updateHealthBar(health);
+
         if (health <= 0 && !terminated) {
             terminated = true;
             lose();
@@ -90,44 +77,6 @@ public class PlayerSprite implements Serializable {
 
     private void lose() {
         EnemyEventActivity.exitLose(getCon());
-    }
-
-    private void updateHealthBar() {
-        ImageView healthBar = ((Activity)mainUtility.getCon()).findViewById(R.id.healthBar);
-
-        float healthBarHeight = health % 100;
-        if (healthBarHeight == 0.0) {
-            healthBarHeight = 100;
-        }
-
-        healthBar.getLayoutParams().height = (int)(mainUtility.getScreenHeight() * (healthBarHeight/100));
-        colourHealthBar();
-    }
-
-    private void colourHealthBar() {
-        ImageView healthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.healthBar);
-        ImageView backgroundHealthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.backgroundHealthBar);
-
-        if (health <= 100) {
-            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.black));
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.gray));
-        }
-        else if (health > 100 && health <= 200) {
-            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.gray));
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
-        }
-        else if (health > 200 && health <= 300) {
-            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.red));
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
-        }
-        else if (health > 300 && health <= 400) {
-            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.orange));
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.green));
-        }
-        else if (health > 400 && health <= 500) {
-            backgroundHealthBar.setColorFilter(getCon().getResources().getColor(R.color.green));
-            healthBar.setColorFilter(getCon().getResources().getColor(R.color.purple));
-        }
     }
 
     public ImageView getPlayerImage() {
