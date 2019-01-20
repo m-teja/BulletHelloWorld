@@ -18,6 +18,7 @@ public class MaxHealthPotionEvent extends RandomEvent {
 
     @Override
     public void immediateEffect() {
+        setText();
         playerInfoPassUtility.setMaxHealth(playerInfoPassUtility.getMaxHealth() + 50);
         FileUtility.savePlayer(playerInfoPassUtility, con);
 

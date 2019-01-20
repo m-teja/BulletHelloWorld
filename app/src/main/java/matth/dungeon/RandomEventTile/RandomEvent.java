@@ -14,7 +14,7 @@ public abstract class RandomEvent {
     PlayerInfoPassUtility playerInfoPassUtility;
     Context con;
 
-    public RandomEvent(PlayerInfoPassUtility playerInfoPassUtility, Context con) {
+    RandomEvent(PlayerInfoPassUtility playerInfoPassUtility, Context con) {
         this.playerInfoPassUtility = playerInfoPassUtility;
         this.con = con;
 

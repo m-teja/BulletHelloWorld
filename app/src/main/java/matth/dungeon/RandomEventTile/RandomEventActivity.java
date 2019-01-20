@@ -57,7 +57,6 @@ public class RandomEventActivity extends AppCompatActivity {
     }
 
     private void initRandomEvent() {
-        randomEvent.setText();
         randomEvent.immediateEffect();
     }
 
