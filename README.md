@@ -1,1 +1,2 @@
-A randomly generated 2D text based dungeon crawler, with a bullet hell like combat system.
+An android app with a randomly generated 2D text based dungeon crawler and a bullet hell-like combat system.
+Uses the random walk algorithm with an endless level progression system in order to achieve increased playability, and supports game saving functionality.
