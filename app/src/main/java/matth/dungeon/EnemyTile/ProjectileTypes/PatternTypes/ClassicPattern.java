@@ -74,7 +74,7 @@ public class ClassicPattern extends Pattern {
 
     @Override
     public void getSpawnDelay() {
-        super.spawnDelay = 250;
+        super.spawnDelay = 750;
     }
 
     @Override

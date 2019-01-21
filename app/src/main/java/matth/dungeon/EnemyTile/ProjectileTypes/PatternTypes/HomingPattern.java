@@ -38,7 +38,7 @@ public class HomingPattern extends Pattern {
 
     @Override
     public void getSpawnDelay() {
-        super.spawnDelay = 600;
+        super.spawnDelay = 1500;
     }
 
     @Override

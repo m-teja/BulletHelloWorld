@@ -68,3 +68,4 @@ public class PlayerHealthBar {
         }
     }
 }
+//TODO change to just gray and black

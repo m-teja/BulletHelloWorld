@@ -3,6 +3,7 @@ package matth.dungeon.Utility;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BouncePattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
@@ -11,6 +12,8 @@ import matth.dungeon.EnemyTile.SpriteTypes.PlayerSprite;
 import matth.dungeon.GameUI.LevelTile;
 
 public class PlayerInfoPassUtility implements Serializable {
+
+    private boolean debug = true;
 
     private final float DEFAULT_HEALTH = 400;
     private final float DEFAULT_MAX_HEALTH = 400;
@@ -28,6 +31,12 @@ public class PlayerInfoPassUtility implements Serializable {
         this.maxHealth = DEFAULT_MAX_HEALTH;
         this.unlockedPatterns = new ArrayList<>();
         this.unlockedPatterns.add(DEFAULT_PATTERN);
+
+        if (debug) {
+            this.unlockedPatterns.add(BouncePattern.class);
+            this.unlockedPatterns.add(HomingPattern.class);
+        }
+
         this.level = DEFAULT_LEVEL;
     }
 
