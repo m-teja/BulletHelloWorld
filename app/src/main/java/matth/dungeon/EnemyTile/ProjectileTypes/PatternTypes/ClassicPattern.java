@@ -30,7 +30,6 @@ public class ClassicPattern extends Pattern {
 
     @Override
     public void init() {
-        Log.d("test", "init");
         spawn.run();
     }
 

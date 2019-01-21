@@ -3,6 +3,7 @@ package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 import android.os.Handler;
 import android.support.annotation.CallSuper;
 
+import matth.dungeon.EnemyTile.ProjectileTypes.Projectile;
 import matth.dungeon.Utility.MainUtility;
 
 public abstract class Pattern implements PatternBehaviour {
