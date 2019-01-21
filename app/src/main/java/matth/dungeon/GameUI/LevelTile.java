@@ -10,6 +10,7 @@ import matth.dungeon.EnemyTile.SpriteTypes.TriangleEnemy;
 import matth.dungeon.RandomEventTile.HealthPotionEvent;
 import matth.dungeon.RandomEventTile.MaxHealthPotionEvent;
 import matth.dungeon.RandomEventTile.PatternGetEvent;
+import matth.dungeon.RandomEventTile.TakeDamageEvent;
 
 public class LevelTile implements Serializable {
 
@@ -54,6 +55,7 @@ public class LevelTile implements Serializable {
         RANDOM_EVENT_TYPES.add(HealthPotionEvent.class);
         RANDOM_EVENT_TYPES.add(MaxHealthPotionEvent.class);
         RANDOM_EVENT_TYPES.add(PatternGetEvent.class);
+        RANDOM_EVENT_TYPES.add(TakeDamageEvent.class);
     }
 
     private void initEnemies() {
