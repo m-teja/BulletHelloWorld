@@ -71,16 +71,7 @@ public class PlayerSprite implements Serializable {
                 e.printStackTrace();
             }
         }
-//
-//        ClassicPattern classicPattern = new ClassicPattern(mainUtility, playerUtility, 2);
-//        classicPattern.init();
-//
-//        BouncePattern bouncePattern = new BouncePattern(mainUtility, playerUtility);
-//        bouncePattern.init();
-//
-//        HomingPattern homingPattern = new HomingPattern(mainUtility, playerUtility);
-//        homingPattern.init();
-        // update this to check for which pattern
+
     }
 
     private void setPlayerImage() {

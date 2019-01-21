@@ -37,35 +37,11 @@ public class PlayerHealthBar {
         if (healthBarHeight == 0.0) {
             healthBarHeight = 100;
         }
-        colourHealthBar(health);
+        healthBarHeight = 100 - healthBarHeight;
+
         healthBar.getLayoutParams().height = (int)(mainUtility.getScreenHeight() * (healthBarHeight/100));
 
     }
 
-    private void colourHealthBar(float health) {
-        ImageView healthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.healthBar);
-        ImageView backgroundHealthBar = ((Activity) mainUtility.getCon()).findViewById(R.id.backgroundHealthBar);
-
-        if (health <= 100) {
-            backgroundHealthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.black));
-            healthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.gray));
-        }
-        else if (health > 100 && health <= 200) {
-            backgroundHealthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.gray));
-            healthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.red));
-        }
-        else if (health > 200 && health <= 300) {
-            backgroundHealthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.red));
-            healthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.orange));
-        }
-        else if (health > 300 && health <= 400) {
-            backgroundHealthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.orange));
-            healthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.green));
-        }
-        else if (health > 400 && health <= 500) {
-            backgroundHealthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.green));
-            healthBar.setColorFilter(mainUtility.getCon().getResources().getColor(R.color.purple));
-        }
-    }
 }
 //TODO change to just gray and black
