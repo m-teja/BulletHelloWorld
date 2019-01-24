@@ -24,8 +24,10 @@ public class TakeDamageEvent extends RandomEvent {
 
         playerInfoPassUtility.setHealth(playerInfoPassUtility.getHealth() - damageTaken);
         FileUtility.savePlayer(playerInfoPassUtility, con);
-        text = "You took " + Integer.toString(damageTaken) + " due to some reason that will be added later";
+        text = "You took " + Integer.toString(damageTaken) + " damage" + " \ndue to some reason that will be added later";
         setText();
         displayLeaveButton();
+
+        //TODO check for negative health
     }
 }

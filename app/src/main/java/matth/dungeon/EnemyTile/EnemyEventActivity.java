@@ -59,16 +59,12 @@ public class EnemyEventActivity extends AppCompatActivity {
         ArrayList<Class> enemyClasses = levelTile.getEnemies();
         ArrayList<Class> bossClasses = levelTile.getBosses();
 
-        Class enemyArgs[] = new Class[2];
-        enemyArgs[0] = MainUtility.class;
-        enemyArgs[1] = EnemyUtility.class;
-
         //get normal enemies
         for (int i = 0; i < enemyClasses.size(); i++) {
             Class<?> classType = enemyClasses.get(i);
 
             try {
-                enemies.add((Enemy) classType.getDeclaredConstructor(enemyArgs).newInstance(mainUtility, enemyUtility));
+                enemies.add((Enemy) classType.getDeclaredConstructor(MainUtility.class, EnemyUtility.class).newInstance(mainUtility, enemyUtility));
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -80,7 +76,7 @@ public class EnemyEventActivity extends AppCompatActivity {
             Class<?> classType = bossClasses.get(i);
 
             try {
-                enemies.add((Enemy) classType.getDeclaredConstructor(enemyArgs).newInstance(mainUtility, enemyUtility));
+                enemies.add((Enemy) classType.getDeclaredConstructor(MainUtility.class, EnemyUtility.class).newInstance(mainUtility, enemyUtility));
             }
             catch (Exception e) {
                 e.printStackTrace();
@@ -102,7 +98,7 @@ public class EnemyEventActivity extends AppCompatActivity {
         Intent intent = new Intent(mainUtility.getCon(), DungeonActivity.class);
         PlayerInfoPassUtility playerInfoPassUtility = FileUtility.loadPlayer(mainUtility.getCon());
         playerInfoPassUtility.setHealth(playerSprite.getHealth());
-        playerInfoPassUtility.setHealth(playerSprite.getMaxHealth());
+        playerInfoPassUtility.setMaxHealth(playerSprite.getMaxHealth());
 
         FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
         intent.putExtra(MainUtility.LOAD_PLAYER, true);
@@ -156,13 +152,13 @@ public class EnemyEventActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-        mainUtility.setActive(true);
+        MainUtility.setActive(true);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mainUtility.setActive(true);
+        MainUtility.setActive(true);
     }
 
     @Override
@@ -175,7 +171,7 @@ public class EnemyEventActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-        mainUtility.setActive(false);
+        MainUtility.setActive(false);
     }
 
     @Override

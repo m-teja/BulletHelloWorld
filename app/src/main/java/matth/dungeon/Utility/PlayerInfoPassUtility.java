@@ -14,10 +14,10 @@ import matth.dungeon.GameUI.LevelTile;
 
 public class PlayerInfoPassUtility implements Serializable {
 
-    private boolean debug = true;
+    private boolean debug = false;
 
-    private final float DEFAULT_HEALTH = 400;
-    private final float DEFAULT_MAX_HEALTH = 400;
+    private final float DEFAULT_HEALTH = 100;
+    private final float DEFAULT_MAX_HEALTH = 100;
     private final Class DEFAULT_PATTERN = ClassicPattern.class;
     private final int DEFAULT_LEVEL = 1;
 

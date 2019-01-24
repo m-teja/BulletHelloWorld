@@ -25,7 +25,6 @@ public class TileMap {
     //change size per level maybe
     private ArrayList<ArrayList<LevelTile>> levelMap;
 
-
     TileMap(MainUtility mainUtility, int size, DungeonInitUtility dungeonInitUtility) {
         this.mainUtility = mainUtility;
         this.levelTileGenerationUtility = new LevelTileGenerationUtility(mainUtility);
@@ -38,22 +37,21 @@ public class TileMap {
         checkTile(pos[0], pos[1]);
     }
 
-    public void buildMap() {
+    void buildMap() {
         ConstraintLayout map = ((Activity) mainUtility.getCon()).findViewById(R.id.mapDisp);
         map.removeAllViews();
         ConstraintSet set = new ConstraintSet();
 
-        int mapWidth = (int) (mainUtility.getScreenWidth() * 0.8);
-        int mapHeight = mapWidth;
-        map.getLayoutParams().height = mapHeight;
-        map.getLayoutParams().width = mapWidth;
-        map.setX((mainUtility.getScreenWidth() / 2) - map.getLayoutParams().width / 2);
-        map.setY((mainUtility.getScreenHeight() / 2) - map.getLayoutParams().height / 2);
+        int mapLength = (int) (mainUtility.getScreenWidth() * 0.8);
+        map.getLayoutParams().height = mapLength;
+        map.getLayoutParams().width = mapLength;
+        map.setX((int)(mainUtility.getScreenWidth() / 2.0 - map.getLayoutParams().width / 2.0));
+        map.setY((int)(mainUtility.getScreenHeight() / 2.0 - map.getLayoutParams().height / 2.0));
 
         ImageView image;
         ConstraintLayout.LayoutParams lp = new ConstraintLayout.LayoutParams(ConstraintLayout.LayoutParams.WRAP_CONTENT, ConstraintLayout.LayoutParams.WRAP_CONTENT);
-        int width = (int) Math.ceil((float) mapWidth / levelMap.size());
-        int height = (int) Math.ceil((float) mapHeight / levelMap.size());
+        int width = (int) Math.ceil((float) mapLength / levelMap.size());
+        int height = (int) Math.ceil((float) mapLength / levelMap.size());
 
         for (int i = 0; i < levelMap.size(); i++) {
             for (int j = 0; j < levelMap.size(); j++) {
@@ -64,8 +62,8 @@ public class TileMap {
                 image.setLayoutParams(lp);
                 image.getLayoutParams().width = width;
                 image.getLayoutParams().height = height;
-                image.setX((int) (mapWidth * ((float) i / levelMap.size())));
-                image.setY((int) (mapHeight * ((float) j / levelMap.size())));
+                image.setX((int) (mapLength * ((float) i / levelMap.size())));
+                image.setY((int) (mapLength * ((float) j / levelMap.size())));
 
                 map.addView(image);
                 set.clone(map);
@@ -102,19 +100,23 @@ public class TileMap {
         return "";
     }
 
-    public LevelTile getTile(int col, int row) {
-        return levelMap.get(col).get(row);
+    LevelTile getTile(int col, int row) {
+            return levelMap.get(col).get(row);
     }
 
-    public void setPlayerPos(int col, int row) {
-        int pos[] = getPos();
-        getTile(pos[0], pos[1]).setType(LevelTile.EMPTY);
-        getTile(col, row).setType(LevelTile.PLAYER_POS);
-        FileUtility.saveMap(mainUtility.getCon(), levelMap);
-        checkTile(col, row);
+    void setPlayerPos(int col, int row) {
+
+        if (getTile(col, row).getType() != LevelTile.WALL) {
+            int pos[] = getPos();
+            getTile(pos[0], pos[1]).setType(LevelTile.EMPTY);
+            getTile(col, row).setType(LevelTile.PLAYER_POS);
+            FileUtility.saveMap(mainUtility.getCon(), levelMap);
+            checkTile(col, row);
+        }
+        //TODO fix array out of bounds when tapping too fast
     }
 
-    public int[] getPos() {
+    int[] getPos() {
 
         int col = 1;
         int row = 1;
