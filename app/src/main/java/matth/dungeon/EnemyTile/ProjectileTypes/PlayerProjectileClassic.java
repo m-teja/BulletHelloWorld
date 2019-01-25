@@ -8,7 +8,7 @@ public class PlayerProjectileClassic extends PlayerProjectile {
 
     private final String PROJECTILE_NAME = "projectile_classic";
     private final float DAMAGE = 10;
-    private final int VELOCITY = 25;
+    private int velocity = 25;
 
     private int direction = -1;
     private float angle = -1;
@@ -35,22 +35,22 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     public void movePattern() {
 
         if (direction == -1 || direction == 0) {
-            PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - VELOCITY);
+            PlayerUtility.moveImage(getProjectileImage(), getX(), getY() - velocity);
         }
         else if (direction == 1) {
-            PlayerUtility.moveImage(getProjectileImage(), getX() + VELOCITY, getY());
+            PlayerUtility.moveImage(getProjectileImage(), getX() + velocity, getY());
         }
         else if (direction == 2) {
-            PlayerUtility.moveImage(getProjectileImage(), getX(), getY() + VELOCITY);
+            PlayerUtility.moveImage(getProjectileImage(), getX(), getY() + velocity);
         }
         else if (direction == 3) {
-            PlayerUtility.moveImage(getProjectileImage(), getX() - VELOCITY, getY());
+            PlayerUtility.moveImage(getProjectileImage(), getX() - velocity, getY());
         }
     }
 
     @Override
     public void effect(Enemy enemy) {
-        enemy.takeDamage(DAMAGE);
+        enemy.takeDamage(damage);
         deleteAll();
     }
 
@@ -67,6 +67,14 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     @Override
     public void delete() {
 
+    }
+
+    public void setDamage(float damage) {
+        super.damage = damage;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
     }
 }
 //TODO comment everything

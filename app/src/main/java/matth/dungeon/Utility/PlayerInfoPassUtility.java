@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BouncePattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.BurstPattern;
+import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.CannonPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.ClassicPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.HomingPattern;
 import matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes.Pattern;
@@ -37,6 +38,7 @@ public class PlayerInfoPassUtility implements Serializable {
             this.unlockedPatterns.add(BouncePattern.class);
             this.unlockedPatterns.add(HomingPattern.class);
             this.unlockedPatterns.add(BurstPattern.class);
+            this.unlockedPatterns.add(CannonPattern.class);
         }
 
         this.level = DEFAULT_LEVEL;
