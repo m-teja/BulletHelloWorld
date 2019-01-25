@@ -97,21 +97,24 @@ public class EnemyEventActivity extends AppCompatActivity {
     public void exitWin() {
         Intent intent = new Intent(mainUtility.getCon(), DungeonActivity.class);
         PlayerInfoPassUtility playerInfoPassUtility = FileUtility.loadPlayer(mainUtility.getCon());
-        playerInfoPassUtility.setHealth(playerSprite.getHealth());
-        playerInfoPassUtility.setMaxHealth(playerSprite.getMaxHealth());
 
-        FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
-        intent.putExtra(MainUtility.LOAD_PLAYER, true);
-        intent.putExtra(MainUtility.DELETE_CURRENT_TILE, true);
+        if (playerInfoPassUtility != null) {
+            playerInfoPassUtility.setHealth(playerSprite.getHealth());
+            playerInfoPassUtility.setMaxHealth(playerSprite.getMaxHealth());
 
-        if (checkBoss()) {
-            intent.putExtra(MainUtility.LOAD_SAVED, false);
+            FileUtility.savePlayer(playerInfoPassUtility, playerSprite.getCon());
+            intent.putExtra(MainUtility.LOAD_PLAYER, true);
+            intent.putExtra(MainUtility.DELETE_CURRENT_TILE, true);
+
+            if (checkBoss()) {
+                intent.putExtra(MainUtility.LOAD_SAVED, false);
+            }
+            else {
+                intent.putExtra(MainUtility.LOAD_SAVED, true);
+            }
+
+            playerSprite.getCon().startActivity(intent);
         }
-        else {
-            intent.putExtra(MainUtility.LOAD_SAVED, true);
-        }
-
-        playerSprite.getCon().startActivity(intent);
     }
 
     private boolean checkBoss() {

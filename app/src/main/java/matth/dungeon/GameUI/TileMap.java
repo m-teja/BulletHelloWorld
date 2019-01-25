@@ -39,6 +39,8 @@ public class TileMap {
 
     void buildMap() {
         ConstraintLayout map = ((Activity) mainUtility.getCon()).findViewById(R.id.mapDisp);
+
+        //TODO remove only affected views
         map.removeAllViews();
         ConstraintSet set = new ConstraintSet();
 
@@ -56,21 +58,21 @@ public class TileMap {
         for (int i = 0; i < levelMap.size(); i++) {
             for (int j = 0; j < levelMap.size(); j++) {
 
-                image = new ImageView(mainUtility.getCon());
-                image.setId(View.generateViewId());
-                image.setImageResource(mainUtility.getCon().getResources().getIdentifier(getImageType(getTile(i, j)), "drawable", mainUtility.getCon().getPackageName()));
-                image.setLayoutParams(lp);
-                image.getLayoutParams().width = width;
-                image.getLayoutParams().height = height;
-                image.setX((int) (mapLength * ((float) i / levelMap.size())));
-                image.setY((int) (mapLength * ((float) j / levelMap.size())));
-
-                map.addView(image);
-                set.clone(map);
-                set.connect(image.getId(), ConstraintSet.TOP, map.getId(), ConstraintSet.TOP, 0);
+                if (getTile(i, j).getType() != LevelTile.WALL) {
+                    image = new ImageView(mainUtility.getCon());
+                    image.setId(View.generateViewId());
+                    image.setImageResource(mainUtility.getCon().getResources().getIdentifier(getImageType(getTile(i, j)), "drawable", mainUtility.getCon().getPackageName()));
+                    image.setLayoutParams(lp);
+                    image.getLayoutParams().width = width;
+                    image.getLayoutParams().height = height;
+                    image.setX((int) (mapLength * ((float) i / levelMap.size())));
+                    image.setY((int) (mapLength * ((float) j / levelMap.size())));
+                    map.addView(image);
+                }
 
             }
         }
+        set.clone(map);
         set.applyTo(map);
     }
 
@@ -114,6 +116,7 @@ public class TileMap {
             checkTile(col, row);
         }
         //TODO fix array out of bounds when tapping too fast
+        //TODO save player position with player info
     }
 
     int[] getPos() {
