@@ -13,7 +13,6 @@ public class SquareBossEnemy extends SquareEnemy {
 
     private final float STARTING_HEALTH = 500;
     private final int DAMAGE = 1;
-    private final String SPRITE_NAME = "square_enemy";
     private final int VELOCITY = 7;
 
     //TODO make health bars nicer
@@ -50,11 +49,6 @@ public class SquareBossEnemy extends SquareEnemy {
     @Override
     public void setHealth() {
         super.health = STARTING_HEALTH;
-    }
-
-    @Override
-    public void setSpriteName() {
-        super.spriteName = SPRITE_NAME;
     }
 
     @Override

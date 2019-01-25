@@ -69,7 +69,6 @@ public class TileMap {
                     image.setY((int) (mapLength * ((float) j / levelMap.size())));
                     map.addView(image);
                 }
-
             }
         }
         set.clone(map);
