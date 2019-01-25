@@ -38,7 +38,7 @@ public class CirclePattern extends Pattern {
     }
 
     @Override
-    public void delete() {
+    void delete() {
 
     }
 }

@@ -28,7 +28,7 @@ public abstract class Pattern implements PatternBehaviour {
         spawnProjectileDelay.removeCallbacksAndMessages(null);
     }
 
-    public abstract void delete();
+    abstract void delete();
 
     private void initCheck() {
 

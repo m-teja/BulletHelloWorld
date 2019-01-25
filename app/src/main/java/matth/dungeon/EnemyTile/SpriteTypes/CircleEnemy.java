@@ -16,7 +16,7 @@ public class CircleEnemy extends Enemy {
     private CirclePattern circlePattern;
 
 
-    public CircleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
+    CircleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
     }
 
@@ -30,7 +30,7 @@ public class CircleEnemy extends Enemy {
 
     @Override
     public void delete() {
-        circlePattern.delete();
+        circlePattern.deleteAll();
     }
 
     public void effect() {
