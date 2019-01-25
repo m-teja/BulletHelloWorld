@@ -10,11 +10,13 @@ public class BouncePattern extends Pattern {
     private PlayerUtility playerUtility;
 
     public BouncePattern(MainUtility mainUtility, PlayerUtility playerUtility) {
+        super(mainUtility);
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
     }
 
     public BouncePattern(MainUtility mainUtility, PlayerUtility playerUtility, int level) {
+        super(mainUtility);
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
     }

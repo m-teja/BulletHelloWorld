@@ -13,6 +13,7 @@ public class BurstPattern extends Pattern {
     private Handler burstHandler = new Handler();
 
     public BurstPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
+        super(mainUtility);
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
     }

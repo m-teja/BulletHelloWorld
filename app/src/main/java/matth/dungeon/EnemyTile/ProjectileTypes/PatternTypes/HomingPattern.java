@@ -10,11 +10,13 @@ public class HomingPattern extends Pattern {
     private PlayerUtility playerUtility;
 
     public HomingPattern (MainUtility mainUtility, PlayerUtility playerUtility) {
+        super(mainUtility);
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
     }
 
     public HomingPattern (MainUtility mainUtility, PlayerUtility playerUtility, int level) {
+        super(mainUtility);
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
     }

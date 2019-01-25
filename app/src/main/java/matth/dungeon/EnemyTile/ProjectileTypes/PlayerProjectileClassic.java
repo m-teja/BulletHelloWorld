@@ -11,6 +11,7 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     private final int VELOCITY = 25;
 
     private int direction = -1;
+    private float angle = -1;
 
     public PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility) {
         super(mainUtility, playerUtility);
@@ -19,6 +20,10 @@ public class PlayerProjectileClassic extends PlayerProjectile {
     public PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility, int direction) {
         super(mainUtility, playerUtility);
         this.direction = direction;
+    }
+    public PlayerProjectileClassic(MainUtility mainUtility, PlayerUtility playerUtility, float angle) {
+        super(mainUtility, playerUtility);
+        this.angle = angle;
     }
 
     @Override

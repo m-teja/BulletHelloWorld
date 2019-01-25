@@ -1,17 +1,12 @@
 package matth.dungeon.EnemyTile.ProjectileTypes.PatternTypes;
 
 import matth.dungeon.Utility.MainUtility;
-import matth.dungeon.Utility.PlayerUtility;
 
-public class SplitPattern extends Pattern {
+public class CannonPattern extends Pattern {
 
-    private MainUtility mainUtility;
-    private PlayerUtility playerUtility;
 
-    public SplitPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
+    CannonPattern(MainUtility mainUtility) {
         super(mainUtility);
-        this.mainUtility = mainUtility;
-        this.playerUtility = playerUtility;
     }
 
     @Override
@@ -26,7 +21,7 @@ public class SplitPattern extends Pattern {
 
     @Override
     public void getSpawnDelay() {
-        super.spawnDelay = 1000;
+        super.spawnDelay = 2000;
     }
 
     @Override

@@ -17,13 +17,13 @@ public class ClassicPattern extends Pattern {
     private int level = 1;
 
     public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility, int level) {
-        super();
+        super(mainUtility);
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
         this.level = level;
     }
     public ClassicPattern(MainUtility mainUtility, PlayerUtility playerUtility) {
-        super();
+        super(mainUtility);
         this.mainUtility = mainUtility;
         this.playerUtility = playerUtility;
     }
