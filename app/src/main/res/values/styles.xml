@@ -6,9 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/defaultAnimation</item>
     </style>
 
     <style name="StatsText" parent="Theme.AppCompat.NoActionBar">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="defaultAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/enter_default_animation</item>
+        <item name="android:windowExitAnimation">@anim/exit_default_animation</item>
     </style>
 </resources>
