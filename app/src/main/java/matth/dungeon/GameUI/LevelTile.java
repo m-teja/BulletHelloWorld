@@ -3,6 +3,7 @@ package matth.dungeon.GameUI;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import matth.dungeon.EnemyTile.SpriteTypes.CircleBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.CircleEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareBossEnemy;
 import matth.dungeon.EnemyTile.SpriteTypes.SquareEnemy;
@@ -16,20 +17,20 @@ public class LevelTile implements Serializable {
 
     //Tile types
     public static final int EMPTY = 0;
-    public static final String EMPTY_IMAGE = "empty";
+    static final String EMPTY_IMAGE = "empty";
     public static final int WALL = 1;
-    public static final String WALL_IMAGE = "wall";
+    static final String WALL_IMAGE = "wall";
     public static final int PLAYER_POS = 2;
-    public static final String PLAYER_POS_IMAGE = "player";
+    static final String PLAYER_POS_IMAGE = "player";
 
     //Event types
     public static final int END_POS = 3;
-    public static final String END_POS_IMAGE = "end";
+    static final String END_POS_IMAGE = "end";
     public static final int NO_EVENT = 4;
     public static final int ENEMY_EVENT = 5;
-    public static final String ENEMY_EVENT_IMAGE = "enemy";
+    static final String ENEMY_EVENT_IMAGE = "enemy";
     public static final int ITEM_EVENT = 6;
-    public static final String ITEM_EVENT_IMAGE = "item";
+    static final String ITEM_EVENT_IMAGE = "item";
 
     public static final ArrayList<Class<?>> ENEMY_TYPES = new ArrayList<>();
     private static final ArrayList<Class<?>> ENEMY_BOSS_TYPES = new ArrayList<>();
@@ -64,6 +65,7 @@ public class LevelTile implements Serializable {
         ENEMY_TYPES.add(TriangleEnemy.class);
 
         ENEMY_BOSS_TYPES.add(SquareBossEnemy.class);
+        ENEMY_BOSS_TYPES.add(CircleBossEnemy.class);
     }
 
     public int getType() {

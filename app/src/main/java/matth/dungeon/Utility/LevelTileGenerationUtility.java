@@ -69,7 +69,7 @@ public class LevelTileGenerationUtility {
     private void createLevel() {
 
         int tunnelLength = (int) (levelMap.size() * 0.7);
-        int tunnelNum = (int) (levelMap.size() * 2);
+        int tunnelNum = (levelMap.size() * 2);
 
         int currentRow = (int) Math.floor(Math.random() * (levelMap.size() - 1)) + 1;
         int currentCol = (int) Math.floor(Math.random() * (levelMap.size() - 1)) + 1;
@@ -181,7 +181,7 @@ public class LevelTileGenerationUtility {
 
         getTile(col, row).setEvent(LevelTile.END_POS);
 
-        getTile(col, row).addBoss(0);
+        getTile(col, row).addBoss(1);
         //temp boss adding
     }
 
@@ -211,8 +211,7 @@ public class LevelTileGenerationUtility {
                 }
             }
         }
-        int[] pos = {col, row};
-        return pos;
+        return new int[]{col, row};
     }
 
     private int genRandomEvent() {
