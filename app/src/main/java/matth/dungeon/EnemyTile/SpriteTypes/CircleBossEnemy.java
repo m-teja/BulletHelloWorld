@@ -9,5 +9,15 @@ public class CircleBossEnemy extends CircleEnemy {
         super(mainUtility, enemyUtility);
     }
 
+    @Override
+    public void init() {
+        super.init();
+        initBossHealth();
+    }
+
+    @Override
+    public void effect() {
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
+    }
 
 }

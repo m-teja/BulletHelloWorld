@@ -12,10 +12,7 @@ import matth.dungeon.Utility.MainUtility;
 public class SquareBossEnemy extends SquareEnemy {
 
     private final float STARTING_HEALTH = 500;
-    private final int DAMAGE = 1;
-    private final int VELOCITY = 7;
 
-    //TODO make health bars nicer
     private boolean spawned = false;
     private boolean speed = false;
 
@@ -26,45 +23,44 @@ public class SquareBossEnemy extends SquareEnemy {
     @Override
     public void init() {
         super.init();
-        ImageView healths[] = initBossHealth();
-        healthBar = healths[0];
-        maxHealthBar = healths[1];
+        initBossHealth();
     }
 
     @Override
     public void effect() {
-        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
     }
 
     @Override
     public void delete() {
         super.delete();
-        ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
-        cl.removeView(healthBar);
-        cl.removeView(maxHealthBar);
+    }
+
+    @Override
+    public void setDamage() {
+        super.damage = 1;
     }
 
     @Override
     public void setHealth() {
-        super.health = STARTING_HEALTH;
+        super.health = 500;
     }
 
     @Override
     public void setVelocity() {
-        super.velocity = VELOCITY;
+        super.velocity = 7;
     }
 
     @Override
     public void takeDamage(float x) {
-        super.takeDamage(x);
-        changeBossHealth(healthBar, maxHealthBar, STARTING_HEALTH);
+        super.takeDamage(x, STARTING_HEALTH);
 
         if (health/STARTING_HEALTH <= 0.5 && !spawned) {
             spawnMore();
         }
         if (health/STARTING_HEALTH <= 0.75 && !speed) {
             speed = true;
-            super.velocity = VELOCITY * 3;
+            super.velocity *= 3;
             super.destinationUpdateDelay = super.destinationUpdateDelay/2;
         }
     }

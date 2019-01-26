@@ -39,8 +39,9 @@ public abstract class Enemy implements EnemyBehaviour {
     float velocityY;
     int destinationUpdateDelay;
 
-    ImageView healthBar;
-    ImageView maxHealthBar;
+    private boolean boss;
+    private ImageView healthBar;
+    private ImageView maxHealthBar;
 
 
     public Enemy( MainUtility mainUtility, EnemyUtility enemyUtility) {
@@ -125,6 +126,7 @@ public abstract class Enemy implements EnemyBehaviour {
         updateDestination.removeCallbacksAndMessages(null);
         deleteImage();
         enemyUtility.checkDone();
+
     }
 
     public abstract void delete();
@@ -132,6 +134,11 @@ public abstract class Enemy implements EnemyBehaviour {
     private void deleteImage() {
         ConstraintLayout cl = ((Activity)mainUtility.getCon()).findViewById(R.id.enemyLay);
         cl.removeView(getSprite());
+
+        if (boss) {
+            cl.removeView(healthBar);
+            cl.removeView(maxHealthBar);
+        }
     }
 
     public ImageView getSprite() {
@@ -204,16 +211,16 @@ public abstract class Enemy implements EnemyBehaviour {
         }
     }
 
-    ImageView[] initBossHealth() {
+    void initBossHealth() {
+        boss = true;
+        maxHealthBar = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "max_health", 100, 100, mainUtility.getScreenWidth() - 200, 20);
+        healthBar = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "health_remaining", 100, 100, mainUtility.getScreenWidth() - 200, 20);
 
-        ImageView healthMax = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "max_health", 100, 100, mainUtility.getScreenWidth() - 200, 20);
-        ImageView health = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "health_remaining", 100, 100, mainUtility.getScreenWidth() - 200, 20);
-
-        return new ImageView[]{health, healthMax};
     }
 
-    void changeBossHealth(ImageView healthBar, ImageView healthBarMax, float startingHealth) {
-        healthBar.getLayoutParams().width = (int)(healthBarMax.getLayoutParams().width * (health/startingHealth));
+    private void changeBossHealth(float startingHealth) {
+
+        healthBar.getLayoutParams().width = (int)(maxHealthBar.getLayoutParams().width * (health / startingHealth));
     }
 
     public abstract void init();
@@ -249,6 +256,18 @@ public abstract class Enemy implements EnemyBehaviour {
 
         if (health <= 0) {
             deleteAll();
+        }
+    }
+
+    void takeDamage(float x, float startingHealth) {
+        health -= x;
+
+        if (health <= 0) {
+            deleteAll();
+        }
+
+        if (boss) {
+            changeBossHealth(startingHealth);
         }
     }
 
