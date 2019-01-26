@@ -81,8 +81,8 @@ public class SquareBossEnemy extends SquareEnemy {
             public void run() {
 
                 if (!terminated) {
-                    enemyUtility.addEnemy(new SquareEnemy(mainUtility, enemyUtility), getX() - getSprite().getLayoutParams().width, getY(), null, null);
-                    enemyUtility.addEnemy(new SquareEnemy(mainUtility, enemyUtility), getX() + 2*getSprite().getLayoutParams().width, getY(), null, null);
+                    enemyUtility.addEnemy(new SquareEnemy(mainUtility, enemyUtility), getX(), getY(), null, null);
+                    enemyUtility.addEnemy(new SquareEnemy(mainUtility, enemyUtility), getX() + getSprite().getLayoutParams().width, getY(), null, null);
                 }
                 if (counter < 2 && !terminated) {
                     counter++;
