@@ -5,12 +5,6 @@ import matth.dungeon.Utility.MainUtility;
 
 public class TriangleEnemy extends Enemy{
 
-    private final float STARTING_HEALTH = 60;
-    private final int DAMAGE = 30;
-    private final String SPRITE_NAME = "triangle_enemy";
-    private final int DESTINATION_DELAY = 20;
-    private final int VELOCITY = 15;
-
     public TriangleEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
     }
@@ -29,7 +23,7 @@ public class TriangleEnemy extends Enemy{
 
     @Override
     public void effect() {
-        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
         deleteAll();
     }
 
@@ -41,22 +35,27 @@ public class TriangleEnemy extends Enemy{
 
     @Override
     public void setUpdateDestinationDelay() {
-        super.destinationUpdateDelay = DESTINATION_DELAY;
+        super.destinationUpdateDelay = 20;
     }
 
     @Override
     public void setHealth() {
-        super.health = STARTING_HEALTH;
+        super.health = 60;
     }
 
     @Override
     public void setSpriteName() {
-        super.spriteName = SPRITE_NAME;
+        super.spriteName = "triangle_enemy";
     }
 
     @Override
     public void setVelocity() {
-        super.velocity = VELOCITY;
+        super.velocity = 15;
+    }
+
+    @Override
+    public void setDamage() {
+        super.damage = 30;
     }
 
     @Override

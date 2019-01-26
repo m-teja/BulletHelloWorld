@@ -16,8 +16,6 @@ public class SquareBossEnemy extends SquareEnemy {
     private final int VELOCITY = 7;
 
     //TODO make health bars nicer
-    private ImageView healthBar;
-    private ImageView maxHealthBar;
     private boolean spawned = false;
     private boolean speed = false;
 

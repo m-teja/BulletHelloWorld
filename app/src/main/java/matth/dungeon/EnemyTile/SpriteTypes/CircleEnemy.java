@@ -6,13 +6,6 @@ import matth.dungeon.Utility.MainUtility;
 
 public class CircleEnemy extends Enemy {
 
-
-    private final int STARTING_HEALTH = 50;
-    private final String SPRITE_NAME = "circle_enemy";
-    private final int VELOCITY = 8;
-    private final int DESTINATION_DELAY = 800;
-    private final int DAMAGE = 2;
-
     private CirclePattern circlePattern;
 
 
@@ -34,7 +27,7 @@ public class CircleEnemy extends Enemy {
     }
 
     public void effect() {
-        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
         deleteAll();
     }
 
@@ -45,22 +38,27 @@ public class CircleEnemy extends Enemy {
 
     @Override
     public void setHealth() {
-        super.health = STARTING_HEALTH;
+        super.health = 50;
     }
 
     @Override
     public void setSpriteName() {
-        super.spriteName = SPRITE_NAME;
+        super.spriteName = "circle_enemy";
     }
 
     @Override
     public void setVelocity() {
-        super.velocity = VELOCITY;
+        super.velocity = 8;
+    }
+
+    @Override
+    public void setDamage() {
+        super.damage = 3;
     }
 
     @Override
     public void setUpdateDestinationDelay() {
-        super.destinationUpdateDelay = DESTINATION_DELAY;
+        super.destinationUpdateDelay = 800;
     }
 
     @Override

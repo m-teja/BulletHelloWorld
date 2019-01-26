@@ -27,7 +27,7 @@ public class PlayerUtility {
     public void enemyOverlap(PlayerProjectile playerProjectile) {
 
         for (int i = 0; i < enemies.size(); i++) {
-            if ( !enemies.get(i).isTerminated() && checkOverlap(enemies.get(i), playerProjectile.getProjectileImage())) {
+            if ( enemies.get(i).notTerminated() && checkOverlap(enemies.get(i), playerProjectile.getProjectileImage())) {
                 playerProjectile.effect(enemies.get(i));
             }
         }
@@ -40,12 +40,7 @@ public class PlayerUtility {
         projectile.getHitRect(projectileRect);
         currentEnemy.getSprite().getHitRect(currentEnemyRect);
 
-        if (projectileRect.intersect(currentEnemyRect)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return projectileRect.intersect(currentEnemyRect);
     }
 
     public Enemy getClosestEnemy(PlayerProjectile playerProjectile) {
@@ -55,9 +50,9 @@ public class PlayerUtility {
 
         for (int i = 0; i < enemies.size(); i++) {
 
-            if ( !((Enemy)enemies.get(i)).isTerminated() ) {
-                float differenceX = Math.abs(((Enemy)enemies.get(i)).getX() - playerProjectile.getX());
-                float differenceY = Math.abs(((Enemy)enemies.get(i)).getY() - playerProjectile.getY());
+            if (enemies.get(i).notTerminated()) {
+                float differenceX = Math.abs(enemies.get(i).getX() - playerProjectile.getX());
+                float differenceY = Math.abs(enemies.get(i).getY() - playerProjectile.getY());
 
                 if (differenceX + differenceY < differenceTotal) {
                     differenceTotal = differenceX + differenceY;
@@ -69,7 +64,7 @@ public class PlayerUtility {
             return null;
         }
         else {
-            return ((Enemy) enemies.get(enemyIndex));
+            return enemies.get(enemyIndex);
         }
 
     }

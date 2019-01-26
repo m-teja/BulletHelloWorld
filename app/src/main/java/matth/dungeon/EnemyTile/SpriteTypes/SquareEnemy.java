@@ -5,13 +5,7 @@ import matth.dungeon.Utility.MainUtility;
 
 public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
-    private final float STARTING_HEALTH = 30;
-    private final int DAMAGE = 10;
-    private final String SPRITE_NAME = "square_enemy";
-    private final int DESTINATION_DELAY = 800;
-    private final int VELOCITY = 15;
-
-    public SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
+    SquareEnemy(MainUtility mainUtility, EnemyUtility enemyUtility) {
         super(mainUtility, enemyUtility);
     }
 
@@ -29,7 +23,7 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
     @Override
     public void effect() {
-        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - DAMAGE);
+        enemyUtility.getPlayerSprite().setHealth(enemyUtility.getPlayerSprite().getHealth() - damage);
         deleteAll();
     }
 
@@ -40,21 +34,26 @@ public class SquareEnemy extends Enemy implements EnemyBehaviour {
 
     @Override
     public void setUpdateDestinationDelay() {
-        super.destinationUpdateDelay = DESTINATION_DELAY;
+        super.destinationUpdateDelay = 800;
     }
 
     @Override
     public void setHealth() {
-        super.health = STARTING_HEALTH;
+        super.health = 30;
     }
 
     @Override
     public void setSpriteName() {
-        super.spriteName = SPRITE_NAME;
+        super.spriteName = "square_enemy";
     }
 
     @Override
     public void setVelocity() {
-        super.velocity = VELOCITY;
+        super.velocity = 15;
+    }
+
+    @Override
+    public void setDamage() {
+        super.damage = 10;
     }
 }

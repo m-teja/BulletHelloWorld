@@ -41,7 +41,7 @@ public class EnemyUtility {
 
     public void checkDone() {
         for (int i = 0; i < enemies.size(); i++) {
-            if ( !enemies.get(i).isTerminated() ) {
+            if (enemies.get(i).notTerminated()) {
                 return;
             }
         }

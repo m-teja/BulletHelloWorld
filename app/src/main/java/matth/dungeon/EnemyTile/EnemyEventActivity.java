@@ -183,5 +183,3 @@ public class EnemyEventActivity extends AppCompatActivity {
         //mainUtility.setActive(false);
     }
 }
-
-//TODO fix centering all imageviews after spawn

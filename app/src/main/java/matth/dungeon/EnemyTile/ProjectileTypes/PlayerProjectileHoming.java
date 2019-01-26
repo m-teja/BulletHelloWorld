@@ -30,7 +30,7 @@ public class PlayerProjectileHoming extends PlayerProjectile {
 
     @Override
     public void movePattern() {
-        if (!terminated && !enemy.isTerminated()) {
+        if (!terminated && enemy.notTerminated()) {
             float vel[] = calcVelocity(enemy.getX(), enemy.getY(), VELOCITY);
 
             getProjectileImage().setRotation((float) (90 + Math.toDegrees(Math.atan(vel[1]/vel[0]))));

@@ -3,7 +3,6 @@ package matth.dungeon.EnemyTile.SpriteTypes;
 
 import android.app.Activity;
 import android.os.Handler;
-import android.support.annotation.CallSuper;
 import android.support.constraint.ConstraintLayout;
 import android.widget.ImageView;
 
@@ -14,13 +13,14 @@ import matth.dungeon.Utility.MainUtility;
 
 public abstract class Enemy implements EnemyBehaviour {
 
-    final int ANIMATION_DELAY = 15;
+    private final int ANIMATION_DELAY = 15;
     private final int CHECK_DELAY = 20;
     private final int CHECK_PLAYER_DELAY = 15;
 
     MainUtility mainUtility;
     EnemyUtility enemyUtility;
     float health;
+    float damage;
     String spriteName;
     boolean terminated;
 
@@ -30,14 +30,17 @@ public abstract class Enemy implements EnemyBehaviour {
     private Handler updatePlayerPosition = new Handler();
     private Handler updateDestination = new Handler();
 
-    float playerX;
-    float playerY;
+    private float playerX;
+    private float playerY;
     float destinationX;
-    float destinationY;
+    private float destinationY;
     int velocity;
     float velocityX;
     float velocityY;
     int destinationUpdateDelay;
+
+    ImageView healthBar;
+    ImageView maxHealthBar;
 
 
     public Enemy( MainUtility mainUtility, EnemyUtility enemyUtility) {
@@ -48,6 +51,7 @@ public abstract class Enemy implements EnemyBehaviour {
         setUpdateDestinationDelay();
         setHealth();
         setSpriteName();
+        setDamage();
         setVelocity();
     }
 
@@ -189,7 +193,7 @@ public abstract class Enemy implements EnemyBehaviour {
                 velocityY = -velocity;
             }
         }
-        else if (differenceY == 0) {
+        else {
             velocityY = 0;
             if (destinationX > getX()) {
                 velocityX = velocity;
@@ -205,8 +209,7 @@ public abstract class Enemy implements EnemyBehaviour {
         ImageView healthMax = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "max_health", 100, 100, mainUtility.getScreenWidth() - 200, 20);
         ImageView health = mainUtility.addImage(EnemyEventActivity.LAYOUT_NAME, "health_remaining", 100, 100, mainUtility.getScreenWidth() - 200, 20);
 
-        ImageView healths[] = {health, healthMax};
-        return healths;
+        return new ImageView[]{health, healthMax};
     }
 
     void changeBossHealth(ImageView healthBar, ImageView healthBarMax, float startingHealth) {
@@ -219,9 +222,10 @@ public abstract class Enemy implements EnemyBehaviour {
     public abstract void setHealth();
     public abstract void setSpriteName();
     public abstract void setVelocity();
+    public abstract void setDamage();
 
-    public boolean isTerminated() {
-        return terminated;
+    public boolean notTerminated() {
+        return !terminated;
     }
 
     public float getX() {
