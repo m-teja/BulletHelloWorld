@@ -65,4 +65,3 @@ public class TriangleEnemy extends Enemy{
         getSprite().setY((float)mainUtility.getScreenHeight()/10);
     }
 }
-//TODO spamming move into a wall will glitch

@@ -137,16 +137,19 @@ public class TileMap {
         if (getTile(col, row).getEvent() == LevelTile.END_POS) {
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
             mainUtility.getCon().startActivity(intent);
+            ((Activity) mainUtility.getCon()).finish();
         }
 
         if (getTile(col, row).getEvent() == LevelTile.ENEMY_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
             mainUtility.getCon().startActivity(intent);
+            ((Activity) mainUtility.getCon()).finish();
         }
 
         if (getTile(col, row).getEvent() == LevelTile.ITEM_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), RandomEventActivity.class);
             mainUtility.getCon().startActivity(intent);
+            ((Activity) mainUtility.getCon()).finish();
         }
 
     }

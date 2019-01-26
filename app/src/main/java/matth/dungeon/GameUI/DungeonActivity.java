@@ -16,14 +16,12 @@ import matth.dungeon.Utility.PlayerInfoPassUtility;
 
 public class DungeonActivity extends AppCompatActivity {
 
-    private PlayerInfoPassUtility playerInfoPassUtility = null;
     private DungeonInitUtility dungeonInitUtility;
     private InventoryDisplay inventoryDisplay;
     private StatsDisplay statsDisplay;
 
     MainUtility mainUtility;
     TileMap tileMap;
-
 
     int size = 15; //temp variable, will change for each level
 
@@ -135,35 +133,47 @@ public class DungeonActivity extends AppCompatActivity {
     }
 
     public void moveUp(View view) {
-        findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        int pos[] = tileMap.getPos();
-        pos[1]--;
-        tileMap.setPlayerPos(pos[0], pos[1]);
-        updateText(pos);
+
+        if (!isFinishing()) {
+            findViewById(R.id.mapDisp).setVisibility(View.GONE);
+            int pos[] = tileMap.getPos();
+            pos[1]--;
+            tileMap.setPlayerPos(pos[0], pos[1]);
+            updateText(pos);
+        }
     }
 
     public void moveRight(View view) {
-        findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        int pos[] = tileMap.getPos();
-        pos[0]++;
-        tileMap.setPlayerPos(pos[0], pos[1]);
-        updateText(pos);
+
+        if (!isFinishing()) {
+            findViewById(R.id.mapDisp).setVisibility(View.GONE);
+            int pos[] = tileMap.getPos();
+            pos[0]++;
+            tileMap.setPlayerPos(pos[0], pos[1]);
+            updateText(pos);
+        }
     }
 
     public void moveDown(View view) {
-        findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        int pos[] = tileMap.getPos();
-        pos[1]++;
-        tileMap.setPlayerPos(pos[0], pos[1]);
-        updateText(pos);
+
+        if (!isFinishing()) {
+            findViewById(R.id.mapDisp).setVisibility(View.GONE);
+            int pos[] = tileMap.getPos();
+            pos[1]++;
+            tileMap.setPlayerPos(pos[0], pos[1]);
+            updateText(pos);
+        }
     }
 
     public void moveLeft(View view) {
-        findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        int pos[] = tileMap.getPos();
-        pos[0]--;
-        tileMap.setPlayerPos(pos[0], pos[1]);
-        updateText(pos);
+
+        if (!isFinishing()) {
+            findViewById(R.id.mapDisp).setVisibility(View.GONE);
+            int pos[] = tileMap.getPos();
+            pos[0]--;
+            tileMap.setPlayerPos(pos[0], pos[1]);
+            updateText(pos);
+        }
     }
 
     @Override
