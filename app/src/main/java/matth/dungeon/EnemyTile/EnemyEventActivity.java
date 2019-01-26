@@ -53,7 +53,7 @@ public class EnemyEventActivity extends AppCompatActivity {
     private void getTileInfo() {
 
         ArrayList<ArrayList<LevelTile>> levelMap = FileUtility.loadMap(mainUtility.getCon());
-        int pos[] = TileMap.getPos(levelMap);
+        int pos[] = TileMap.getPos(mainUtility.getCon());
 
         levelTile = levelMap.get(pos[0]).get(pos[1]);
         ArrayList<Class> enemyClasses = levelTile.getEnemies();

@@ -1,6 +1,7 @@
 package matth.dungeon.GameUI;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
@@ -101,10 +102,6 @@ public class TileMap {
         return "";
     }
 
-    LevelTile getTile(int col, int row) {
-            return levelMap.get(col).get(row);
-    }
-
     void setPlayerPos(int col, int row) {
 
         if (getTile(col, row).getType() != LevelTile.WALL) {
@@ -154,7 +151,8 @@ public class TileMap {
 
     }
 
-    public static int[] getPos(ArrayList<ArrayList<LevelTile>> levelMap) {
+    public static int[] getPos(Context con) {
+        ArrayList<ArrayList<LevelTile>> levelMap = FileUtility.loadMap(con);
 
         int col = 1;
         int row = 1;
@@ -169,5 +167,9 @@ public class TileMap {
             }
         }
         return new int[]{col, row};
+    }
+
+    LevelTile getTile(int col, int row) {
+        return levelMap.get(col).get(row);
     }
 }

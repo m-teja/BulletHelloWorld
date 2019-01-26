@@ -23,7 +23,7 @@ public class DungeonActivity extends AppCompatActivity {
 
     MainUtility mainUtility;
     TileMap tileMap;
-    Player player;
+
 
     int size = 15; //temp variable, will change for each level
 
@@ -37,8 +37,7 @@ public class DungeonActivity extends AppCompatActivity {
         inventoryDisplay = new InventoryDisplay(mainUtility);
         statsDisplay = new StatsDisplay(mainUtility);
         createTileMap();
-        initPlayer();
-        updateText();
+        updateText(tileMap.getPos());
 
     }
 
@@ -56,10 +55,6 @@ public class DungeonActivity extends AppCompatActivity {
             dungeonInitUtility.setLoadPlayer(loadPlayer);
             dungeonInitUtility.setDeleteCurrentTile(deleteCurrentTile);
         }
-    }
-
-    private void initPlayer() {
-        player = new Player(tileMap, playerInfoPassUtility);
     }
 
     private void createTileMap() {
@@ -85,17 +80,14 @@ public class DungeonActivity extends AppCompatActivity {
         statsDisplay.toggle();
     }
 
-    private void updateText() {
-        ArrayList<ArrayList<LevelTile>> levelMap = FileUtility.loadMap(this);
-        int[] playerPos = player.getPlayerPos();
-        int col = playerPos[0];
-        int row = playerPos[1];
-
+    private void updateText(int[] playerPos) {
         //get the tile in the form of { up, right, down, left}
-        LevelTile info[] = {(tileMap.getTile(col, row - 1))
-                , (tileMap.getTile(col + 1, row))
-                , (tileMap.getTile(col, row + 1))
-                , (tileMap.getTile(col - 1, row))};
+        LevelTile info[] = {(tileMap.getTile(playerPos[0], playerPos[1] - 1))
+                , (tileMap.getTile(playerPos[0] + 1, playerPos[1]))
+                , (tileMap.getTile(playerPos[0], playerPos[1] + 1))
+                , (tileMap.getTile(playerPos[0] - 1, playerPos[1]))};
+
+        checkArrows(info);
 
         TextView up = findViewById(R.id.upInfo);
         TextView right = findViewById(R.id.rightInfo);
@@ -109,10 +101,10 @@ public class DungeonActivity extends AppCompatActivity {
 
         TextLines.animateText(up, right, down, left);
 
-        checkArrows(info);
     }
 
     private void checkArrows(LevelTile info[]) {
+
         if (info[0].getType() == LevelTile.WALL) {
             findViewById(R.id.arrowUp).setVisibility(View.INVISIBLE);
         }
@@ -144,26 +136,34 @@ public class DungeonActivity extends AppCompatActivity {
 
     public void moveUp(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        player.moveUp();
-        updateText();
+        int pos[] = tileMap.getPos();
+        pos[1]--;
+        tileMap.setPlayerPos(pos[0], pos[1]);
+        updateText(pos);
     }
 
     public void moveRight(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        player.moveRight();
-        updateText();
+        int pos[] = tileMap.getPos();
+        pos[0]++;
+        tileMap.setPlayerPos(pos[0], pos[1]);
+        updateText(pos);
     }
 
     public void moveDown(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        player.moveDown();
-        updateText();
+        int pos[] = tileMap.getPos();
+        pos[1]++;
+        tileMap.setPlayerPos(pos[0], pos[1]);
+        updateText(pos);
     }
 
     public void moveLeft(View view) {
         findViewById(R.id.mapDisp).setVisibility(View.GONE);
-        player.moveLeft();
-        updateText();
+        int pos[] = tileMap.getPos();
+        pos[0]--;
+        tileMap.setPlayerPos(pos[0], pos[1]);
+        updateText(pos);
     }
 
     @Override
