@@ -5,14 +5,15 @@
         android:toXScale="0.75"
         android:fromYScale="1"
         android:toYScale="0.75"
-        android:duration="500"
+        android:duration="200"
         android:pivotX="50%"
         android:pivotY="50%" >
     </scale>
 
     <alpha
         android:fromAlpha="1"
-        android:toAlpha="0"
-        android:duration="500" >
+        android:toAlpha="0.5"
+        android:duration="200" >
     </alpha>
+
 </set>

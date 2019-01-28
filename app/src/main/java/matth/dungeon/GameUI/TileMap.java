@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import matth.dungeon.EnemyTile.EnemyEventActivity;
 import matth.dungeon.R;
 import matth.dungeon.RandomEventTile.RandomEventActivity;
+import matth.dungeon.Transitions.ToEnemyEventActivity;
+import matth.dungeon.Transitions.ToEnemyEventTransition;
 import matth.dungeon.Utility.DungeonInitUtility;
 import matth.dungeon.Utility.FileUtility;
 import matth.dungeon.Utility.LevelTileGenerationUtility;
@@ -135,20 +137,23 @@ public class TileMap {
     private void checkTile(int col, int row) {
 
         if (getTile(col, row).getEvent() == LevelTile.END_POS) {
-            Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
+            Intent intent = new Intent(mainUtility.getCon(), ToEnemyEventActivity.class);
             mainUtility.getCon().startActivity(intent);
+            ((Activity) mainUtility.getCon()).overridePendingTransition(R.anim.enter_enemy_tile_animation, R.anim.exit_enemy_tile_animation);
             ((Activity) mainUtility.getCon()).finish();
         }
 
         if (getTile(col, row).getEvent() == LevelTile.ENEMY_EVENT) {
-            Intent intent = new Intent(mainUtility.getCon(), EnemyEventActivity.class);
+            Intent intent = new Intent(mainUtility.getCon(), ToEnemyEventActivity.class);
             mainUtility.getCon().startActivity(intent);
+            ((Activity) mainUtility.getCon()).overridePendingTransition(R.anim.enter_enemy_tile_animation, R.anim.exit_enemy_tile_animation);
             ((Activity) mainUtility.getCon()).finish();
         }
 
         if (getTile(col, row).getEvent() == LevelTile.ITEM_EVENT) {
             Intent intent = new Intent(mainUtility.getCon(), RandomEventActivity.class);
             mainUtility.getCon().startActivity(intent);
+            ((Activity) mainUtility.getCon()).overridePendingTransition(R.anim.enter_default_animation, R.anim.exit_default_animation);
             ((Activity) mainUtility.getCon()).finish();
         }
 

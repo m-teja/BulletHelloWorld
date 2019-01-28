@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Transitions.ToEnemyEventActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +21,7 @@
         <activity android:name=".EnemyTile.EnemyEventActivity" />
         <activity android:name=".PostGameScreens.GameOver" />
         <activity android:name=".PostGameScreens.GameWin" />
-        <activity android:name=".RandomEventTile.RandomEventActivity"></activity>
+        <activity android:name=".RandomEventTile.RandomEventActivity" />
     </application>
 
 </manifest>
